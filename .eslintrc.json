@@ -44,6 +44,7 @@
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "camelcase": 0,
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
 
     // __ REACT
     "react/prop-types": 0,
