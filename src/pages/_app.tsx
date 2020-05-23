@@ -1,7 +1,7 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import theme from "../theme";
 

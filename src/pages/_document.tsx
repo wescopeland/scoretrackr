@@ -1,6 +1,6 @@
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import React from "react";
+import { Children } from "react";
 
 export default class MyDocument extends Document {
   render() {
@@ -10,6 +10,13 @@ export default class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+
+          <link
+            rel="stylesheet"
+            crossOrigin="anonymous"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           />
 
           {/* <link
@@ -40,9 +47,6 @@ MyDocument.getInitialProps = async ctx => {
 
   return {
     ...initialProps,
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement()
-    ]
+    styles: [...Children.toArray(initialProps.styles), sheets.getStyleElement()]
   };
 };
