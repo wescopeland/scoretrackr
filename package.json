@@ -28,8 +28,10 @@
   },
   "dependencies": {
     "next": "9.4.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "preact": "^10.2.1",
+    "preact-render-to-string": "^5.1.4",
+    "react": "github:preact-compat/react#1.0.0",
+    "react-dom": "github:preact-compat/react-dom#1.0.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
