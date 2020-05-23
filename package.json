@@ -34,6 +34,8 @@
     "react-dom": "github:preact-compat/react-dom#1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^7.0.0",
     "@commitlint/config-conventional": "^8.3.4",
     "@cypress/code-coverage": "^3.7.5",
     "@cypress/webpack-preprocessor": "^5.4.1",
@@ -48,8 +50,8 @@
     "@types/react": "^16.9.35",
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
-    "@welldone-software/why-did-you-render": "^4.2.2",
     "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.2",
     "commitlint": "^8.3.5",
     "cross-env": "^7.0.2",
     "cypress": "^4.6.0",
@@ -70,7 +72,8 @@
     "pretty-quick": "^2.0.1",
     "start-server-and-test": "^1.11.0",
     "ts-jest": "^26.0.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "webpack": "^4.18.1"
   },
   "config": {
     "commitizen": {
