@@ -1,0 +1,5 @@
+{
+  "testFiles": ["**/*.{feature,features}"],
+  "integrationFolder": "cypress/tests",
+  "video": false
+}
