@@ -9,15 +9,8 @@ cache:
 
 jobs:
   include:
-    - stage: static analysis
-      script:
-        - yarn format:check
-        - yarn lint
-
-    - stage: unit tests
-      script:
-        - yarn test
-
-    - stage: integration tests
-      script:
-        - yarn test:integration:ci
+    script:
+      - yarn format:check
+      - yarn lint
+      - yarn test
+      - yarn test:integration:ci
