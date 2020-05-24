@@ -1,4 +1,6 @@
 import { Typography, styled } from "@material-ui/core";
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
 import { Container, Col, Row } from "reactstrap";
 
 const StyledAppName = styled(Typography)({
@@ -13,6 +15,8 @@ const StyledDescription = styled(Typography)({
 });
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Row>
@@ -22,7 +26,7 @@ export const Header = () => {
           </StyledAppName>
 
           <StyledDescription>
-            High Score Statistics and Permanent Historical Archive
+            {t("common:header.description")}
           </StyledDescription>
         </Col>
       </Row>

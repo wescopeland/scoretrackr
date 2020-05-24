@@ -43,6 +43,7 @@
       }
     ],
     "import/prefer-default-export": 0,
+    "import/default": 0,
     "no-console": "warn",
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "camelcase": 0,
