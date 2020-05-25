@@ -6,7 +6,8 @@ module.exports = {
 
   moduleFileExtensions: ["ts", "tsx", "js"],
   moduleNameMapper: {
-    "^@components/(.*)$": "<rootDir>/src/components/$1"
+    "^@components/(.*)$": "<rootDir>/src/components/$1",
+    "^@utils/(.*)$": "<rootDir>/src/utils/$1"
   },
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
@@ -18,15 +19,16 @@ module.exports = {
 
   collectCoverageFrom: [
     "src/**/*.{js,jsx,ts,tsx}",
+    "pages/api/**/*.ts",
     "!src/pages/**/*",
     "!src/pages_/_app.tsx",
     "!src/pages_/_document.tsx",
-    "!src/i18n.ts",
     "!**/__mocks__/*.{js,jsx,ts,tsx}",
     "!**/index.{js,jsx,ts}",
     "!**/*models*.{ts,tsx}",
-    "!**/*.model.{ts}",
-    "!**/*.d.ts"
+    "!**/*.model.ts",
+    "!**/*.d.ts",
+    "!src/utils/testing/**/*.ts"
   ],
   coverageThreshold: {
     global: 100
