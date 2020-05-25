@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
+import { AppBar } from "@components/AppBar";
 import { Header } from "@components/Header";
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
       </Head>
 
       <Header />
+      <AppBar />
     </div>
   );
 };

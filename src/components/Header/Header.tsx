@@ -4,7 +4,7 @@ import React from "react";
 import { Container, Col, Row } from "reactstrap";
 
 const StyledAppName = styled(Typography)({
-  letterSpacing: "0.6rem",
+  letterSpacing: "0.8rem",
   textTransform: "uppercase",
   textAlign: "center"
 });
