@@ -6,9 +6,6 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
     "prettier"
   ],
   "parserOptions": {
@@ -26,24 +23,24 @@
   "plugins": ["react"],
   "rules": {
     // __ CORE
-    "import/order": [
-      "warn",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling", "index"]
-        ],
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ],
-    "import/prefer-default-export": 0,
-    "import/default": 0,
+    // Uncomment this when https://github.com/benmosher/eslint-plugin-import/pull/1763 is released
+    // "import/order": [
+    //   "warn",
+    //   {
+    //     "groups": [
+    //       "builtin",
+    //       "external",
+    //       ["internal", "parent", "sibling", "index"]
+    //     ],
+    //     "newlines-between": "always",
+    //     "alphabetize": {
+    //       "order": "asc",
+    //       "caseInsensitive": true
+    //     }
+    //   }
+    // ],
+    // "import/prefer-default-export": 0,
+    // "import/default": 0,
     "no-console": "warn",
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "camelcase": 0,

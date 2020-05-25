@@ -8,11 +8,14 @@ describe("Util: firebaseAdminApp", () => {
   });
 
   it("does not initialize twice", () => {
-    // Act
-    firebaseAdminApp;
-    firebaseAdminApp;
+    // Arrange
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const myApp = firebaseAdminApp;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const myOtherApp = firebaseAdminApp;
 
     // Assert
+    expect(firebaseAdminApp).toBeTruthy();
     expect(admin.apps.length).toEqual(1);
   });
 });

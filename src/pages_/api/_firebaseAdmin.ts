@@ -1,5 +1,4 @@
 import * as admin from "firebase-admin";
-import { ServiceAccount } from "firebase-admin";
 
 process.env.FIRESTORE_EMULATOR_HOST = "localhost:8080";
 

@@ -1,24 +1,5 @@
 import ping from "./ping";
-import { NowRequest, NowResponse } from "@now/node";
-
-export const mockRequest = (method: string, body: any): NowRequest => ({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  session: {},
-  body,
-  method
-});
-
-export const mockResponse = (): NowResponse => {
-  const res: any = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  res.setHeader = jest.fn().mockReturnValue(res);
-  res.end = jest.fn().mockReturnValue(res);
-
-  return res;
-};
+import { mockRequest, mockResponse } from "@utils/testing/mock-req-res";
 
 describe("Endpoint: ping", () => {
   it("exists", () => {
