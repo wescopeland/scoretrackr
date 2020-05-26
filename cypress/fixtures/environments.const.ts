@@ -1,3 +1,3 @@
 export const environments = {
-  local: "http://localhost:3000"
+  local: "http://localhost:3000",
 };

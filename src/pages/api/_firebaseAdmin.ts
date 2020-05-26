@@ -7,7 +7,7 @@ process.env.FIRESTORE_EMULATOR_HOST = "localhost:8080";
 if (!admin.apps.length) {
   admin.initializeApp({
     projectId: "scoretracker-e8845",
-    credential: admin.credential.applicationDefault()
+    credential: admin.credential.applicationDefault(),
   });
 }
 

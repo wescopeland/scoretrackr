@@ -1,22 +1,19 @@
 import { Typography, styled } from "@material-ui/core";
-import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Container, Col, Row } from "reactstrap";
 
 const StyledAppName = styled(Typography)({
   letterSpacing: "0.8rem",
   textTransform: "uppercase",
-  textAlign: "center"
+  textAlign: "center",
 });
 
 const StyledDescription = styled(Typography)({
   letterSpacing: "0.1rem",
-  textAlign: "center"
+  textAlign: "center",
 });
 
 export const Header = () => {
-  const { t } = useTranslation();
-
   return (
     <Container>
       <Row>
@@ -26,7 +23,7 @@ export const Header = () => {
           </StyledAppName>
 
           <StyledDescription>
-            {t("common:header.description")}
+            High Score Statistics and Permanent Historical Archive
           </StyledDescription>
         </Col>
       </Row>

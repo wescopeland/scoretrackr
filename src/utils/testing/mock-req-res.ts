@@ -6,7 +6,7 @@ export const mockRequest = (method: string, body: any): NowRequest => ({
   // @ts-ignore
   session: {},
   body,
-  method
+  method,
 });
 
 export const mockResponse = (): NowResponse => {

@@ -1,8 +1,9 @@
 import ping from "./ping";
-import { mockRequest, mockResponse } from "@utils/testing/mock-req-res";
+import { mockRequest, mockResponse } from "@utils/testing";
 
 describe("Endpoint: ping", () => {
   it("exists", () => {
+    // Assert
     expect(ping).toBeDefined();
   });
 
@@ -21,7 +22,7 @@ describe("Endpoint: ping", () => {
     });
   });
 
-  describe("Other method", () => {
+  describe("Other methods", () => {
     it("returns a 405 error", async () => {
       // Arrange
       const req = mockRequest("POST", null);
