@@ -1,17 +1,14 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import App from "next/app";
+import React from "react";
 
 import theme from "../theme";
+import { appWithTranslation } from "../i18n";
 
-interface MyAppProps {
-  Component: any;
-  pageProps: any;
-}
-
-const MyApp = ({ Component, pageProps }: MyAppProps) => {
-  useEffect(() => {
+class MyApp extends App {
+  componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
 
@@ -19,24 +16,28 @@ const MyApp = ({ Component, pageProps }: MyAppProps) => {
     if (jssStyles?.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, []);
+  }
 
-  return (
-    <>
-      <Head>
-        <title>My page</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
+  render() {
+    const { Component, pageProps } = this.props;
 
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
-  );
-};
+    return (
+      <>
+        <Head>
+          <title>My page</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+        </Head>
 
-export default MyApp;
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </>
+    );
+  }
+}
+
+export default appWithTranslation(MyApp);

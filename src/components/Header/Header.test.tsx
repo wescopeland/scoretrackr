@@ -27,8 +27,6 @@ describe("Component: Header", () => {
     const { findByText } = render(<Header />);
 
     // Assert
-    expect(
-      await findByText("High Score Statistics and Permanent Historical Archive")
-    ).toBeVisible();
+    expect(await findByText("header.description")).toBeVisible();
   });
 });

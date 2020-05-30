@@ -19,7 +19,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   switch (req.method) {
     case "GET":
       try {
-        const scoresSnapshot = await scoresRef.get();
+        const scoresSnapshot = await scoresRef.limit(20).get();
 
         const scoresData = await Promise.all(
           scoresSnapshot.docs.map(async (doc) => {

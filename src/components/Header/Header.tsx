@@ -2,6 +2,8 @@ import { Typography, styled } from "@material-ui/core";
 import React from "react";
 import { Container, Col, Row } from "reactstrap";
 
+import { useTranslation } from "../../i18n";
+
 const StyledAppName = styled(Typography)({
   letterSpacing: "0.8rem",
   textTransform: "uppercase",
@@ -14,6 +16,8 @@ const StyledDescription = styled(Typography)({
 });
 
 export const Header = () => {
+  const { t } = useTranslation("common");
+
   return (
     <Container>
       <Row>
@@ -22,9 +26,7 @@ export const Header = () => {
             Scoretrac.kr
           </StyledAppName>
 
-          <StyledDescription>
-            High Score Statistics and Permanent Historical Archive
-          </StyledDescription>
+          <StyledDescription>{t("header.description")}</StyledDescription>
         </Col>
       </Row>
     </Container>

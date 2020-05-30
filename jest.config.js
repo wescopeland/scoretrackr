@@ -27,14 +27,6 @@ module.exports = {
     "!**/*.d.ts",
     "!src/utils/testing/**/*.ts",
   ],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  },
 
   globals: {
     "ts-jest": {
