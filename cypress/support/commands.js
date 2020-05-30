@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
-import "@testing-library/cypress/add-commands";
+import '@testing-library/cypress/add-commands';
 
 const getFetchPolyfill = async () => {
-  const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
+  const polyfillUrl = 'https://unpkg.com/unfetch/dist/unfetch.umd.js';
   return await window.fetch(polyfillUrl).then((res) => {
     if (res.ok) {
       return res.text();
@@ -10,7 +9,7 @@ const getFetchPolyfill = async () => {
   });
 };
 
-Cypress.Commands.overwrite("visit", async (originalFn, url, options) => {
+Cypress.Commands.overwrite('visit', async (originalFn, url, options) => {
   let polyfill = !window.fetchPoly && (await getFetchPolyfill());
 
   const opts = Object.assign({}, options, {
@@ -25,7 +24,7 @@ Cypress.Commands.overwrite("visit", async (originalFn, url, options) => {
       if (options && options.onBeforeLoad) {
         return options.onBeforeLoad(window, ...args);
       }
-    },
+    }
   });
 
   return originalFn(url, opts);

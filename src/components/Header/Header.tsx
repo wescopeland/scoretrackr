@@ -1,22 +1,21 @@
-import { Typography, styled } from "@material-ui/core";
-import React from "react";
-import { Container, Col, Row } from "reactstrap";
-
-import { useTranslation } from "../../i18n";
+import { styled, Typography } from '@material-ui/core';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Col, Container, Row } from 'reactstrap';
 
 const StyledAppName = styled(Typography)({
-  letterSpacing: "0.8rem",
-  textTransform: "uppercase",
-  textAlign: "center",
+  letterSpacing: '0.8rem',
+  textTransform: 'uppercase',
+  textAlign: 'center'
 });
 
 const StyledDescription = styled(Typography)({
-  letterSpacing: "0.1rem",
-  textAlign: "center",
+  letterSpacing: '0.1rem',
+  textAlign: 'center'
 });
 
 export const Header = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
 
   return (
     <Container>
@@ -26,7 +25,7 @@ export const Header = () => {
             Scoretrac.kr
           </StyledAppName>
 
-          <StyledDescription>{t("header.description")}</StyledDescription>
+          <StyledDescription>{t('header.description')}</StyledDescription>
         </Col>
       </Row>
     </Container>

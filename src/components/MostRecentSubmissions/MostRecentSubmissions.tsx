@@ -1,7 +1,7 @@
-import React from "react";
-import { Divider } from "@material-ui/core";
+import { Divider } from '@material-ui/core';
+import React from 'react';
 
-import { RecentSubmission } from "../RecentSubmission";
+import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {
   return (

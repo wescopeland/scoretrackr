@@ -1,24 +1,43 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["es6", "es2015", "es2017", "dom"],
     "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": "./",
+    "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "strict": true,
+    "pretty": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2016",
+    "baseUrl": "src",
+    "skipLibCheck": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "exclude": ["cypress"],
-  "include": ["next-env.d.ts", "next-translate.d.ts", "src"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "coverage",
+    "scripts",
+    "webpack",
+    "jest",
+    "razzle.config.js",
+    "cypress"
+  ],
+  "include": ["src"],
+  "types": ["typePatches", "node", "webpack-env"]
 }

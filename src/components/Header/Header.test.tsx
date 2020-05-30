@@ -1,12 +1,13 @@
-import { cleanup, render } from "@testing-library/react";
-import React from "react";
+import '@testing-library/jest-dom';
+import { cleanup, render } from '@testing-library/react';
+import React from 'react';
 
-import { Header } from "./Header";
+import { Header } from './Header';
 
-describe("Component: Header", () => {
+describe('Component: Header', () => {
   afterEach(cleanup);
 
-  it("renders without crashing", () => {
+  it('renders without crashing', () => {
     // Arrange
     const { container } = render(<Header />);
 
@@ -14,19 +15,19 @@ describe("Component: Header", () => {
     expect(container).toBeTruthy();
   });
 
-  it("displays the app name", async () => {
+  it('displays the app name', async () => {
     // Arrange
     const { findByText } = render(<Header />);
 
     // Assert
-    expect(await findByText("scoretrac.kr", { exact: false })).toBeVisible();
+    expect(await findByText('scoretrac.kr', { exact: false })).toBeVisible();
   });
 
-  it("displays some description text", async () => {
+  it('displays some description text', async () => {
     // Arrange
     const { findByText } = render(<Header />);
 
     // Assert
-    expect(await findByText("header.description")).toBeVisible();
+    expect(await findByText('header.description')).toBeVisible();
   });
 });

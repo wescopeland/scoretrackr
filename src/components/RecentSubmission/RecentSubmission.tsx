@@ -1,14 +1,14 @@
-import React from "react";
 import {
   List,
   ListItem,
   ListItemText,
   styled,
-  Typography,
-} from "@material-ui/core";
+  Typography
+} from '@material-ui/core';
+import React from 'react';
 
 const StyledTypography = styled(Typography)({
-  flex: "1 1 auto",
+  flex: '1 1 auto'
 });
 
 interface RecentSubmissionProps {
