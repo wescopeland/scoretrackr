@@ -1,1 +1,1 @@
-export * from "./MostRecentSubmissions";
+export * from './MostRecentSubmissions';

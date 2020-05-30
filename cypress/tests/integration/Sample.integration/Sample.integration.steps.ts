@@ -1,7 +1,7 @@
-import { Given } from "cypress-cucumber-preprocessor/steps";
+import { Given } from 'cypress-cucumber-preprocessor/steps';
 
-import { environments } from "../../../fixtures/environments.const";
+import { environments } from '../../../fixtures/environments.const';
 
-Given("I visit the home page", () => {
+Given('I visit the home page', () => {
   cy.visit(environments.local);
 });

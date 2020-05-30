@@ -10,6 +10,8 @@
     "mock-db": "firebase emulators:start --import=mock-database",
     "build-and-start": "yarn build && yarn start:prod",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
+    "format": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
+    "format:write": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
     "format:check": "prettier --check . '**/*.{json,css,scss,md,ts,tsx}'",
     "lint": "tslint -c tslint.json --project . --format verbose",
     "test": "razzle test --env=jest-environment-jsdom-sixteen",

@@ -1,5 +1,5 @@
-import { AppBar as MuiAppBar, Toolbar } from "@material-ui/core";
-import React from "react";
+import { AppBar as MuiAppBar, Toolbar } from '@material-ui/core';
+import React from 'react';
 
 export const AppBar = () => {
   return (

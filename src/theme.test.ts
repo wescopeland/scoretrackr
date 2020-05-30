@@ -1,5 +1,5 @@
-import theme from "./theme";
+import theme from './theme';
 
-it("exists", () => {
+it('exists', () => {
   expect(theme).toBeDefined();
 });
