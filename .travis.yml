@@ -8,7 +8,6 @@ cache:
     - node_modules
     - $HOME/.cache/yarn
     - ~/.cache
-    - .next/cache
 
 env:
   global:
@@ -24,8 +23,7 @@ jobs:
     script:
       - yarn format:check
       - yarn lint
-      - yarn test --coverage
-      - yarn test:integration:ci
+      - yarn test:unit:ci
 
     after_script:
       - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
