@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"yarn start\" \"mock-db\"",
-    "start": "razzle start",
+    "dev": "concurrently \"razzle start\" \"mock-db\"",
     "build": "razzle build",
-    "start:prod": "NODE_ENV=production node build/server.js",
+    "start": "NODE_ENV=production node build/server.js",
     "mock-db": "firebase emulators:start --import=mock-database",
     "build-and-start": "yarn build && yarn start:prod",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
