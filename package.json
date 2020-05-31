@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "engines": {
-    "node": "12.x",
-    "yarn": "1.22.x"
+    "node": "12.x"
   },
   "scripts": {
     "dev": "concurrently \"yarn start:dev\" \"mock-db\"",
