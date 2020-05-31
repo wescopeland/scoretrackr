@@ -1,4 +1,5 @@
 import i18n from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
@@ -29,7 +30,7 @@ const options = {
 
 // for browser use http backend to load translations and browser lng detector
 if (process && !process.release) {
-  i18n.use(Backend).use(initReactI18next);
+  i18n.use(Backend).use(initReactI18next).use(LanguageDetector);
 }
 
 // initialize if not already initialized

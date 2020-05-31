@@ -26,57 +26,60 @@ const i18nextMiddleware = require('i18next-http-middleware');
 
 const server = express();
 
-i18n.use(Backend).init(
-  {
-    debug: false,
-    preload: ['en', 'jp'],
-    ns: ['common'],
-    defaultNS: 'common',
-    backend: {
-      loadPath: `${appSrc}/locales/{{lng}}/{{ns}}.json`,
-      addPath: `${appSrc}/locales/{{lng}}/{{ns}}.missing.json`
+i18n
+  .use(Backend)
+  .use(i18nextMiddleware.LanguageDetector)
+  .init(
+    {
+      debug: false,
+      preload: ['en', 'jp'],
+      ns: ['common'],
+      defaultNS: 'common',
+      backend: {
+        loadPath: `${appSrc}/locales/{{lng}}/{{ns}}.json`,
+        addPath: `${appSrc}/locales/{{lng}}/{{ns}}.missing.json`
+      },
+      react: {
+        useSuspense: false
+      }
     },
-    react: {
-      useSuspense: false
-    }
-  },
-  () => {
-    server
-      .disable('x-powered-by')
-      .use(i18nextMiddleware.handle(i18n))
-      .use('/locales', express.static(`${appSrc}/locales`))
-      .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-      .get('/*', (req, res) => {
-        const sheets = new ServerStyleSheets();
-        const context = {};
-        const markup = renderToString(
-          sheets.collect(
-            <ThemeProvider theme={theme}>
-              <I18nextProvider i18n={(req as any).i18n}>
-                <StaticRouter context={context} location={req.url}>
-                  <App />
-                </StaticRouter>
-              </I18nextProvider>
-            </ThemeProvider>
-          )
-        );
+    () => {
+      server
+        .disable('x-powered-by')
+        .use(i18nextMiddleware.handle(i18n))
+        .use('/locales', express.static(`${appSrc}/locales`))
+        .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+        .get('/*', (req, res) => {
+          const sheets = new ServerStyleSheets();
+          const context = {};
+          const markup = renderToString(
+            sheets.collect(
+              <ThemeProvider theme={theme}>
+                <I18nextProvider i18n={(req as any).i18n}>
+                  <StaticRouter context={context} location={req.url}>
+                    <App />
+                  </StaticRouter>
+                </I18nextProvider>
+              </ThemeProvider>
+            )
+          );
 
-        const css = sheets.toString();
+          const css = sheets.toString();
 
-        const { url }: any = context;
-        if (url) {
-          res.redirect(url);
-        } else {
-          const initialI18nStore = {};
-          (req as any).i18n.languages.forEach((lang: string) => {
-            initialI18nStore[
-              lang
-            ] = (req as any).i18n.services.resourceStore.data[lang];
-          });
+          const { url }: any = context;
+          if (url) {
+            res.redirect(url);
+          } else {
+            const initialI18nStore = {};
+            (req as any).i18n.languages.forEach((lang: string) => {
+              initialI18nStore[
+                lang
+              ] = (req as any).i18n.services.resourceStore.data[lang];
+            });
 
-          const initialLanguage = (req as any).i18n.language;
+            const initialLanguage = (req as any).i18n.language;
 
-          res.status(200).send(`
+            res.status(200).send(`
             <!doctype html>
               <html lang="">
               <head>
@@ -119,9 +122,9 @@ i18n.use(Backend).init(
               </body>
             </html>
           `);
-        }
-      });
-  }
-);
+          }
+        });
+    }
+  );
 
 export default server;
