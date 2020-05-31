@@ -1,3 +1,9 @@
+const assetFilter = (assetFilename) => {
+  const isSrcMap = /\.map$/.test(assetFilename);
+  const isVendorBundle = /vendor/.test(assetFilename);
+  return !(isSrcMap || isVendorBundle);
+};
+
 module.exports = {
   modify: require('razzle-heroku'),
   plugins: [
@@ -12,11 +18,7 @@ module.exports = {
     WebpackPerformanceHintsRazzlePlugin({
       // Use a custom assetFilter to not warn about big source maps or vendor bundle
       // This is intended to keep Travis CI from griping about the vendor bundle size.
-      assetFilter: function (assetFilename) {
-        const isSrcMap = /\.map$/.test(assetFilename);
-        const isVendorBundle = /vendor/.test(assetFilename);
-        return !(isSrcMap || isVendorBundle);
-      }
+      assetFilter
     }),
 
     {
@@ -120,12 +122,8 @@ function WebpackPerformanceHintsRazzlePlugin(pluginOptions) {
     return {
       ...config,
       performance: {
-        ...config.performance,
-        assetFilter: function (assetFilename) {
-          const isSrcMap = /\.map$/.test(assetFilename);
-          const isVendorBundle = /vendor/.test(assetFilename);
-          return !(isSrcMap || isVendorBundle);
-        }
+        assetFilter,
+        ...config.performance
       }
     };
   };
