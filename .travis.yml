@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - 12
 
+branches:
+  only:
+    - 'master'
+
 cache:
   yarn: true
   directories:
@@ -24,6 +28,7 @@ jobs:
       - yarn format:check
       - yarn lint
       - yarn test:unit:ci
+      - yarn test:integration:ci
 
     after_script:
       - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
