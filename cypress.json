@@ -1,5 +1,6 @@
 {
   "testFiles": ["**/*.{feature,features}"],
   "integrationFolder": "cypress/tests",
-  "video": false
+  "video": false,
+  "projectId": "f7895m"
 }
