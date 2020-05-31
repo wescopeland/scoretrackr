@@ -1,4 +1,5 @@
 module.exports = {
+  modify: require('razzle-heroku'),
   plugins: [
     {
       name: 'typescript',

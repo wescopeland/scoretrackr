@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@material-ui/styles';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { hydrate } from 'react-dom';
 import { useSSR } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
