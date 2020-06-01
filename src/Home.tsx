@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
@@ -19,11 +19,13 @@ export const Home = () => {
           </Col>
         </Row>
 
-        <Row className="mt-2">
-          <Col>
-            <MostRecentSubmissions />
-          </Col>
-        </Row>
+        <Box marginTop={5}>
+          <Row>
+            <Col>
+              <MostRecentSubmissions />
+            </Col>
+          </Row>
+        </Box>
       </Container>
     </div>
   );

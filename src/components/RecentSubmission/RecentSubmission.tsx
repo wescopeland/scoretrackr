@@ -1,36 +1,58 @@
-import {
-  List,
-  ListItem,
-  ListItemText,
-  styled,
-  Typography
-} from '@material-ui/core';
+import { Box, Card, CardContent, Typography } from '@material-ui/core';
+import numbro from 'numbro';
 import React from 'react';
 
-const StyledTypography = styled(Typography)({
-  flex: '1 1 auto'
-});
+import { useStyles } from './RecentSubmission.styles';
 
 interface RecentSubmissionProps {
+  gameColor: string;
   gameName: string;
+  gameFriendlyId: string;
   trackName: string;
   playerAlias: string;
   score: number;
-  date: number;
   position: number;
 }
 
-export const RecentSubmission = () => {
+export const RecentSubmission = ({
+  gameColor,
+  gameName,
+  gameFriendlyId,
+  trackName,
+  playerAlias,
+  score,
+  position
+}: RecentSubmissionProps) => {
+  const { card, cardMedia, positionText } = useStyles({ gameColor });
+
+  const imageUrl = `/static/images/games/${gameFriendlyId}.gif`;
+
   return (
-    <>
-      <List className="pt-1 pb-1">
-        <ListItem className="d-flex">
-          <ListItemText primary="Donkey Kong" />
-          <ListItemText primary="1,218,000" secondary="Factory settings" />
-          <StyledTypography>Wes Copeland</StyledTypography>
-          <Typography>5 days ago</Typography>
-        </ListItem>
-      </List>
-    </>
+    <Card className={card}>
+      <img src={imageUrl} className={cardMedia} />
+
+      <CardContent className="d-flex w-100 pl-5 pr-5 pb-3">
+        <Box width={1 / 2}>
+          <Typography variant="h6">{gameName}</Typography>
+          <Typography>{trackName}</Typography>
+        </Box>
+
+        <Box width={1 / 4}>
+          <Typography variant="h6">{score.toLocaleString()}</Typography>
+          <Typography>{playerAlias}</Typography>
+        </Box>
+
+        <Box
+          width={1 / 3}
+          alignSelf="center"
+          textAlign="right"
+          className="pr-4"
+        >
+          <Typography className={positionText}>
+            {numbro(position).format({ output: 'ordinal' })}
+          </Typography>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };

@@ -5,8 +5,8 @@ import { initReactI18next } from 'react-i18next';
 
 const options = {
   fallbackLng: 'en',
-  load: 'languageOnly', // we only provide en, de -> no region specific locals like en-US, de-DE
-  // have a common namespace used around the full app
+  load: 'languageOnly', // we only provide en, jp -> no region specific locals like en-US, ja-JP
+
   ns: ['common'],
   defaultNS: 'common',
 

@@ -52,6 +52,9 @@ i18n
         .get('/*', (req, res) => {
           const sheets = new ServerStyleSheets();
           const context = {};
+
+          const initialLanguage = (req as any).i18n.language;
+
           const markup = renderToString(
             sheets.collect(
               <ThemeProvider theme={theme}>
@@ -76,8 +79,6 @@ i18n
                 lang
               ] = (req as any).i18n.services.resourceStore.data[lang];
             });
-
-            const initialLanguage = (req as any).i18n.language;
 
             res.status(200).send(`
             <!doctype html>
