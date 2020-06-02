@@ -1,6 +1,5 @@
 import { Box, Typography } from '@material-ui/core';
 import React from 'react';
-import { Col, Container, Row } from 'reactstrap';
 
 import { AppBar } from './components/AppBar';
 import { Header } from './components/Header';
@@ -12,21 +11,21 @@ export const Home = () => {
       <Header />
       <AppBar />
 
-      <Container className="mt-5">
-        <Row>
-          <Col>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col">
             <Typography variant="h6">Most recent submissions</Typography>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
         <Box marginTop={5}>
-          <Row>
-            <Col>
+          <div className="row">
+            <div className="col">
               <MostRecentSubmissions />
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Box>
-      </Container>
+      </div>
     </div>
   );
 };

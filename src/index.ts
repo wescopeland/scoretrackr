@@ -10,7 +10,7 @@ let currentApp = app;
 
 server
   .listen(process.env.PORT || 3000, () => {
-    console.log('🚀 started');
+    console.log('🚀  Scoretrac.kr started!');
   })
   .on('error', (error) => {
     console.log(error);
