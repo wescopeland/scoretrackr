@@ -53,7 +53,7 @@ i18n
           const sheets = new ServerStyleSheets();
           const context = {};
 
-          const initialLanguage = (req as any).i18n.language;
+          (globalThis as any).initialLanguage = (req as any).i18n.language;
 
           const markup = renderToString(
             sheets.collect(
@@ -114,7 +114,10 @@ i18n
                     window.initialI18nStore = JSON.parse('${JSON.stringify(
                       initialI18nStore
                     )}');
-                    window.initialLanguage = '${initialLanguage}';
+                    
+                    window.initialLanguage = '${
+                      (globalThis as any).initialLanguage
+                    }';
                   </script>
               </head>
               <body>

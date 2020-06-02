@@ -22,11 +22,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2016",
     "baseUrl": "src",
-    "skipLibCheck": true,
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"]
-    }
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules",

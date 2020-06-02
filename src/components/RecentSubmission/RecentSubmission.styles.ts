@@ -28,8 +28,8 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   cardContentContainer: {
     display: 'flex',
     width: '100%',
-    paddingLeft: '4rem',
-    paddingRight: '4rem',
+    paddingLeft: '2rem',
+    paddingRight: '2rem',
     paddingBottom: '1rem !important', // override an annoying MUI style
 
     [theme.breakpoints.down('sm')]: {

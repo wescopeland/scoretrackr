@@ -1,7 +1,7 @@
-import { Box, Card, CardContent, Typography } from '@material-ui/core';
-import numbro from 'numbro';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 
+import { formatNumberToOrdinal } from 'utils/format-number-to-ordinal';
 import { useStyles } from './RecentSubmission.styles';
 
 interface RecentSubmissionProps {
@@ -38,7 +38,7 @@ export const RecentSubmission = ({
   });
 
   const imageUrl = `/static/images/games/${gameFriendlyId}.gif`;
-  const ordinalPosition = numbro(position).format({ output: 'ordinal' });
+  const ordinalPosition = formatNumberToOrdinal(position);
 
   return (
     <Card className={card}>

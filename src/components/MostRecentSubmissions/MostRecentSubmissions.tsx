@@ -1,8 +1,9 @@
 import { Box, Typography } from '@material-ui/core';
-import { formatDistanceToNow, isToday, isYesterday, parseISO } from 'date-fns';
+import { isToday, isYesterday, parseISO } from 'date-fns';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { formatDistanceToNow } from 'utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
 
 const donkeyKong = {
@@ -89,7 +90,7 @@ export const MostRecentSubmissions = () => {
       return t('yesterday');
     }
 
-    return formatDistanceToNow(parsedDate, { addSuffix: true });
+    return formatDistanceToNow(parsedDate);
   };
 
   return (

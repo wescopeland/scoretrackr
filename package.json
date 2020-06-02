@@ -59,6 +59,7 @@
     "@types/cypress-cucumber-preprocessor": "^1.14.1",
     "@types/express": "^4.17.6",
     "@types/jest": "^25.2.3",
+    "@types/numbro": "^1.9.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
@@ -100,6 +101,10 @@
       "js",
       "json"
     ],
+    "moduleNameMapper": {
+      "@components/(.*)": "<rootDir>/src/components/$1",
+      "@utils/(.*)": "<rootDir>/src/utils/$1"
+    },
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
     ],

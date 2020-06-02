@@ -2097,6 +2097,13 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
+"@types/numbro@^1.9.3":
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/@types/numbro/-/numbro-1.9.3.tgz#94dda74a7a775ae65e8c7f9a6b3bb5b7213f52d3"
+  integrity sha1-lN2nSnp3WuZejH+aazu1tyE/UtM=
+  dependencies:
+    numbro "*"
+
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -10581,7 +10588,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-numbro@^2.3.0:
+numbro@*, numbro@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/numbro/-/numbro-2.3.0.tgz#a2cdcf164346833fded1128dfc5056a882b3097a"
   integrity sha512-KGa4qVveFGC0HgKaJnmKYqyC9CX7jQONxEfREVwc/8UwTJtcEt60F8j/NCKgZH/IFW/Z9uibhCDqpJiRxuXdsA==
