@@ -1,5 +1,9 @@
 {
   "header": {
     "description": "High Score Statistics and Permanent Historical Archive"
-  }
+  },
+
+  "mostRecentSubmissions": "Most recent submissions",
+  "today": "Today",
+  "yesterday": "Yesterday"
 }

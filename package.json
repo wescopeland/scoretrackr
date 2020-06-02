@@ -6,12 +6,13 @@
     "node": "12.x"
   },
   "scripts": {
-    "dev": "concurrently \"yarn start:dev\" \"mock-db\"",
+    "dev": "concurrently \"yarn start:dev\" \"yarn mock-db\"",
     "start:dev": "razzle start",
     "build": "razzle build",
     "start": "NODE_ENV=production node build/server.js",
     "deploy": "now -e NODE_ENV=production",
     "mock-db": "firebase emulators:start --import=mock-database",
+    "mock-db:save": "firebase emulators:export mock-database --force",
     "build-and-start": "yarn build && yarn start",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
     "format": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
@@ -31,6 +32,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
+    "date-fns": "^2.14.0",
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",
     "i18next": "^19.4.5",
