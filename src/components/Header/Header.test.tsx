@@ -15,19 +15,21 @@ describe('Component: Header', () => {
     expect(container).toBeTruthy();
   });
 
-  it('displays the app name', async () => {
-    // Arrange
-    const { findByText } = render(<Header />);
+  describe('Desktop', () => {
+    it('displays the app name', () => {
+      // Arrange
+      const { getByText } = render(<Header />);
 
-    // Assert
-    expect(await findByText('scoretrac.kr', { exact: false })).toBeVisible();
-  });
+      // Assert
+      expect(getByText('scoretrac.kr', { exact: false })).toBeVisible();
+    });
 
-  it('displays some description text', async () => {
-    // Arrange
-    const { findByText } = render(<Header />);
+    it('displays some description text', () => {
+      // Arrange
+      const { getByText } = render(<Header />);
 
-    // Assert
-    expect(await findByText('header.description')).toBeVisible();
+      // Assert
+      expect(getByText('header.description')).toBeVisible();
+    });
   });
 });

@@ -1,30 +1,24 @@
-import { styled, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const StyledAppName = styled(Typography)({
-  letterSpacing: '0.8rem',
-  textTransform: 'uppercase',
-  textAlign: 'center'
-});
-
-const StyledDescription = styled(Typography)({
-  letterSpacing: '0.1rem',
-  textAlign: 'center'
-});
+import { useStyles } from './Header.styles';
 
 export const Header = () => {
+  const { appName, description } = useStyles({});
   const { t } = useTranslation('common');
 
   return (
     <div className="container">
       <div className="row">
         <div className="col p-3">
-          <StyledAppName variant="h4" className="p-2">
+          <Typography className={appName} variant="h4" component="h1">
             Scoretrac.kr
-          </StyledAppName>
+          </Typography>
 
-          <StyledDescription>{t('header.description')}</StyledDescription>
+          <Typography className={description}>
+            {t('header.description')}
+          </Typography>
         </div>
       </div>
     </div>

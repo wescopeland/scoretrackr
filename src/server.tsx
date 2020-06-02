@@ -91,7 +91,7 @@ i18n
 
                   <title>Scoretrac.kr</title>
 
-                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="viewport" content="width=device-width">
                   ${
                     assets.client.css
                       ? `<link rel="stylesheet" href="${assets.client.css}">`

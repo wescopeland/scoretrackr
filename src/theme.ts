@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     background: {
-      default: '#f3f4f5'
+      default: '#fafafa'
     },
     primary: {
       main: '#556cd6'
@@ -16,6 +16,16 @@ const theme = createMuiTheme({
       main: red.A400
     },
     type: 'light'
+  },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200
+    }
   }
 });
 
