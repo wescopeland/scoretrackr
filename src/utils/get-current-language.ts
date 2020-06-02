@@ -1,3 +1,3 @@
 export const getCurrentLanguage = () => {
-  return (globalThis as any).initialLanguage;
+  return (globalThis as any).initialLanguage || 'en';
 };

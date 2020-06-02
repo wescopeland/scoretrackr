@@ -106,7 +106,8 @@
       "src"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/index.ts"
     ],
     "globals": {
       "ts-jest": {
