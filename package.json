@@ -101,10 +101,10 @@
       "js",
       "json"
     ],
-    "moduleNameMapper": {
-      "@components/(.*)": "<rootDir>/src/components/$1",
-      "@utils/(.*)": "<rootDir>/src/utils/$1"
-    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
     ],

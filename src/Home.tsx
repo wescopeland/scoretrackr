@@ -17,7 +17,7 @@ export const Home = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col">
-            <Typography variant="h6">{t('mostRecentSubmissions')}</Typography>
+            <Typography variant="h6">{t('recentSubmissions.label')}</Typography>
           </div>
         </div>
 
