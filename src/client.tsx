@@ -2,20 +2,26 @@ import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { useSSR } from 'react-i18next';
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
+import configureStore from 'state/store';
 import App from './App';
 import './i18n';
 import theme from './theme';
+
+const store = configureStore((window as any).preloadedReduxState);
 
 const ClientApp = () => {
   useSSR((window as any).initialI18nStore, (window as any).initialLanguage);
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ReduxProvider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReduxProvider>
     </ThemeProvider>
   );
 };

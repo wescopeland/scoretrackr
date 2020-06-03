@@ -8,8 +8,11 @@ import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { I18nextProvider } from 'react-i18next';
+import { Provider as ReduxProvider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 
+import configureStore from 'state/store';
 import App from './App';
 import i18n from './i18n';
 import theme from './theme';
@@ -55,17 +58,25 @@ i18n
 
           (globalThis as any).initialLanguage = (req as any).i18n.language;
 
+          const store = configureStore({
+            mostRecentSubmissions: null
+          });
+
           const markup = renderToString(
             sheets.collect(
               <ThemeProvider theme={theme}>
                 <I18nextProvider i18n={(req as any).i18n}>
-                  <StaticRouter context={context} location={req.url}>
-                    <App />
-                  </StaticRouter>
+                  <ReduxProvider store={store}>
+                    <StaticRouter context={context} location={req.url}>
+                      <App />
+                    </StaticRouter>
+                  </ReduxProvider>
                 </I18nextProvider>
               </ThemeProvider>
             )
           );
+
+          const finalState = store.getState();
 
           const css = sheets.toString();
 
@@ -118,6 +129,8 @@ i18n
                     window.initialLanguage = '${
                       (globalThis as any).initialLanguage
                     }';
+
+                    window.preloadedReduxState = ${serialize(finalState)}
                   </script>
               </head>
               <body>
