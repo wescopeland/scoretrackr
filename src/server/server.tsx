@@ -13,9 +13,11 @@ import { StaticRouter } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
 import configureStore from 'state/store';
-import App from './App';
-import i18n from './i18n';
-import theme from './theme';
+import App from '../App';
+import i18n from '../i18n';
+import theme from '../theme';
+import ping from './api/ping';
+import recentSubmissions from './api/submissions/recent';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -49,9 +51,19 @@ i18n
     () => {
       server
         .disable('x-powered-by')
+
+        // i18n
         .use(i18nextMiddleware.handle(i18n))
         .use('/locales', express.static(`${appSrc}/locales`))
+
+        // static files
         .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+
+        // api routes
+        .get('/api/ping', ping)
+        .get('/api/submissions/recent', recentSubmissions)
+
+        // ui content delivery
         .get('/*', (req, res) => {
           const sheets = new ServerStyleSheets();
           const context = {};
