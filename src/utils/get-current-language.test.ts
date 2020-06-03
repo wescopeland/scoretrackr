@@ -9,7 +9,6 @@ describe('Util: getCurrentLanguage', () => {
   it('returns the globally set initial language', () => {
     // Arrange
     (globalThis as any).initialLanguage = 'some-LANGUAGE';
-    console.log((globalThis as any).initialLanguage);
 
     // Act
     const currentLanguage = getCurrentLanguage();

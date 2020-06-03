@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+import { createInitialState } from 'utils/create-initial-state';
+import { MostRecentSubmissionsState } from './models';
+
+const initialState = createInitialState<MostRecentSubmissionsState>({
+  submissionBlobs: []
+});
 
 export const mostRecentSubmissions = createSlice({
   name: 'mostRecentSubmissions',

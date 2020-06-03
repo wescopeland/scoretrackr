@@ -58,9 +58,7 @@ i18n
 
           (globalThis as any).initialLanguage = (req as any).i18n.language;
 
-          const store = configureStore({
-            mostRecentSubmissions: null
-          });
+          const store = configureStore();
 
           const markup = renderToString(
             sheets.collect(

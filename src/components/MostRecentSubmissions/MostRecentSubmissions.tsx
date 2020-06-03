@@ -2,33 +2,15 @@ import { Box, Typography } from '@material-ui/core';
 import { isToday, isYesterday, parseISO } from 'date-fns';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
+import { selectMostRecentSubmissions } from 'state/most-recent-submissions';
 import { formatDistanceToNow } from 'utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
 
-interface Game {
-  name: string;
-  friendlyId: string;
-  color: string;
-}
-
-interface Submission {
-  game: Game;
-  track: string;
-  playerAlias: string;
-  score: number;
-  position: number;
-}
-
-interface SubmissionBlob {
-  date: string;
-  submissions: Submission[];
-}
-
-const recentSubmissions: SubmissionBlob[] = [];
-
 export const MostRecentSubmissions = () => {
   const { t } = useTranslation('common');
+  const recentSubmissions = useSelector(selectMostRecentSubmissions);
 
   const getDateDistanceText = (date: string) => {
     const parsedDate = parseISO(date);
@@ -73,9 +55,7 @@ export const MostRecentSubmissions = () => {
           </div>
         ))
       ) : (
-        <Box textAlign="center">
-          <Typography>{t('recentSubmissions.none')}</Typography>
-        </Box>
+        <Typography>{t('recentSubmissions.none')}</Typography>
       )}
     </>
   );
