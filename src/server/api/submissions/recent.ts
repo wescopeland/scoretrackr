@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { Request, Response } from 'express';
 
 import { Submission, SubmissionBlob } from 'state/most-recent-submissions';
-import { getDocumentByReference } from 'utils/api';
+import { getDocumentByReference, unallowedHttpMethodResponse } from 'utils/api';
 import { DBGame, DBScore, DBTrack } from '../+models';
 import { firestore } from '../../firebase-admin-app';
 
@@ -86,7 +86,6 @@ export default async (req: Request, res: Response) => {
       return res.status(200).send(submissionBlobs);
 
     default:
-      res.setHeader('Allow', ['GET']);
-      return res.status(405).end(`Method ${req.method} Not Allowed`);
+      return unallowedHttpMethodResponse(['GET'], req.method, res);
   }
 };
