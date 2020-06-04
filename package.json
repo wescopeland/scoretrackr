@@ -72,6 +72,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/serialize-javascript": "^1.5.0",
+    "@types/supertest": "^2.0.9",
     "@types/testing-library__jest-dom": "^5.9.1",
     "@types/webpack-env": "^1.15.2",
     "commitlint": "^8.3.5",
@@ -83,11 +84,13 @@
     "husky": "^4.2.5",
     "istanbul-lib-coverage": "^3.0.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-environment-node": "^26.0.1",
     "nyc": "^15.0.1",
     "prettier": "2.0.5",
     "pretty-quick": "^2.0.1",
     "razzle-heroku": "^3.0.0",
     "start-server-and-test": "^1.11.0",
+    "supertest": "^4.0.2",
     "ts-jest": "^26.0.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
@@ -108,7 +111,9 @@
       "ts",
       "tsx",
       "js",
-      "json"
+      "jsx",
+      "json",
+      "node"
     ],
     "moduleDirectories": [
       "node_modules",

@@ -60,8 +60,8 @@ i18n
         .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
         // api routes
-        .get('/api/ping', ping)
-        .get('/api/submissions/recent', recentSubmissions)
+        .use('/api/ping', ping)
+        .use('/api/submissions/recent', recentSubmissions)
 
         // ui content delivery
         .get('/*', (req, res) => {

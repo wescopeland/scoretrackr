@@ -30,11 +30,7 @@ const buildSubmissionFromScore = async (
 export default async (req: Request, res: Response) => {
   switch (req.method) {
     case 'GET':
-      const scoresSnapshot = await firestore
-        .collection('scores')
-        .orderBy('submittedAt', 'desc')
-        .limit(60)
-        .get();
+      const scoresSnapshot = await firestore.collection('scores').get();
 
       const submissionBlobs = [];
       const datesTracked: string[] = [];
