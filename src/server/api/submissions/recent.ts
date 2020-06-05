@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { Submission, SubmissionBlob } from 'state/most-recent-submissions';
 import { getDocumentByReference, unallowedHttpMethodResponse } from 'utils/api';
 import { DBGame, DBScore, DBTrack } from '../+models';
-import { firestore } from '../../firebase-admin-app';
+import { db } from '../../firebase-admin-app';
 
 const buildSubmissionFromScore = async (
   score: DBScore
@@ -30,7 +30,12 @@ const buildSubmissionFromScore = async (
 export default async (req: Request, res: Response) => {
   switch (req.method) {
     case 'GET':
-      const scoresSnapshot = await firestore.collection('scores').get();
+      const scoresSnapshot = await db
+        .firestore()
+        .collection('scores')
+        .limit(60)
+        .orderBy('submittedAt', 'desc')
+        .get();
 
       const submissionBlobs = [];
       const datesTracked: string[] = [];

@@ -92,10 +92,14 @@
     "start-server-and-test": "^1.11.0",
     "supertest": "^4.0.2",
     "ts-jest": "^26.0.0",
+    "ts-mock-firebase": "^2.3.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "^3.9.3"
+  },
+  "resolutions": {
+    "grpc": "^1.24.3"
   },
   "jest": {
     "transform": {
