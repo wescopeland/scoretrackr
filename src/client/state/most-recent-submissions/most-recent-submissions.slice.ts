@@ -4,7 +4,7 @@ import { createInitialState } from 'common/utils/create-initial-state';
 import { MostRecentSubmissionsState } from './models';
 import { getMostRecentSubmissions } from './thunks/get-most-recent-submissions.thunk';
 
-const initialState = createInitialState<MostRecentSubmissionsState>({
+export const initialState = createInitialState<MostRecentSubmissionsState>({
   submissionBlobs: []
 });
 

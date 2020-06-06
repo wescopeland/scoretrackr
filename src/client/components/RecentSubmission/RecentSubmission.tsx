@@ -62,18 +62,18 @@ export const RecentSubmission = ({
   return (
     <>
       {isLoading ? (
-        <>
+        <div data-testid="recent-submission-loading">
           <Skeleton variant="text" />
           <Box marginBottom={3}>
-            <Skeleton variant="rect" height={90} />
+            <Skeleton animation="wave" variant="rect" height={90} />
           </Box>
           <Box marginBottom={3}>
-            <Skeleton variant="rect" height={90} />
+            <Skeleton animation="wave" variant="rect" height={90} />
           </Box>
           <Box marginBottom={3}>
-            <Skeleton variant="rect" height={90} />
+            <Skeleton animation="wave" variant="rect" height={90} />
           </Box>
-        </>
+        </div>
       ) : (
         <Card className={card}>
           <img src={imageUrl} className={cardMedia} />
