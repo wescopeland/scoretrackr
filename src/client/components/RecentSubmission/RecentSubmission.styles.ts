@@ -85,5 +85,11 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
 
   positionText: {
     fontSize: '1.5rem'
+  },
+
+  truncatedText: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   }
 }));

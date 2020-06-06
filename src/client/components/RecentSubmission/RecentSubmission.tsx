@@ -1,10 +1,23 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Typography } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import React from 'react';
 
 import { formatNumberToOrdinal } from 'common/utils/format-number-to-ordinal';
 import { useStyles } from './RecentSubmission.styles';
 
-interface RecentSubmissionProps {
+interface LoadingRecentSubmissionProps {
+  isLoading: true;
+  gameColor?: string;
+  gameName?: string;
+  gameFriendlyId?: string;
+  trackName?: string;
+  playerAlias?: string;
+  score?: number;
+  position?: number;
+}
+
+interface HydratedRecentSubmissionProps {
+  isLoading?: false;
   gameColor: string;
   gameName: string;
   gameFriendlyId: string;
@@ -14,7 +27,12 @@ interface RecentSubmissionProps {
   position: number;
 }
 
+type RecentSubmissionProps =
+  | LoadingRecentSubmissionProps
+  | HydratedRecentSubmissionProps;
+
 export const RecentSubmission = ({
+  isLoading,
   gameColor,
   gameName,
   gameFriendlyId,
@@ -31,6 +49,7 @@ export const RecentSubmission = ({
     segmentTwo,
     segmentTwoOrdinal,
     segmentThree,
+    truncatedText,
     positionText,
     positionTextContainer
   } = useStyles({
@@ -41,27 +60,52 @@ export const RecentSubmission = ({
   const ordinalPosition = formatNumberToOrdinal(position);
 
   return (
-    <Card className={card}>
-      <img src={imageUrl} className={cardMedia} />
+    <>
+      {isLoading ? (
+        <>
+          <Skeleton variant="text" />
+          <Box marginBottom={3}>
+            <Skeleton variant="rect" height={90} />
+          </Box>
+          <Box marginBottom={3}>
+            <Skeleton variant="rect" height={90} />
+          </Box>
+          <Box marginBottom={3}>
+            <Skeleton variant="rect" height={90} />
+          </Box>
+        </>
+      ) : (
+        <Card className={card}>
+          <img src={imageUrl} className={cardMedia} />
 
-      <CardContent className={cardContentContainer}>
-        <div className={segmentOne}>
-          <Typography variant="h6">{gameName}</Typography>
-          <Typography>{trackName}</Typography>
-        </div>
+          <CardContent className={cardContentContainer}>
+            <div className={segmentOne}>
+              <Typography className={truncatedText} variant="h6">
+                {gameName}
+              </Typography>
+              <Typography className={truncatedText}>{trackName}</Typography>
+            </div>
 
-        <div className={segmentTwo}>
-          <Typography variant="h6">
-            {score.toLocaleString()}{' '}
-            <span className={segmentTwoOrdinal}>&ndash; {ordinalPosition}</span>
-          </Typography>
-          <Typography>{playerAlias}</Typography>
-        </div>
+            <div className={segmentTwo}>
+              <Typography variant="h6">
+                {score.toLocaleString()}{' '}
+                <span className={segmentTwoOrdinal}>
+                  &ndash; {ordinalPosition}
+                </span>
+              </Typography>
+              <Typography className={truncatedText} title={playerAlias}>
+                {playerAlias}
+              </Typography>
+            </div>
 
-        <div className={`${segmentThree} ${positionTextContainer}`}>
-          <Typography className={positionText}>{ordinalPosition}</Typography>
-        </div>
-      </CardContent>
-    </Card>
+            <div className={`${segmentThree} ${positionTextContainer}`}>
+              <Typography className={positionText}>
+                {ordinalPosition}
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </>
   );
 };

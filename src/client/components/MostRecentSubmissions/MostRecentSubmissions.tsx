@@ -4,12 +4,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { selectMostRecentSubmissions } from 'client/state/most-recent-submissions';
+import {
+  selectIsLoading,
+  selectMostRecentSubmissions
+} from 'client/state/most-recent-submissions';
 import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {
   const { t } = useTranslation('common');
+  const isLoading = useSelector(selectIsLoading);
   const recentSubmissions = useSelector(selectMostRecentSubmissions);
 
   const getDateDistanceText = (date: string) => {
@@ -26,7 +30,9 @@ export const MostRecentSubmissions = () => {
 
   return (
     <>
-      {recentSubmissions.length ? (
+      {isLoading ? (
+        <RecentSubmission isLoading={true} />
+      ) : recentSubmissions.length ? (
         recentSubmissions.map((recentSubmission, index) => (
           <div key={recentSubmission.date}>
             <Typography
