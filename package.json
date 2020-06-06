@@ -91,7 +91,7 @@
     "razzle-heroku": "^3.0.0",
     "start-server-and-test": "^1.11.0",
     "supertest": "^4.0.2",
-    "ts-jest": "^26.0.0",
+    "ts-jest": "^24.0.0",
     "ts-mock-firebase": "^2.3.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
