@@ -2,19 +2,25 @@ import { format } from 'date-fns';
 import { Request, Response } from 'express';
 
 import { Submission, SubmissionBlob } from 'state/most-recent-submissions';
-import { getDocumentByReference, unallowedHttpMethodResponse } from 'utils/api';
+import {
+  getDocumentByReference,
+  getScoreCurrentPosition,
+  unallowedHttpMethodResponse
+} from 'utils/api';
 import { DBGame, DBScore, DBTrack } from '../+models';
 import { db } from '../../firebase-admin-app';
 
 const buildSubmissionFromScore = async (
   score: DBScore
 ): Promise<Submission> => {
-  const [track, game] = (await Promise.all([
+  const [track, game, position] = (await Promise.all([
     getDocumentByReference(score._trackRef),
-    getDocumentByReference(score._gameRef)
-  ])) as [DBTrack, DBGame];
+    getDocumentByReference(score._gameRef),
+    getScoreCurrentPosition(score.finalScore, score._trackRef)
+  ])) as [DBTrack, DBGame, number];
 
   return {
+    position,
     playerAlias: score.playerAlias,
     game: {
       name: game.name,
@@ -22,8 +28,7 @@ const buildSubmissionFromScore = async (
       color: game.color
     },
     track: track.name,
-    score: score.finalScore,
-    position: 5 // TODO
+    score: score.finalScore
   };
 };
 
@@ -58,7 +63,7 @@ export default async (req: Request, res: Response) => {
           currentSubmissionBlob.submissions.push(
             await buildSubmissionFromScore(dbScore)
           );
-        } else if (datesTracked.length < 3) {
+        } else if (datesTracked.length < 5) {
           // Fall into this case if we're not building a submission blob for
           // this date, but we still have room to do so.
 

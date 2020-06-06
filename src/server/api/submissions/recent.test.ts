@@ -8,8 +8,8 @@ import recentSubmissions from './recent';
 const server = express();
 server.use('/recentSubmissions', recentSubmissions);
 
-const app = admin.initializeApp({});
-const mocked = exposeMockFirebaseAdminApp(app);
+const firebaseApp = admin.initializeApp({});
+const mocked = exposeMockFirebaseAdminApp(firebaseApp);
 
 const mockGameOne = {
   color: 'red',
@@ -85,7 +85,7 @@ describe('Api Endpoint: recentSubmissions', () => {
         track: 'Factory settings',
         playerAlias: 'Steve Wiebe',
         score: 1190400,
-        position: 5
+        position: 1
       });
     });
 
@@ -156,7 +156,7 @@ describe('Api Endpoint: recentSubmissions', () => {
       expect(response.body[1].submissions).toHaveLength(2);
     });
 
-    it('only returns a maximum of three submission blobs', async () => {
+    it('only returns a maximum of five submission blobs', async () => {
       // Arrange
       mocked.firestore().mocker.loadCollection('games', {
         gameOne: mockGameOne,
@@ -203,6 +203,22 @@ describe('Api Endpoint: recentSubmissions', () => {
           finalScore: 1240000,
           platform: 'Arcade PCB',
           submittedAt: new MockTimestamp(1693153999, 0)
+        },
+        scoreFive: {
+          _gameRef: mocked.firestore().doc('games/gameTwo'),
+          _trackRef: mocked.firestore().doc('games/gameTwo/tracks/trackOne'),
+          playerAlias: '1James Doe',
+          finalScore: 11240000,
+          platform: 'Arcade PCB',
+          submittedAt: new MockTimestamp(1793153999, 0)
+        },
+        scoreSix: {
+          _gameRef: mocked.firestore().doc('games/gameTwo'),
+          _trackRef: mocked.firestore().doc('games/gameTwo/tracks/trackOne'),
+          playerAlias: '2James Doe',
+          finalScore: 12440000,
+          platform: 'Arcade PCB',
+          submittedAt: new MockTimestamp(1893153999, 0)
         }
       });
 
@@ -211,7 +227,7 @@ describe('Api Endpoint: recentSubmissions', () => {
 
       // Assert
       expect(response.status).toEqual(200);
-      expect(response.body).toHaveLength(3);
+      expect(response.body).toHaveLength(5);
     });
   });
 
