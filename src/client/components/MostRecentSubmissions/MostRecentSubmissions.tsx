@@ -4,8 +4,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { selectMostRecentSubmissions } from 'state/most-recent-submissions';
-import { formatDistanceToNow } from 'utils/format-distance-to-now';
+import { selectMostRecentSubmissions } from 'client/state/most-recent-submissions';
+import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {

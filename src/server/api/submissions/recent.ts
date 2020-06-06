@@ -1,12 +1,15 @@
 import { format } from 'date-fns';
 import { Request, Response } from 'express';
 
-import { Submission, SubmissionBlob } from 'state/most-recent-submissions';
+import {
+  Submission,
+  SubmissionBlob
+} from 'client/state/most-recent-submissions';
 import {
   getDocumentByReference,
   getScoreCurrentPosition,
   unallowedHttpMethodResponse
-} from 'utils/api';
+} from 'common/utils/api';
 import { DBGame, DBScore, DBTrack } from '../+models';
 import { db } from '../../firebase-admin-app';
 

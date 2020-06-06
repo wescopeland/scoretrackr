@@ -7,8 +7,8 @@ import {
   selectMostRecentSubmissions,
   Submission,
   SubmissionBlob
-} from 'state/most-recent-submissions';
-import { Game } from 'state/shared-models';
+} from 'client/state/most-recent-submissions';
+import { Game } from 'client/state/shared-models';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
 describe('Component: MostRecentSubmissions', () => {

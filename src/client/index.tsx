@@ -5,9 +5,9 @@ import { useSSR } from 'react-i18next';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import configureStore from 'state/store';
 import App from './App';
 import './i18n';
+import configureStore from './state/store';
 import theme from './theme';
 
 const store = configureStore((window as any).preloadedReduxState);

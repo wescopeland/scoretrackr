@@ -12,10 +12,10 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import configureStore from 'state/store';
-import App from '../App';
-import i18n from '../i18n';
-import theme from '../theme';
+import App from 'client/App';
+import i18n from 'client/i18n';
+import configureStore from 'client/state/store';
+import theme from 'client/theme';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
 
@@ -41,8 +41,8 @@ i18n
       ns: ['common'],
       defaultNS: 'common',
       backend: {
-        loadPath: `${appSrc}/locales/{{lng}}/{{ns}}.json`,
-        addPath: `${appSrc}/locales/{{lng}}/{{ns}}.missing.json`
+        loadPath: `${appSrc}/client/locales/{{lng}}/{{ns}}.json`,
+        addPath: `${appSrc}/client/locales/{{lng}}/{{ns}}.missing.json`
       },
       react: {
         useSuspense: false
@@ -54,7 +54,7 @@ i18n
 
         // i18n
         .use(i18nextMiddleware.handle(i18n))
-        .use('/locales', express.static(`${appSrc}/locales`))
+        .use('/locales', express.static(`${appSrc}/client/locales`))
 
         // static files
         .use(express.static(process.env.RAZZLE_PUBLIC_DIR))

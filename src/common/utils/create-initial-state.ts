@@ -1,4 +1,4 @@
-import { StoreDefaults } from 'state/shared-models';
+import { StoreDefaults } from 'client/state/shared-models';
 
 /**
  * Creates a performance-friendly state object prepopulated with loading and error values.

@@ -1,4 +1,4 @@
-import { Game } from 'state/shared-models';
+import { Game } from 'client/state/shared-models';
 
 export interface Submission {
   game: Game;

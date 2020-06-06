@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { createInitialState } from 'utils/create-initial-state';
+import { createInitialState } from 'common/utils/create-initial-state';
 import { MostRecentSubmissionsState } from './models';
 import { getMostRecentSubmissions } from './thunks/get-most-recent-submissions.thunk';
 

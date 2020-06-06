@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { unallowedHttpMethodResponse } from 'utils/api';
+import { unallowedHttpMethodResponse } from 'common/utils/api';
 
 export default async (req: Request, res: Response) => {
   switch (req.method) {

@@ -2,7 +2,7 @@ import http from 'http';
 
 // this require is necessary for server HMR to recover from error
 // tslint:disable-next-line:no-var-requires
-let app = require('./server/server').default;
+let app = require('./server').default;
 
 const server = http.createServer(app);
 
@@ -19,11 +19,11 @@ server
 if (module.hot) {
   console.log('✅  Server-side HMR Enabled!');
 
-  module.hot.accept('./server/server', () => {
-    console.log('🔁  HMR Reloading `./server/server`...');
+  module.hot.accept('./server', () => {
+    console.log('🔁  HMR Reloading `./server`...');
 
     try {
-      app = require('./server/server').default;
+      app = require('./server').default;
       server.removeListener('request', currentApp);
       server.on('request', app);
       currentApp = app;
