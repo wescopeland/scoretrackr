@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { AppBar } from 'client/components/AppBar';
 import { Header } from 'client/components/Header';
+import { GamePage } from './pages/game/[friendlyId]/index';
 import { HomePage } from './pages/index';
 
 const App = () => (
@@ -15,6 +16,7 @@ const App = () => (
 
     <Switch>
       <Route exact={true} path="/" component={HomePage} />
+      <Route path="/game/:friendlyId" component={GamePage} />
     </Switch>
   </>
 );
