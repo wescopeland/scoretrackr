@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { AppBar } from './components/AppBar';
-import { Header } from './components/Header';
-import { MostRecentSubmissions } from './components/MostRecentSubmissions';
-import { getMostRecentSubmissions } from './state/most-recent-submissions';
+import { AppBar } from 'client/components/AppBar';
+import { Header } from 'client/components/Header';
+import { MostRecentSubmissions } from 'client/components/MostRecentSubmissions';
+import { getMostRecentSubmissions } from 'client/state/most-recent-submissions';
 
-export const Home = () => {
+export const HomePage = () => {
   const { t } = useTranslation('common');
   const dispatch = useDispatch();
 
