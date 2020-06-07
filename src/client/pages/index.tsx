@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import { AppBar } from 'client/components/AppBar';
+import { Header } from 'client/components/Header';
 import { MostRecentSubmissions } from 'client/components/MostRecentSubmissions';
 import { getMostRecentSubmissions } from 'client/state/most-recent-submissions';
 
@@ -15,7 +17,10 @@ export const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
+      <Header />
+      <AppBar />
+
       <div className="container mt-5">
         <div className="row">
           <div className="col">
@@ -31,6 +36,6 @@ export const HomePage = () => {
           </div>
         </Box>
       </div>
-    </div>
+    </>
   );
 };

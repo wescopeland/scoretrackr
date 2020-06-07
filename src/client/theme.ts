@@ -5,6 +5,7 @@ const theme = createMuiTheme({
   palette: {
     background: {
       default: '#fafafa'
+      // default: '#121212'
     },
     primary: {
       main: '#303030'
@@ -16,6 +17,7 @@ const theme = createMuiTheme({
       main: red.A400
     },
     type: 'light'
+    // type: 'dark'
   },
 
   breakpoints: {

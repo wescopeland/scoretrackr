@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, render, RenderResult, screen } from '@testing-library/react';
+import { cleanup, render, RenderResult } from '@testing-library/react';
 import React from 'react';
 
 import { RecentSubmission } from './RecentSubmission';
