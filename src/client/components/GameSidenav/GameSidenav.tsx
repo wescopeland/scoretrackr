@@ -2,14 +2,13 @@ import {
   Divider,
   Drawer,
   List,
-  ListItem,
-  ListItemText,
   ListSubheader,
   Toolbar
 } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { SidenavLink } from 'client/components/SidenavLink';
 import { useStyles } from './GameSidenav.styles';
 
 export const GameSidenav = () => {
@@ -29,27 +28,17 @@ export const GameSidenav = () => {
             <ListSubheader component="div">
               {t('resources.navLabel')}
             </ListSubheader>
-            <ListItem button={true} component="a" dense={true}>
-              <ListItemText>{t('resources.leaderboard')}</ListItemText>
-            </ListItem>
+            <SidenavLink label={t('resources.leaderboard')} />
           </List>
 
           <Divider />
 
           <List component="nav">
             <ListSubheader component="div">{t('stats.navLabel')}</ListSubheader>
-            <ListItem button={true} component="a" dense={true}>
-              <ListItemText>{t('stats.topGames')}</ListItemText>
-            </ListItem>
-            <ListItem button={true} component="a" dense={true}>
-              <ListItemText>{t('stats.comparisons')}</ListItemText>
-            </ListItem>
-            <ListItem button={true} component="a" dense={true}>
-              <ListItemText>{t('stats.timelines')}</ListItemText>
-            </ListItem>
-            <ListItem button={true} component="a" dense={true}>
-              <ListItemText>{t('stats.daysSince')}</ListItemText>
-            </ListItem>
+            <SidenavLink label={t('stats.topGames')} />
+            <SidenavLink label={t('stats.comparisons')} />
+            <SidenavLink label={t('stats.timelines')} />
+            <SidenavLink label={t('stats.daysSince')} />
           </List>
         </div>
       </Drawer>

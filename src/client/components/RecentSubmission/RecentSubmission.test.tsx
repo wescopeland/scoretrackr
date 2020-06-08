@@ -1,36 +1,36 @@
 import '@testing-library/jest-dom';
-import { cleanup, render, RenderResult } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { RecentSubmission } from './RecentSubmission';
 
 describe('Component: RecentSubmission', () => {
-  let rendered: RenderResult;
-
   afterEach(cleanup);
 
   it('renders without crashing', () => {
-    rendered = render(<RecentSubmission isLoading={true} />);
-    expect(rendered.container).toBeVisible();
+    const { container } = render(<RecentSubmission isLoading={true} />);
+    expect(container).toBeVisible();
   });
 
   describe('Loading', () => {
     beforeEach(() => {
-      rendered = render(<RecentSubmission isLoading={true} />);
+      render(<RecentSubmission isLoading={true} />);
     });
 
     it('does not show the game name text', () => {
-      expect(rendered.queryByText('Donkey Kong')).not.toBeTruthy();
+      // Assert
+      expect(screen.queryByText('Donkey Kong')).toBeNull();
     });
 
     it('shows the loading state', () => {
-      expect(rendered.getByTestId('recent-submission-loading')).toBeVisible();
+      // Assert
+      expect(screen.getByTestId('recent-submission-loading')).toBeVisible();
     });
   });
 
   describe('Hydrated', () => {
     beforeEach(() => {
-      rendered = render(
+      render(
         <RecentSubmission
           gameColor="#ba3448"
           gameFriendlyId="dkong"
@@ -44,23 +44,28 @@ describe('Component: RecentSubmission', () => {
     });
 
     it('shows the game name text', () => {
-      expect(rendered.getByText('Donkey Kong')).toBeVisible();
+      // Assert
+      expect(screen.getByText('Donkey Kong')).toBeVisible();
     });
 
     it('shows the track name text', () => {
-      expect(rendered.getByText('Factory settings')).toBeVisible();
+      // Assert
+      expect(screen.getByText('Factory settings')).toBeVisible();
     });
 
     it('shows the score text as a formatted number', () => {
-      expect(rendered.getByText('1,230,000')).toBeVisible();
+      // Assert
+      expect(screen.getByText('1,230,000')).toBeVisible();
     });
 
     it('shows the player name', () => {
-      expect(rendered.getByText('Justin Elliott')).toBeVisible();
+      // Assert
+      expect(screen.getByText('Justin Elliott')).toBeVisible();
     });
 
     it('shows the position as an ordinal number', () => {
-      expect(rendered.getByText('3rd')).toBeVisible();
+      // Assert
+      expect(screen.getByText('3rd')).toBeVisible();
     });
   });
 });
