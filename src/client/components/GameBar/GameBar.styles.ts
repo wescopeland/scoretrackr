@@ -8,8 +8,7 @@ export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
       theme.palette.type === 'light' ? '#f3f1ec' : '#1f1f1f'
     }`,
     boxShadow: 'none',
-    borderBottom: `${
-      theme.palette.type === 'light' ? '1px solid #d2d9d9' : '1px solid #444'
-    }`
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    zIndex: theme.zIndex.drawer + 1
   }
 }));
