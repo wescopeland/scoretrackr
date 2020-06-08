@@ -3,11 +3,13 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
+import { i18nNamespaces } from 'common/models/i18n-namespaces';
+
 const options = {
   fallbackLng: 'en',
   load: 'languageOnly', // we only provide en, jp -> no region specific locals like en-US, ja-JP
 
-  ns: ['common'],
+  ns: i18nNamespaces,
   defaultNS: 'common',
 
   saveMissing: true,

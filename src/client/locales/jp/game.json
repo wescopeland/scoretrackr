@@ -1,0 +1,14 @@
+{
+  "resources": {
+    "navLabel": "資源",
+    "leaderboard": "リーダーボード"
+  },
+
+  "stats": {
+    "navLabel": "統計",
+    "topGames": "最高のゲーム",
+    "comparisons": "比較する",
+    "timelines": "歴史のタイムラインを見る",
+    "daysSince": "D重要なイベントからの日数を表示"
+  }
+}

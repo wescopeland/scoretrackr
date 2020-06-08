@@ -1,0 +1,14 @@
+{
+  "resources": {
+    "navLabel": "Resources",
+    "leaderboard": "Leaderboard"
+  },
+
+  "stats": {
+    "navLabel": "Stats",
+    "topGames": "Top games",
+    "comparisons": "Comparisons",
+    "timelines": "Timelines",
+    "daysSince": "Days since..."
+  }
+}

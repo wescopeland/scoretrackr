@@ -16,6 +16,7 @@ import App from 'client/App';
 import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import theme from 'client/theme';
+import { i18nNamespaces } from 'common/models/i18n-namespaces';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
 
@@ -38,7 +39,7 @@ i18n
     {
       debug: false,
       preload: ['en', 'jp'],
-      ns: ['common'],
+      ns: i18nNamespaces,
       defaultNS: 'common',
       backend: {
         loadPath: `${appSrc}/client/locales/{{lng}}/{{ns}}.json`,
