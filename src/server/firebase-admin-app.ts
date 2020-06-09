@@ -26,7 +26,10 @@ function initializeProdFirebaseAdminApp() {
 
 // Jest will initialize its own mock Firebase instance.
 if (!process.env.JEST_WORKER_ID) {
-  if (process.env.NODE_ENV === 'development') {
+  if (
+    !process.env.GOOGLE_CONFIG_BASE64 ||
+    process.env.NODE_ENV === 'development'
+  ) {
     initializeDevFirebaseAdminApp();
   } else {
     initializeProdFirebaseAdminApp();
