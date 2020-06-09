@@ -1,42 +1,36 @@
 import * as admin from 'firebase-admin';
 
-process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
+const serviceAccount: admin.ServiceAccount = {
+  projectId: 'scoretracker-e8845',
+  privateKey: process.env.FB_PRIVATE_KEY,
+  clientEmail: process.env.FB_CLIENT_EMAIL
+};
 
-export let db: admin.app.App;
+function initializeFirebase() {
+  // Jest will initialize its own mock Firebase instance.
+  if (!process.env.JEST_WORKER_ID) {
+    if (process.env.NODE_ENV !== 'development') {
+      process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
 
-function initializeDevFirebaseAdminApp() {
-  admin.initializeApp({
-    projectId: 'scoretracker-e8845',
-    credential: admin.credential.applicationDefault()
-  });
-}
-
-function initializeProdFirebaseAdminApp() {
-  admin.initializeApp({
-    credential: admin.credential.cert(
-      JSON.parse(
-        Buffer.from(process.env.GOOGLE_CONFIG_BASE64, 'base64').toString(
-          'ascii'
-        )
-      )
-    ),
-    databaseURL: 'https://scoretracker-e8845.firebaseio.com'
-  });
-}
-
-// Jest will initialize its own mock Firebase instance.
-if (!process.env.JEST_WORKER_ID) {
-  if (
-    !process.env.GOOGLE_CONFIG_BASE64 ||
-    process.env.NODE_ENV === 'development'
-  ) {
-    initializeDevFirebaseAdminApp();
-  } else {
-    initializeProdFirebaseAdminApp();
+      admin.initializeApp({
+        projectId: 'scoretracker-e8845',
+        credential: admin.credential.applicationDefault()
+      });
+    } else {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: 'https://scoretracker-e8845.firebaseio.com'
+      });
+    }
   }
-
-  db = admin.apps.length ? admin.app() : null;
-} else {
-  // This sorcery is what it takes to get unit tests working properly.
-  db = admin as any;
 }
+
+if (!admin.apps.length) {
+  initializeFirebase();
+}
+
+export const db = process.env.JEST_WORKER_ID
+  ? admin
+  : admin.apps.length
+  ? admin.app()
+  : null;
