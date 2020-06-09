@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useStyles } from './Header.styles';
 
 export const Header = () => {
-  const { appName, description } = useStyles({});
+  const { appName, description } = useStyles();
   const { t } = useTranslation('common');
 
   return (

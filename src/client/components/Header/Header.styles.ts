@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-export const useStyles = makeStyles<Theme, {}>((theme: Theme) => ({
+export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
   appName: {
     letterSpacing: '1rem',
     textTransform: 'uppercase',

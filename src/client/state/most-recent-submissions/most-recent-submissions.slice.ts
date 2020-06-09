@@ -17,6 +17,11 @@ export const mostRecentSubmissions = createSlice({
       state.isLoading = false;
       state.submissionBlobs = action.payload;
     });
+
+    builder.addCase(getMostRecentSubmissions.rejected, (state, action) => {
+      state.isLoading = false;
+      state.submissionBlobs = [];
+    });
   }
 });
 

@@ -7,6 +7,9 @@
     "label": "Most recent submissions",
     "today": "Today",
     "yesterday": "Yesterday",
-    "none": "There are no submissions in the database."
+    "none": {
+      "heading": "This is embarassing.",
+      "label": "There are no submissions in the database."
+    }
   }
 }

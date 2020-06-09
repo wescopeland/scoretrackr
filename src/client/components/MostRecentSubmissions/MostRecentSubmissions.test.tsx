@@ -75,7 +75,7 @@ describe('Component: MostRecentSubmissions', () => {
       const { getByText } = render(<MostRecentSubmissions />);
 
       // Assert
-      expect(getByText('recentSubmissions.none')).toBeVisible();
+      expect(getByText('recentSubmissions.none.label')).toBeVisible();
     });
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
