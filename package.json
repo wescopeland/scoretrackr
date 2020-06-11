@@ -13,7 +13,7 @@
     "deploy": "now -e NODE_ENV=production",
     "mock-db": "firebase emulators:start --import=mock-database",
     "mock-db:save": "firebase emulators:export mock-database --force",
-    "build-and-start": "yarn build && yarn start",
+    "build-and-start": "CI=false yarn build && yarn start",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
     "format": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
     "format:write": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
