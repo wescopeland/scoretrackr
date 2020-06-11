@@ -14,7 +14,6 @@ cache:
     - ~/.cache
 
 env:
-  - IS_TRAVIS_CI=true
   global:
     - CC_TEST_REPORTER_ID=bd52cc3d15407e617ccdc96656dfcb8c8a6d9c4a47056490fd4c05952f1c33a3
 

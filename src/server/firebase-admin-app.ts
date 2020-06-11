@@ -9,7 +9,10 @@ const serviceAccount: admin.ServiceAccount = {
 function initializeFirebase() {
   // Jest will initialize its own mock Firebase instance.
   if (!process.env.JEST_WORKER_ID) {
-    if (process.env.NODE_ENV === 'development' || process.env.IS_TRAVIS_CI) {
+    if (
+      process.env.NODE_ENV === 'development' ||
+      process.env.CONTINUOUS_INTEGRATION
+    ) {
       process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
 
       admin.initializeApp({
