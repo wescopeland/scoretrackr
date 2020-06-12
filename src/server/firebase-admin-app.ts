@@ -2,8 +2,8 @@ import * as admin from 'firebase-admin';
 
 const serviceAccount: admin.ServiceAccount = {
   projectId: 'scoretracker-e8845',
-  privateKey: process.env.FB_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  clientEmail: process.env.FB_CLIENT_EMAIL
+  privateKey: process.env.FB_PRIVATE_KEY?.replace(/\\n/g, '\n') ?? null,
+  clientEmail: process.env.FB_CLIENT_EMAIL ?? null
 };
 
 function initializeFirebase() {
