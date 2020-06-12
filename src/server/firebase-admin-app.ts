@@ -1,11 +1,5 @@
 import * as admin from 'firebase-admin';
 
-const serviceAccount: admin.ServiceAccount = {
-  projectId: 'scoretracker-e8845',
-  privateKey: process.env.FB_PRIVATE_KEY?.replace(/\\n/g, '\n') ?? null,
-  clientEmail: process.env.FB_CLIENT_EMAIL ?? null
-};
-
 function initializeFirebase() {
   // Jest will initialize its own mock Firebase instance.
   if (!process.env.JEST_WORKER_ID) {
@@ -20,6 +14,12 @@ function initializeFirebase() {
         credential: admin.credential.applicationDefault()
       });
     } else {
+      const serviceAccount: admin.ServiceAccount = {
+        projectId: 'scoretracker-e8845',
+        privateKey: process.env.FB_PRIVATE_KEY?.replace(/\\n/g, '\n') ?? null,
+        clientEmail: process.env.FB_CLIENT_EMAIL ?? null
+      };
+
       admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
         databaseURL: 'https://scoretracker-e8845.firebaseio.com'

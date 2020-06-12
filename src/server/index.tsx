@@ -2,6 +2,7 @@
 
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import express from 'express';
+import expressStaticGzip from 'express-static-gzip';
 import fs from 'fs';
 import Backend from 'i18next-fs-backend';
 import path from 'path';
@@ -52,6 +53,14 @@ i18n
     () => {
       server
         .disable('x-powered-by')
+
+        // compression
+        .use(
+          expressStaticGzip(process.env.RAZZLE_PUBLIC_DIR, {
+            enableBrotli: true,
+            orderPreference: ['br', 'gz']
+          })
+        )
 
         // i18n
         .use(i18nextMiddleware.handle(i18n))
