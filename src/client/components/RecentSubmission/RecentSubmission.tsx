@@ -76,7 +76,11 @@ export const RecentSubmission = ({
         </div>
       ) : (
         <Card className={card}>
-          <img src={imageUrl} className={cardMedia} />
+          <img
+            src={imageUrl}
+            className={cardMedia}
+            alt={`${gameName} Screenshot`}
+          />
 
           <CardContent className={cardContentContainer}>
             <div className={segmentOne}>
