@@ -2,9 +2,9 @@ import { makeStyles, Toolbar } from '@material-ui/core';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { GameBar } from 'client/components/GameBar';
-import { GameSidenav } from 'client/components/GameSidenav';
-import { GameTracksBar } from 'client/components/GameTracksBar';
+import { GameNavBar } from 'client/components/game/GameNavBar';
+import { GameSidenav } from 'client/components/game/GameSidenav';
+import { GameTracksBar } from 'client/components/game/GameTracksBar';
 
 const useStyles = makeStyles({
   content: {
@@ -29,7 +29,7 @@ export const GamePage = () => {
 
   return (
     <div className="d-flex">
-      <GameBar />
+      <GameNavBar />
 
       <GameSidenav />
 

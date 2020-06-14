@@ -4,13 +4,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { EmptyState } from 'client/components/EmptyState';
-import { RecentSubmission } from 'client/components/RecentSubmission';
+import { EmptyState } from 'client/components/shared/EmptyState';
 import {
   selectIsLoading,
   selectMostRecentSubmissions
 } from 'client/state/most-recent-submissions';
 import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
+import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {
   const { t } = useTranslation('common');

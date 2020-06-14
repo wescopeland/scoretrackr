@@ -1,10 +1,10 @@
 import { AppBar } from '@material-ui/core';
 import React from 'react';
 
-import { GamePicker } from 'client/components/GamePicker';
-import { useStyles } from './GameBar.styles';
+import { GamePicker } from '../GamePicker';
+import { useStyles } from './GameNavBar.styles';
 
-export const GameBar = () => {
+export const GameNavBar = () => {
   const { root } = useStyles();
 
   return (

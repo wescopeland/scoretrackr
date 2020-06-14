@@ -1,8 +1,8 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import React from 'react';
 
-import { GameDrawerToggleButton } from 'client/components/GameDrawerToggleButton';
-import { LeaderboardTabs } from 'client/components/LeaderboardTabs';
+import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
+import { LeaderboardTabs } from '../LeaderboardTabs';
 import { useStyles } from './GameTracksBar.styles';
 
 interface GameTracksBarProps {

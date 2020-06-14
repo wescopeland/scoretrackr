@@ -38,10 +38,10 @@ describe('Component: MostRecentSubmissions', () => {
         }
       });
 
-      const { getByTestId } = render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions />);
 
       // Assert
-      expect(getByTestId('recent-submission-loading')).toBeVisible();
+      expect(screen.getByTestId('recent-submission-loading')).toBeVisible();
     });
   });
 
@@ -57,10 +57,12 @@ describe('Component: MostRecentSubmissions', () => {
           return false;
         }
 
-        const { getByTestId } = render(<MostRecentSubmissions />);
+        render(<MostRecentSubmissions />);
 
         // Assert
-        expect(getByTestId('recent-submission-loading')).not.toBeVisible();
+        expect(
+          screen.getByTestId('recent-submission-loading')
+        ).not.toBeVisible();
       });
     });
 
@@ -72,10 +74,10 @@ describe('Component: MostRecentSubmissions', () => {
         }
       });
 
-      const { getByText } = render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions />);
 
       // Assert
-      expect(getByText('recentSubmissions.none.label')).toBeVisible();
+      expect(screen.getByText('recentSubmissions.none.label')).toBeVisible();
     });
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
@@ -119,12 +121,12 @@ describe('Component: MostRecentSubmissions', () => {
         new Date('2020-06-02T22:01:58.135Z')
       );
 
-      const { getByText } = render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions />);
 
       // Assert
-      expect(getByText('recentSubmissions.today')).toBeVisible();
-      expect(getByText('recentSubmissions.yesterday')).toBeVisible();
-      expect(getByText('4 days ago')).toBeVisible();
+      expect(screen.getByText('recentSubmissions.today')).toBeVisible();
+      expect(screen.getByText('recentSubmissions.yesterday')).toBeVisible();
+      expect(screen.getByText('4 days ago')).toBeVisible();
     });
   });
 });

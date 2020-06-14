@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SidenavLink } from 'client/components/SidenavLink';
+import { SidenavLink } from '../SidenavLink';
 import { useStyles } from './GameSidenav.styles';
 
 export const GameSidenav = () => {

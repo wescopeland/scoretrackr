@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { AppBar } from 'client/components/AppBar';
-import { Header } from 'client/components/Header';
-import { MostRecentSubmissions } from 'client/components/MostRecentSubmissions';
+import { MostRecentSubmissions } from 'client/components/game/MostRecentSubmissions';
+import { AppBar } from 'client/components/home/AppBar';
+import { Header } from 'client/components/home/Header';
 import { getMostRecentSubmissions } from 'client/state/most-recent-submissions';
 
 export const HomePage = () => {
