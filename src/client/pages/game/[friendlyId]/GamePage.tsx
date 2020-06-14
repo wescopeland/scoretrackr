@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { GameBar } from 'client/components/GameBar';
 import { GameSidenav } from 'client/components/GameSidenav';
+import { GameTracksBar } from 'client/components/GameTracksBar';
 
 const useStyles = makeStyles({
   content: {
@@ -11,9 +12,20 @@ const useStyles = makeStyles({
   }
 });
 
+const tracks: any[] = [
+  {
+    id: 'NIPFcd4gVJrAbW01TohJ',
+    name: 'Factory settings'
+  },
+  {
+    id: 'ax9T0WBflMuu6iaapQEV',
+    name: 'No hammer'
+  }
+];
+
 export const GamePage = () => {
-  const { friendlyId } = useParams();
-  const classes = useStyles();
+  const { friendlyId, trackId } = useParams();
+  const { content } = useStyles();
 
   return (
     <div className="d-flex">
@@ -21,8 +33,9 @@ export const GamePage = () => {
 
       <GameSidenav />
 
-      <main className={classes.content}>
+      <main className={content}>
         <Toolbar />
+        <GameTracksBar gameColor="#ba3448" tracks={tracks} />
       </main>
     </div>
   );

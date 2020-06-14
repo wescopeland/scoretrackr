@@ -9,6 +9,12 @@ export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
     }`,
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
+
+    [theme.breakpoints.down('xs')]: {
+      height: 54,
+      paddingTop: '0.75rem',
+      paddingBottom: '0.75rem'
+    }
   }
 }));
