@@ -130,7 +130,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/index.ts",
-      "!src/**/*.model.ts"
+      "!src/**/*.model.ts",
+      "!src/server/firebase-admin-app.ts"
     ],
     "globals": {
       "ts-jest": {
