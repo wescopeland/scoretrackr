@@ -1,5 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
+import { gameDrawerWidth } from 'common/models/game-drawer-width';
+
 interface StyleProps {
   isDesktopSidenavOpen: boolean;
 }
@@ -13,8 +15,7 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
       duration: theme.transitions.duration.leavingScreen
     }),
 
-    // 260px is the width of the game sidenav.
-    marginLeft: props.isDesktopSidenavOpen ? 'initial' : -260,
+    marginLeft: props.isDesktopSidenavOpen ? 'initial' : -gameDrawerWidth, // -260px
 
     [theme.breakpoints.down('sm')]: {
       marginLeft: 'initial'
