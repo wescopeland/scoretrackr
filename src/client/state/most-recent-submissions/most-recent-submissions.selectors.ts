@@ -1,6 +1,6 @@
 import { AppState } from '../reducer';
 
-export const selectIsLoading = (state: AppState) =>
+export const selectIsMostRecentSubmissionsLoading = (state: AppState) =>
   state.mostRecentSubmissions.isLoading;
 
 export const selectMostRecentSubmissions = (state: AppState) =>

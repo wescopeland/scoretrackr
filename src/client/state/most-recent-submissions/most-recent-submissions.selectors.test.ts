@@ -1,13 +1,13 @@
 import { AppState } from '../reducer';
 import { SubmissionBlob } from './models';
 import {
-  selectIsLoading,
+  selectIsMostRecentSubmissionsLoading,
   selectMostRecentSubmissions
 } from './most-recent-submissions.selectors';
 
 describe('Selectors: mostRecentSubmissions', () => {
-  describe('Selector: selectIsLoading', () => {
-    it('returns the isLoading value from the store', () => {
+  describe('Selector: selectIsMostRecentSubmissionsLoading', () => {
+    it('returns the loading flag value from the store', () => {
       // Arrange
       const mockValue = true;
 
@@ -18,7 +18,9 @@ describe('Selectors: mostRecentSubmissions', () => {
       };
 
       // Act
-      const selected = selectIsLoading(mockState as AppState);
+      const selected = selectIsMostRecentSubmissionsLoading(
+        mockState as AppState
+      );
 
       // Assert
       expect(selected).toEqual(mockValue);

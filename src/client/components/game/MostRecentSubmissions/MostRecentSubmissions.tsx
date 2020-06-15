@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { EmptyState } from 'client/components/shared/EmptyState';
 import {
-  selectIsLoading,
+  selectIsMostRecentSubmissionsLoading,
   selectMostRecentSubmissions
 } from 'client/state/most-recent-submissions';
 import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
@@ -14,7 +14,7 @@ import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {
   const { t } = useTranslation('common');
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsMostRecentSubmissionsLoading);
   const recentSubmissions = useSelector(selectMostRecentSubmissions);
 
   const getDateDistanceText = (date: string) => {

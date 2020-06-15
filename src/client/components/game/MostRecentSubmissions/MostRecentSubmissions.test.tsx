@@ -4,7 +4,7 @@ import React from 'react';
 import * as ReactRedux from 'react-redux';
 
 import {
-  selectIsLoading,
+  selectIsMostRecentSubmissionsLoading,
   selectMostRecentSubmissions,
   Submission,
   SubmissionBlob
@@ -33,7 +33,7 @@ describe('Component: MostRecentSubmissions', () => {
     it('given the page is loading, renders a recent submission in the loading state', () => {
       // Arrange
       spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectIsLoading) {
+        if (selector === selectIsMostRecentSubmissionsLoading) {
           return true;
         }
       });
@@ -53,7 +53,7 @@ describe('Component: MostRecentSubmissions', () => {
           return [];
         }
 
-        if (selector === selectIsLoading) {
+        if (selector === selectIsMostRecentSubmissionsLoading) {
           return false;
         }
 
