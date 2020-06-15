@@ -10,8 +10,8 @@ import {
   getScoreCurrentPosition,
   unallowedHttpMethodResponse
 } from 'common/utils/api';
+import { db } from 'server/firebase-admin-app';
 import { DBGame, DBScore, DBTrack } from '../+models';
-import { db } from '../../firebase-admin-app';
 
 const buildSubmissionFromScore = async (
   score: DBScore
