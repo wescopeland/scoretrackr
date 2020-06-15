@@ -1,7 +1,7 @@
 import express from 'express';
 import request from 'supertest';
 
-import ping from 'server/api/ping';
+import ping from './index';
 
 const server = express();
 server.use('/ping', ping);

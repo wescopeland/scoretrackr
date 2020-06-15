@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import request from 'supertest';
 import { exposeMockFirebaseAdminApp } from 'ts-mock-firebase';
 
-import gameDetailsByFriendlyId from './gameDetailsByFriendlyId';
+import gameDetailsByFriendlyId from './index';
 
 const server = express();
 server.use('/game-details/:friendlyId', gameDetailsByFriendlyId);

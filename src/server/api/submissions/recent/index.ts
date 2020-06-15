@@ -11,7 +11,7 @@ import {
   unallowedHttpMethodResponse
 } from 'common/utils/api';
 import { db } from 'server/firebase-admin-app';
-import { DBGame, DBScore, DBTrack } from '../+models';
+import { DBGame, DBScore, DBTrack } from '../../+models';
 
 const buildSubmissionFromScore = async (
   score: DBScore

@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import request from 'supertest';
 import { exposeMockFirebaseAdminApp, MockTimestamp } from 'ts-mock-firebase';
 
-import recentSubmissions from './recent';
+import recentSubmissions from './index';
 
 const server = express();
 server.use('/recentSubmissions', recentSubmissions);

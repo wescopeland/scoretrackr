@@ -18,7 +18,7 @@ import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import theme from 'client/theme';
 import { i18nNamespaces } from 'common/models/i18n-namespaces';
-import gameDetailsByFriendlyId from './api/game-details/[friendlyId]/gameDetailsByFriendlyId';
+import gameDetailsByFriendlyId from './api/game-details/[friendlyId]';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
 
