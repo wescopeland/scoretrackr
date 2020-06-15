@@ -1,16 +1,13 @@
-import { makeStyles, Toolbar } from '@material-ui/core';
+import { Toolbar } from '@material-ui/core';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { GameNavBar } from 'client/components/game/GameNavBar';
 import { GameSidenav } from 'client/components/game/GameSidenav';
 import { GameTracksBar } from 'client/components/game/GameTracksBar';
-
-const useStyles = makeStyles({
-  content: {
-    flexGrow: 1
-  }
-});
+import { selectIsDesktopSidenavOpen } from 'client/state/active-game';
+import { useStyles } from './GamePage.styles';
 
 const tracks: any[] = [
   {
@@ -25,7 +22,8 @@ const tracks: any[] = [
 
 export const GamePage = () => {
   const { friendlyId, trackId } = useParams();
-  const { content } = useStyles();
+  const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
+  const { content } = useStyles({ isDesktopSidenavOpen });
 
   return (
     <div className="d-flex">

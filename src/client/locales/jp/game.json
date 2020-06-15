@@ -1,4 +1,8 @@
 {
+  "contentNavBar": {
+    "toggleButtonAriaLabel": "ゲームのナビゲーションメニューを切り替えます"
+  },
+
   "resources": {
     "navLabel": "資源",
     "leaderboard": "リーダーボード"

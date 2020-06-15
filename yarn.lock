@@ -979,7 +979,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2", "@babel/runtime@^7.9.6":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2", "@babel/runtime@^7.9.6":
   version "7.10.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
   integrity sha512-6sF3uQw2ivImfVIl62RZ7MXhO2tap69WeWK57vAaimT6AZbE4FbqjdEJIN1UqoD6wI6B+1n9UiagafH1sxjOtg==
@@ -1998,7 +1998,7 @@
     "@testing-library/dom" "^7.0.2"
     "@types/testing-library__cypress" "^5.0.3"
 
-"@testing-library/dom@^7.0.2", "@testing-library/dom@^7.2.2":
+"@testing-library/dom@^7.0.2":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.7.0.tgz#3567f4669f64b10c546c2fc42adec5a0cc84b956"
   integrity sha512-Mlq+5hLGyitcoKrvKCnUNm8euM0+QEy2q1AaZzJTxEAaSaujBIut7+exodTSnhKoe+XLUZmlA45O9M4T+kHu9g==
@@ -2006,6 +2006,16 @@
     "@babel/runtime" "^7.9.6"
     aria-query "^4.0.2"
     dom-accessibility-api "^0.4.4"
+    pretty-format "^25.5.0"
+
+"@testing-library/dom@^7.9.0":
+  version "7.14.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.14.3.tgz#aee022bf96ea8796709f7dc4822eabbf901b3719"
+  integrity sha512-kuU6xykGy4eBzvml+pxYUyiwYm7/gsnry865WTDpyOQSzTEzFjJD4aHWj3r5lM9fNwscqyGGvuwQXStU9ebyVg==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    aria-query "^4.0.2"
+    dom-accessibility-api "^0.4.5"
     pretty-format "^25.5.0"
 
 "@testing-library/jest-dom@^5.9.0":
@@ -2024,13 +2034,19 @@
     redent "^3.0.0"
 
 "@testing-library/react@^10.0.4":
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-10.0.4.tgz#8e0e299cd91acc626d81ed8489fdc13df864c31d"
-  integrity sha512-2e1B5debfuiIGbvUuiSXybskuh7ZTVJDDvG/IxlzLOY9Co/mKFj9hIklAe2nGZYcOUxFaiqWrRZ9vCVGzJfRlQ==
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-10.2.1.tgz#f0c5ac9072ad54c29672150943f35d6617263f26"
+  integrity sha512-pv2jZhiZgN1/alz1aImhSasZAOPg3er2Kgcfg9fzuw7aKPLxVengqqR1n0CJANeErR1DqORauQaod+gGUgAJOQ==
   dependencies:
-    "@babel/runtime" "^7.9.6"
-    "@testing-library/dom" "^7.2.2"
-    "@types/testing-library__react" "^10.0.1"
+    "@babel/runtime" "^7.10.2"
+    "@testing-library/dom" "^7.9.0"
+
+"@testing-library/user-event@^11.4.2":
+  version "11.4.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-11.4.2.tgz#90d98fd18455ae81d008e9b26e94d25e8d5bf846"
+  integrity sha512-Kut7G1L+ffozEhYTDNjV9C6RFbUfsKA05rGr1arwbSUoDZQ82OMmsyaXEDznT22Qc0PtZ1Hz3soX0pPosu8+Sw==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -2290,7 +2306,7 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/react-dom@*", "@types/react-dom@^16.9.8":
+"@types/react-dom@^16.9.8":
   version "16.9.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
   integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
@@ -2413,15 +2429,6 @@
   integrity sha512-yYn5EKHO3MPEMSOrcAb1dLWY+68CG29LiXKsWmmpVHqoP5+ZRiAVLyUHvPNrO2dABDdUGZvavMsaGpWNjM6N2g==
   dependencies:
     "@types/jest" "*"
-
-"@types/testing-library__react@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@types/testing-library__react/-/testing-library__react-10.0.1.tgz#92bb4a02394bf44428e35f1da2970ed77f803593"
-  integrity sha512-RbDwmActAckbujLZeVO/daSfdL1pnjVqas25UueOkAY5r7vriavWf0Zqg7ghXMHa8ycD/kLkv8QOj31LmSYwww==
-  dependencies:
-    "@types/react-dom" "*"
-    "@types/testing-library__dom" "*"
-    pretty-format "^25.1.0"
 
 "@types/uglify-js@*":
   version "3.9.2"
@@ -5787,6 +5794,11 @@ dom-accessibility-api@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.4.4.tgz#c2f9fb8b591bc19581e7ef3e6fe35baf1967c498"
   integrity sha512-XBM62jdDc06IXSujkqw6BugEWiDkp6jphtzVJf1kgPQGvfzaU7/jRtRSF/mxc8DBCIm2LS3bN1dCa5Sfxx982A==
+
+dom-accessibility-api@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.4.5.tgz#d9c1cefa89f509d8cf132ab5d250004d755e76e3"
+  integrity sha512-HcPDilI95nKztbVikaN2vzwvmv0sE8Y2ZJFODy/m15n7mGXLeOKGiys9qWVbFbh+aq/KYj2lqMLybBOkYAEXqg==
 
 dom-converter@^0.2:
   version "0.2.0"
