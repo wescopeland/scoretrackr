@@ -6,12 +6,12 @@
     "node": "12.x"
   },
   "scripts": {
-    "dev": "concurrently \"yarn start:dev\" \"yarn mock-db\"",
-    "start:dev": "razzle start",
+    "dev": "concurrently \"yarn start:dev-server\" \"yarn start:mock-db\"",
+    "start:dev-server": "razzle start",
+    "start:mock-db": "firebase emulators:start --import=mock-database",
     "build": "razzle build",
     "start": "NODE_ENV=production node build/server.js",
     "deploy": "now -e NODE_ENV=production",
-    "mock-db": "firebase emulators:start --import=mock-database",
     "mock-db:save": "firebase emulators:export mock-database --force",
     "build-and-start": "CI=false yarn build && yarn start",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
