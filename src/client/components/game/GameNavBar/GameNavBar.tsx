@@ -8,7 +8,12 @@ export const GameNavBar = () => {
   const { root } = useStyles();
 
   return (
-    <AppBar color="inherit" position="fixed" className={root}>
+    <AppBar
+      data-testid="game-nav-bar"
+      color="inherit"
+      position="fixed"
+      className={root}
+    >
       <div className="container-fluid pl-0 pr-0">
         <div className="d-flex">
           <GamePicker gameColor={'#ba3448'} gameName={'Donkey Kong'} />

@@ -20,7 +20,7 @@ export const GamePicker = ({ gameColor, gameName }: GamePickerProps) => {
   const gameLetter = gameName[0];
 
   return (
-    <Paper className={root}>
+    <Paper className={root} role="button">
       <div className={gameLetterContainer} data-testid="game-identifier">
         <Typography className={gameLetterText}>{gameLetter}</Typography>
       </div>

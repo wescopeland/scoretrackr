@@ -13,7 +13,6 @@ const options = {
   defaultNS: 'common',
 
   saveMissing: true,
-  debug: true,
 
   react: {
     useSuspense: false
