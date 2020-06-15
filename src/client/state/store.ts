@@ -21,6 +21,7 @@ const configureStore = (preloadedState?: AppState) => {
     );
   }
 
+  /* istanbul ignore next - no need for coverage on dev tooling */
   if (module.hot) {
     module.hot.accept('./reducer', () => {
       const nextRootReducer = require('./reducer').default;
