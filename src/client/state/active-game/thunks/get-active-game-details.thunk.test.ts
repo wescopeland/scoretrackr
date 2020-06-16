@@ -1,22 +1,22 @@
-import { getMostRecentSubmissions } from './get-most-recent-submissions.thunk';
+import { getActiveGameDetails } from './get-active-game-details.thunk';
 
 globalThis.fetch = Object.create(jest.fn());
 
-describe('Thunk: getMostRecentSubmissions', () => {
+describe('Thunk: getActiveGameDetails', () => {
   it('exists', () => {
     // Assert
-    expect(getMostRecentSubmissions).toBeDefined();
+    expect(getActiveGameDetails).toBeDefined();
   });
 
-  it('makes a request to get the most recent submissions from the server', async () => {
+  it('makes a request to get the active game details by friendly id from the server', async () => {
     // Arrange
     const fetchSpy = spyOn(globalThis, 'fetch');
 
     // Act
-    await getMostRecentSubmissions()(jest.fn(), jest.fn(), null);
+    await getActiveGameDetails('dkongjr')(jest.fn(), jest.fn(), null);
 
     // Assert
-    expect(fetchSpy).toHaveBeenCalledWith('/api/submissions/recent');
+    expect(fetchSpy).toHaveBeenCalledWith('/api/game/dkongjr');
   });
 
   it('fulfills with the response body if the response status is a 200', async () => {
@@ -28,14 +28,14 @@ describe('Thunk: getMostRecentSubmissions', () => {
     });
 
     // Act
-    const nextAction = await getMostRecentSubmissions()(
+    const nextAction = await getActiveGameDetails('dkongjr')(
       jest.fn(),
       jest.fn(),
       null
     );
 
     // Assert
-    expect(nextAction.type).toEqual(getMostRecentSubmissions.fulfilled.type);
+    expect(nextAction.type).toEqual(getActiveGameDetails.fulfilled.type);
     expect(nextAction.payload).toEqual({});
   });
 
@@ -49,14 +49,14 @@ describe('Thunk: getMostRecentSubmissions', () => {
     spyOn(globalThis, 'fetch').and.returnValue(mockResponse);
 
     // Act
-    const nextAction = await getMostRecentSubmissions()(
+    const nextAction = await getActiveGameDetails('dkongjr')(
       jest.fn(),
       jest.fn(),
       null
     );
 
     // Assert
-    expect(nextAction.type).toEqual(getMostRecentSubmissions.rejected.type);
+    expect(nextAction.type).toEqual(getActiveGameDetails.rejected.type);
     expect(nextAction.payload).toEqual(mockResponse);
   });
 });
