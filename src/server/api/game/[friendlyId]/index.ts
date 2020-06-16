@@ -1,14 +1,9 @@
 import { Request, Response } from 'express';
 
+import { GameDetailsResponse } from 'common/models/game-details-response.model';
 import { unallowedHttpMethodResponse } from 'common/utils/api';
 import { DBGame, DBTrack } from 'server/api/+models';
 import { db } from 'server/firebase-admin-app';
-
-interface GameDetailsResponse {
-  color: string;
-  name: string;
-  tracks: DBTrack[];
-}
 
 export default async (req: Request, res: Response) => {
   switch (req.method) {

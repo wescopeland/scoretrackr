@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+import { GameDetailsResponse } from 'common/models/game-details-response.model';
+
 export const getActiveGameDetails = createAsyncThunk(
   'activeGame/getActiveGameDetails',
   async (friendlyId: string, { rejectWithValue }) => {
@@ -9,7 +11,6 @@ export const getActiveGameDetails = createAsyncThunk(
       return rejectWithValue(response);
     }
 
-    const responseBody = await response.json();
-    return responseBody;
+    return (await response.json()) as GameDetailsResponse;
   }
 );
