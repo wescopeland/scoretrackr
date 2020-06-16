@@ -12,13 +12,11 @@
 
 ## Table of Contents
 
-- [scoretrackr](#scoretrackr)
-  - [Table of Contents](#table-of-contents)
-  - [Project Setup](#project-setup)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Running a local dev server](#running-a-local-dev-server)
-  - [Contributors](#contributors)
+- [Project Setup](#project-setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running a local dev server](#running-a-local-dev-server)
+- [Contributors](#contributors)
 
 ## Project Setup
 
