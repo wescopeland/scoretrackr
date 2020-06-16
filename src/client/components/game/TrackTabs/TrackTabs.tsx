@@ -1,20 +1,21 @@
 import { Tab, Tabs } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 
+import { Track } from 'client/state/shared-models/track.model';
 import { LeaderboardTabsLoadingSkeleton } from '../LeaderboardTabsLoadingSkeleton';
-import { useStyles } from './LeaderboardTabs.styles';
+import { useStyles } from './TrackTabs.styles';
 
-interface LeaderboardTabsProps {
-  tracks: any[];
+interface TrackTabsProps {
+  tracks: Track[];
   gameColor: string;
   initialTrackId?: string;
 }
 
-export const LeaderboardTabs = ({
+export const TrackTabs = ({
   tracks,
   gameColor,
   initialTrackId
-}: LeaderboardTabsProps) => {
+}: TrackTabsProps) => {
   const classes = useStyles({ gameColor });
   const [currentSelectedTrackId, setCurrentSelectedTrackId] = useState<
     string | number

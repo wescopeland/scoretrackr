@@ -7,13 +7,14 @@ import {
   selectIsDesktopSidenavOpen,
   selectIsMobileSidenavOpen
 } from 'client/state/active-game';
+import { Track } from 'client/state/shared-models/track.model';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
-import { LeaderboardTabs } from '../LeaderboardTabs';
+import { TrackTabs } from '../TrackTabs';
 import { useStyles } from './GameTracksBar.styles';
 
 interface GameTracksBarProps {
   gameColor: string;
-  tracks: any[];
+  tracks: Track[];
 }
 
 export const GameTracksBar = ({ gameColor, tracks }: GameTracksBarProps) => {
@@ -38,7 +39,7 @@ export const GameTracksBar = ({ gameColor, tracks }: GameTracksBarProps) => {
           onMobileClick={toggleMobileSidenav}
           isMobileSidenavOpen={isMobileSidenavOpen}
         />
-        <LeaderboardTabs gameColor={gameColor} tracks={tracks} />
+        <TrackTabs gameColor={gameColor} tracks={tracks} />
       </Toolbar>
     </AppBar>
   );
