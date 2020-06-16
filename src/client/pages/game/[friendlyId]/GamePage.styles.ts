@@ -20,5 +20,11 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: 'initial'
     }
-  })
+  }),
+
+  toolBar: {
+    [theme.breakpoints.down('xs')]: {
+      minHeight: 54
+    }
+  }
 }));
