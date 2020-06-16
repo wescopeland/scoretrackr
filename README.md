@@ -1,6 +1,6 @@
 # scoretrackr
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -19,6 +19,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/wescopeland"><img src="https://avatars0.githubusercontent.com/u/3984985?v=4" width="100px;" alt=""/><br /><sub><b>Wes Copeland</b></sub></a><br /><a href="https://github.com/wescopeland/scoretrackr/commits?author=wescopeland" title="Code">💻</a> <a href="#infra-wescopeland" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-wescopeland" title="Design">🎨</a> <a href="#financial-wescopeland" title="Financial">💵</a> <a href="https://github.com/wescopeland/scoretrackr/commits?author=wescopeland" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/purplem1lk"><img src="https://avatars2.githubusercontent.com/u/49956513?v=4" width="100px;" alt=""/><br /><sub><b>Susan Ma</b></sub></a><br /><a href="https://github.com/wescopeland/scoretrackr/commits?author=purplem1lk" title="Code">💻</a></td>
   </tr>
 </table>
 
