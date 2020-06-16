@@ -23,7 +23,7 @@ const tracks: any[] = [
 export const GamePage = () => {
   const { friendlyId, trackId } = useParams();
   const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
-  const { content } = useStyles({ isDesktopSidenavOpen });
+  const { content, toolBar } = useStyles({ isDesktopSidenavOpen });
 
   return (
     <div className="d-flex">
@@ -32,7 +32,7 @@ export const GamePage = () => {
       <GameSidenav />
 
       <main className={content}>
-        <Toolbar />
+        <Toolbar className={toolBar} />
         <GameTracksBar gameColor="#ba3448" tracks={tracks} />
       </main>
     </div>
