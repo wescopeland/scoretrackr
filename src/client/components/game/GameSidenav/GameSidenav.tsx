@@ -52,7 +52,7 @@ export const GameSidenav = () => {
   );
 
   return (
-    <>
+    <div data-testid="game-sidenav">
       {/* Desktop sidenav */}
       <Hidden smDown={true} implementation="css">
         <Drawer
@@ -82,6 +82,6 @@ export const GameSidenav = () => {
           {sidenavContent}
         </Drawer>
       </Hidden>
-    </>
+    </div>
   );
 };
