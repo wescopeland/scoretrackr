@@ -18,7 +18,7 @@ import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import theme from 'client/theme';
 import { i18nNamespaces } from 'common/models/i18n-namespaces';
-import gameDetailsByFriendlyId from './api/game-details/[friendlyId]';
+import gameDetailsByFriendlyId from './api/game/[friendlyId]';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
 
@@ -73,7 +73,7 @@ i18n
         // api routes
         .use('/api/ping', ping)
         .use('/api/submissions/recent', recentSubmissions)
-        .use('/api/game-details/:friendlyId', gameDetailsByFriendlyId)
+        .use('/api/game/:friendlyId', gameDetailsByFriendlyId)
 
         // ui content delivery
         .get('/*', (req, res) => {

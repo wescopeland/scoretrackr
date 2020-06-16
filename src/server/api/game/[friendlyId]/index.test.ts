@@ -6,7 +6,7 @@ import { exposeMockFirebaseAdminApp } from 'ts-mock-firebase';
 import gameDetailsByFriendlyId from './index';
 
 const server = express();
-server.use('/game-details/:friendlyId', gameDetailsByFriendlyId);
+server.use('/game/:friendlyId', gameDetailsByFriendlyId);
 
 const firebaseApp = admin.initializeApp({});
 const mocked = exposeMockFirebaseAdminApp(firebaseApp);
@@ -44,7 +44,7 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
       });
 
       // Act
-      const response = await request(server).get('/game-details/dkong3');
+      const response = await request(server).get('/game/dkong3');
 
       // Assert
       expect(response.status).toEqual(200);
@@ -70,7 +70,7 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
       });
 
       // Act
-      const response = await request(server).get('/game-details/dkong');
+      const response = await request(server).get('/game/dkong');
 
       // Assert
       expect(response.status).toEqual(200);
@@ -89,7 +89,7 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
       });
 
       // Act
-      const response = await request(server).get('/game-details/intrepid');
+      const response = await request(server).get('/game/intrepid');
 
       // Assert
       expect(response.status).toEqual(200);
@@ -115,7 +115,7 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
       });
 
       // Act
-      const response = await request(server).get('/game-details/dkong3');
+      const response = await request(server).get('/game/dkong3');
 
       // Assert
       expect(response.status).toEqual(404);
@@ -125,9 +125,9 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
   describe('Other Methods', () => {
     it('returns a 405', async () => {
       // Act
-      const postResponse = await request(server).post('/game-details/dkong3');
-      const putResponse = await request(server).put('/game-details/dkong3');
-      const deleteResponse = await request(server).put('/game-details/dkong3');
+      const postResponse = await request(server).post('/game/dkong3');
+      const putResponse = await request(server).put('/game/dkong3');
+      const deleteResponse = await request(server).put('/game/dkong3');
 
       // Assert
       expect(postResponse.status).toEqual(405);
