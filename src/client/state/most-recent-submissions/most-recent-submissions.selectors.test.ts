@@ -1,5 +1,5 @@
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { AppState } from '../reducer';
-import { SubmissionBlob } from './models';
 import {
   selectIsMostRecentSubmissionsLoading,
   selectMostRecentSubmissions
@@ -40,9 +40,11 @@ describe('Selectors: mostRecentSubmissions', () => {
                 friendlyId: 'mockFriendlyId',
                 color: 'mockColor'
               },
-              track: 'mockTrack',
+              track: {
+                name: 'mockTrack'
+              },
               playerAlias: 'mockPlayerAlias',
-              score: 100,
+              finalScore: 100,
               position: 1
             }
           ]

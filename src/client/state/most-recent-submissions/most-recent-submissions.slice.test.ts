@@ -1,4 +1,4 @@
-import { SubmissionBlob } from './models';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 import {
   initialState,
   mostRecentSubmissions
@@ -45,9 +45,11 @@ describe('Slice: mostRecentSubmissions', () => {
                 friendlyId: 'mockFriendlyId',
                 color: 'mockColor'
               },
-              track: 'mockTrack',
+              track: {
+                name: 'mockTrack'
+              },
               playerAlias: 'mockPlayerAlias',
-              score: 100,
+              finalScore: 100,
               position: 1
             }
           ]

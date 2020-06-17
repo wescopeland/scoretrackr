@@ -1,6 +1,7 @@
 // tslint:disable: no-var-requires
 
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import expressStaticGzip from 'express-static-gzip';
 import fs from 'fs';
@@ -21,6 +22,8 @@ import { i18nNamespaces } from 'common/models/i18n-namespaces';
 import gameDetailsByFriendlyId from './api/game/[friendlyId]';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
+import { gqlResolvers } from './gql-resolvers';
+import { gqlSchema } from './gql-schema';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -33,6 +36,12 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 const i18nextMiddleware = require('i18next-http-middleware');
 
 const server = express();
+
+const apollo = new ApolloServer({
+  typeDefs: gqlSchema,
+  resolvers: gqlResolvers,
+  introspection: true
+});
 
 i18n
   .use(Backend)
@@ -76,7 +85,7 @@ i18n
         .use('/api/game/:friendlyId', gameDetailsByFriendlyId)
 
         // ui content delivery
-        .get('/*', (req, res) => {
+        .get(/^(?!\/api\/)/, (req, res) => {
           const sheets = new ServerStyleSheets();
           const context = {};
 
@@ -162,6 +171,8 @@ i18n
           `);
           }
         });
+
+      apollo.applyMiddleware({ app: server, path: '/api/graphql' });
     }
   );
 

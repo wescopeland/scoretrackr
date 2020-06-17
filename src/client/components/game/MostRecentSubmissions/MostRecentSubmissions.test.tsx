@@ -5,11 +5,11 @@ import * as ReactRedux from 'react-redux';
 
 import {
   selectIsMostRecentSubmissionsLoading,
-  selectMostRecentSubmissions,
-  Submission,
-  SubmissionBlob
+  selectMostRecentSubmissions
 } from 'client/state/most-recent-submissions';
 import { Game } from 'client/state/shared-models';
+import { Score } from 'common/models/score.model';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
 describe('Component: MostRecentSubmissions', () => {
@@ -88,11 +88,13 @@ describe('Component: MostRecentSubmissions', () => {
         friendlyId: 'galaga'
       };
 
-      const mockSubmission: Submission = {
+      const mockSubmission: Partial<Score> = {
         game: mockGame,
-        track: 'Fast fire',
+        track: {
+          name: 'Fast fire'
+        },
         playerAlias: 'Wilhelm Scream',
-        score: 999999,
+        finalScore: 999999,
         position: 1
       };
 

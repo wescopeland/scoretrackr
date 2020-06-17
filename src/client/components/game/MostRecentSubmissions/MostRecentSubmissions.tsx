@@ -45,16 +45,16 @@ export const MostRecentSubmissions = () => {
 
             {recentSubmission.submissions.map((submission) => (
               <Box
-                key={`${submission.game} ${submission.playerAlias} ${submission.score}`}
+                key={`${submission.game} ${submission.playerAlias} ${submission.finalScore}`}
                 marginBottom={2}
               >
                 <RecentSubmission
                   gameColor={submission.game.color}
                   gameFriendlyId={submission.game.friendlyId}
                   gameName={submission.game.name}
-                  trackName={submission.track}
+                  trackName={submission.track.name}
                   playerAlias={submission.playerAlias}
-                  score={submission.score}
+                  score={submission.finalScore}
                   position={submission.position}
                 />
               </Box>

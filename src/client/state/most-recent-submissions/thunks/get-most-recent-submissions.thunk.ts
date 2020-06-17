@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { SubmissionBlob } from '../models';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 
 export const getMostRecentSubmissions = createAsyncThunk(
   'mostRecentSubmissions/getMostRecentSubmissions',
