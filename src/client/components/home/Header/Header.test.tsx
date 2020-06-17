@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { Header } from './Header';
@@ -18,18 +18,18 @@ describe('Component: Header', () => {
   describe('Desktop', () => {
     it('displays the app name', () => {
       // Arrange
-      const { getByText } = render(<Header />);
+      render(<Header />);
 
       // Assert
-      expect(getByText('scoretrac.kr', { exact: false })).toBeVisible();
+      expect(screen.getByText('scoretrac.kr', { exact: false })).toBeVisible();
     });
 
     it('displays some description text', () => {
       // Arrange
-      const { getByText } = render(<Header />);
+      render(<Header />);
 
       // Assert
-      expect(getByText('header.description')).toBeVisible();
+      expect(screen.getByText('header.description')).toBeVisible();
     });
   });
 });

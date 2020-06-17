@@ -10,7 +10,7 @@ describe('Component: GamePicker', () => {
   it('renders without crashing', () => {
     // Arrange
     const { container } = render(
-      <GamePicker gameName={'Game X'} gameColor={'red'} />
+      <GamePicker isLoading={false} gameName={'Game X'} gameColor={'red'} />
     );
 
     // Assert
@@ -21,7 +21,7 @@ describe('Component: GamePicker', () => {
     it('renders the first letter of the game name', () => {
       // Arrange
       const { getByTestId } = render(
-        <GamePicker gameName={'Game X'} gameColor={'red'} />
+        <GamePicker isLoading={false} gameName={'Game X'} gameColor={'red'} />
       );
 
       // Assert
@@ -31,7 +31,7 @@ describe('Component: GamePicker', () => {
     it('renders the whole game name', () => {
       // Arrange
       const { getByText } = render(
-        <GamePicker gameName={'Game X'} gameColor={'red'} />
+        <GamePicker isLoading={false} gameName={'Game X'} gameColor={'red'} />
       );
 
       // Assert

@@ -51,6 +51,7 @@ describe('Api Endpoint: gameDetailsByFriendlyId', () => {
       expect(response.body.name).toEqual('Donkey Kong 3');
       expect(response.body.color).toEqual('yellow');
       expect(response.body.tracks.length).toEqual(2);
+      expect(response.body.tracks[0].id).toEqual('trackOne');
       expect(response.body.tracks[0].name).toEqual('Difficulty 3 - Marathon');
     });
 

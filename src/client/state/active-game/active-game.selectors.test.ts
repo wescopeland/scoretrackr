@@ -1,45 +1,31 @@
 import { AppState } from '../reducer';
 import {
-  selectGameColor,
-  selectGameName,
+  selectActiveGameDetails,
   selectIsActiveGameLoading,
   selectIsDesktopSidenavOpen,
   selectIsMobileSidenavOpen
 } from './active-game.selectors';
 
 describe('Selectors: activeGame', () => {
-  describe('Selector: selectGameColor', () => {
-    it('returns the color value from the store', () => {
+  describe('Selector: selectActiveGameDetails', () => {
+    it('returns a summary of the active game details from the store', () => {
       // Arrange
-      const mockValue = 'red';
+      const mockValue = {
+        color: 'blue',
+        name: 'Intrepid',
+        tracks: [
+          {
+            id: 'trackOne'
+          }
+        ]
+      };
 
       const mockState: Partial<AppState> = {
-        activeGame: {
-          color: mockValue
-        } as any
+        activeGame: mockValue as any
       };
 
       // Act
-      const selected = selectGameColor(mockState as AppState);
-
-      // Assert
-      expect(selected).toEqual(mockValue);
-    });
-  });
-
-  describe('Selector: selectGameName', () => {
-    it('returns the game name value from the store', () => {
-      // Arrange
-      const mockValue = 'Galaga';
-
-      const mockState: Partial<AppState> = {
-        activeGame: {
-          name: mockValue
-        } as any
-      };
-
-      // Act
-      const selected = selectGameName(mockState as AppState);
+      const selected = selectActiveGameDetails(mockState as AppState);
 
       // Assert
       expect(selected).toEqual(mockValue);

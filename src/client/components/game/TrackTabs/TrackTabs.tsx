@@ -1,8 +1,7 @@
 import { Tab, Tabs } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 
-import { Track } from 'client/state/shared-models/track.model';
-import { LeaderboardTabsLoadingSkeleton } from '../LeaderboardTabsLoadingSkeleton';
+import { Track } from 'common/models/track.model';
 import { useStyles } from './TrackTabs.styles';
 
 interface TrackTabsProps {
@@ -17,9 +16,9 @@ export const TrackTabs = ({
   initialTrackId
 }: TrackTabsProps) => {
   const classes = useStyles({ gameColor });
-  const [currentSelectedTrackId, setCurrentSelectedTrackId] = useState<
-    string | number
-  >(0);
+  const [currentSelectedTrackId, setCurrentSelectedTrackId] = useState<string>(
+    null
+  );
 
   useEffect(() => {
     if (initialTrackId && tracks.find((t) => t.id === initialTrackId)) {
@@ -47,20 +46,16 @@ export const TrackTabs = ({
       variant="scrollable"
       scrollButtons="auto"
     >
-      {currentSelectedTrackId !== 0 ? (
-        tracks.map((track) => (
-          <Tab
-            key={track.id}
-            classes={{
-              root: classes.tabItemRoot
-            }}
-            label={track.name}
-            value={track.id}
-          />
-        ))
-      ) : (
-        <LeaderboardTabsLoadingSkeleton {...([] as any)} />
-      )}
+      {tracks.map((track) => (
+        <Tab
+          key={track.id}
+          classes={{
+            root: classes.tabItemRoot
+          }}
+          label={track.name}
+          value={track.id}
+        />
+      ))}
     </Tabs>
   );
 };

@@ -1,7 +1,7 @@
-import { DBTrack } from 'server/api/+models';
+import { Track } from 'common/models/track.model';
 
 export interface GameDetailsResponse {
   color: string;
   name: string;
-  tracks: DBTrack[];
+  tracks: Track[];
 }

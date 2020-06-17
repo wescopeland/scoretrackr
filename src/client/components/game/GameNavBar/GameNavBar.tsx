@@ -4,7 +4,17 @@ import React from 'react';
 import { GamePicker } from '../GamePicker';
 import { useStyles } from './GameNavBar.styles';
 
-export const GameNavBar = () => {
+interface GameNavBarProps {
+  isLoading: boolean;
+  gameColor?: string;
+  gameName?: string;
+}
+
+export const GameNavBar = ({
+  gameColor,
+  gameName,
+  isLoading
+}: GameNavBarProps) => {
   const { root } = useStyles();
 
   return (
@@ -16,7 +26,11 @@ export const GameNavBar = () => {
     >
       <div className="container-fluid pl-0 pr-0">
         <div className="d-flex">
-          <GamePicker gameColor={'#ba3448'} gameName={'Donkey Kong'} />
+          <GamePicker
+            gameColor={gameColor}
+            gameName={gameName}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </AppBar>

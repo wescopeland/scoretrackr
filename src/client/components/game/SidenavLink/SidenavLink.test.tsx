@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { SidenavLink } from './SidenavLink';
@@ -17,9 +17,9 @@ describe('Component: SidenavLink', () => {
 
   it('displays the given text', () => {
     // Arrange
-    const { getByText } = render(<SidenavLink label="Link" />);
+    render(<SidenavLink label="Link" />);
 
     // Assert
-    expect(getByText('Link')).toBeVisible();
+    expect(screen.getByText('Link')).toBeVisible();
   });
 });

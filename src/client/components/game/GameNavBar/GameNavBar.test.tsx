@@ -9,7 +9,9 @@ describe('Component: GameNavBar', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    render(<GameNavBar />);
+    render(
+      <GameNavBar gameColor="red" gameName="Donkey Kong" isLoading={false} />
+    );
 
     // Assert
     expect(screen.getByTestId('game-nav-bar')).toBeVisible();
@@ -17,7 +19,9 @@ describe('Component: GameNavBar', () => {
 
   it('contains a game picker', () => {
     // Arrange
-    render(<GameNavBar />);
+    render(
+      <GameNavBar gameColor="red" gameName="Donkey Kong" isLoading={false} />
+    );
 
     // Assert
     expect(screen.getByRole('button')).toHaveTextContent('Donkey Kong');

@@ -1,7 +1,10 @@
 import { AppState } from '../reducer';
 
-export const selectGameColor = (state: AppState) => state.activeGame.color;
-export const selectGameName = (state: AppState) => state.activeGame.name;
+export const selectActiveGameDetails = (state: AppState) => ({
+  color: state.activeGame.color,
+  name: state.activeGame.name,
+  tracks: state.activeGame.tracks
+});
 
 export const selectIsActiveGameLoading = (state: AppState) =>
   state.activeGame.isLoading;

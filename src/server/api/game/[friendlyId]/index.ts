@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { GameDetailsResponse } from 'common/models/game-details-response.model';
+import { Track } from 'common/models/track.model';
 import { unallowedHttpMethodResponse } from 'common/utils/api';
 import { DBGame, DBTrack } from 'server/api/+models';
 import { db } from 'server/firebase-admin-app';
@@ -25,10 +26,14 @@ export default async (req: Request, res: Response) => {
           .collection('tracks')
           .get();
 
-        const tracks: DBTrack[] = [];
+        const tracks: Track[] = [];
         for (const trackDocument of tracksSnapshot.docs) {
           const dbTrack = trackDocument.data() as DBTrack;
-          tracks.push(dbTrack);
+          tracks.push({
+            friendlyId: dbTrack.friendlyId,
+            name: dbTrack.name,
+            id: trackDocument.id
+          });
         }
 
         foundGameDetails = {
