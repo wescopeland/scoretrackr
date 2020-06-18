@@ -1,0 +1,11 @@
+query GetActiveGameDetails($friendlyId: String!) {
+  game(friendlyId: $friendlyId) {
+    color
+    name
+    tracks {
+      id
+      friendlyId
+      name
+    }
+  }
+}

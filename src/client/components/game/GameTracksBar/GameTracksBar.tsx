@@ -14,9 +14,9 @@ import { TrackTabs } from '../TrackTabs';
 import { useStyles } from './GameTracksBar.styles';
 
 interface GameTracksBarProps {
-  gameColor: string;
   isLoading: boolean;
-  tracks: Track[];
+  gameColor?: string;
+  tracks?: Track[];
 }
 
 export const GameTracksBar = ({
