@@ -11,6 +11,8 @@ import { RecentSubmission } from '../RecentSubmission';
 import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
 export const MostRecentSubmissions = () => {
+  const { t } = useTranslation('common');
+
   const { loading, error, data } = useQuery<{
     recentSubmissions: SubmissionBlob[];
   }>(GetMostRecentSubmissions, {
@@ -18,8 +20,6 @@ export const MostRecentSubmissions = () => {
       limitToDays: 4
     }
   });
-
-  const { t } = useTranslation('common');
 
   return (
     <>
@@ -32,7 +32,11 @@ export const MostRecentSubmissions = () => {
               variant="subtitle1"
               className={`mb-1 ${index !== 0 && 'mt-5'}`}
             >
-              {getDateDistanceText(recentSubmission.date)}
+              {getDateDistanceText(
+                recentSubmission.date,
+                t('dates.today'),
+                t('dates.yesterday')
+              )}
             </Typography>
 
             {recentSubmission.submissions.map((submission) => (

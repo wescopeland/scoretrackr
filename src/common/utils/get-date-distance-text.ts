@@ -1,17 +1,18 @@
 import { isToday, isYesterday, parseISO } from 'date-fns';
-import { useTranslation } from 'react-i18next';
 
 import { formatDistanceToNow } from './format-distance-to-now';
 
-export const getDateDistanceText = (date: string) => {
-  const { t } = useTranslation('common');
-
+export const getDateDistanceText = (
+  date: string,
+  todayText: string,
+  yesterdayText: string
+) => {
   const parsedDate = parseISO(date);
 
   if (isToday(parsedDate)) {
-    return t('dates.today');
+    return todayText;
   } else if (isYesterday(parsedDate)) {
-    return t('dates.yesterday');
+    return yesterdayText;
   }
 
   return formatDistanceToNow(parsedDate);
