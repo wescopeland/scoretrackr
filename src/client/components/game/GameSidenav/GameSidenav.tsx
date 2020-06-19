@@ -1,13 +1,5 @@
-import {
-  Divider,
-  Drawer,
-  Hidden,
-  List,
-  ListSubheader,
-  Toolbar
-} from '@material-ui/core';
+import { Drawer, Hidden, Toolbar } from '@material-ui/core';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -15,15 +7,14 @@ import {
   selectIsDesktopSidenavOpen,
   selectIsMobileSidenavOpen
 } from 'client/state/active-game';
-import { SidenavLink } from '../SidenavLink';
+import { GameSidenavContent } from '../GameSidenavContent';
 import { useStyles } from './GameSidenav.styles';
 
 export const GameSidenav = () => {
-  const { t } = useTranslation('game');
   const dispatch = useDispatch();
   const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
   const isMobileSidenavOpen = useSelector(selectIsMobileSidenavOpen);
-  const { drawer, drawerContainer, drawerPaper } = useStyles();
+  const { drawer, drawerPaper } = useStyles();
 
   const container =
     typeof window !== 'undefined' ? () => window.document.body : undefined;
@@ -31,25 +22,6 @@ export const GameSidenav = () => {
   const handleMobileDrawerToggle = () => {
     dispatch(activeGameActions.toggleIsMobileSidenavOpen());
   };
-
-  const sidenavContent = (
-    <div className={drawerContainer}>
-      <List component="nav">
-        <ListSubheader component="div">{t('resources.navLabel')}</ListSubheader>
-        <SidenavLink label={t('resources.leaderboard')} />
-      </List>
-
-      <Divider />
-
-      <List component="nav">
-        <ListSubheader component="div">{t('stats.navLabel')}</ListSubheader>
-        <SidenavLink label={t('stats.topGames')} />
-        <SidenavLink label={t('stats.comparisons')} />
-        <SidenavLink label={t('stats.timelines')} />
-        <SidenavLink label={t('stats.daysSince')} />
-      </List>
-    </div>
-  );
 
   return (
     <div data-testid="game-sidenav">
@@ -63,7 +35,7 @@ export const GameSidenav = () => {
           anchor="left"
         >
           <Toolbar />
-          {sidenavContent}
+          <GameSidenavContent />
         </Drawer>
       </Hidden>
 
@@ -79,7 +51,7 @@ export const GameSidenav = () => {
           onClose={handleMobileDrawerToggle}
           ModalProps={{ keepMounted: true }}
         >
-          {sidenavContent}
+          <GameSidenavContent />
         </Drawer>
       </Hidden>
     </div>
