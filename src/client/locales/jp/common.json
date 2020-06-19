@@ -3,10 +3,13 @@
     "description": "ハイスコア統計と永久履歴アーカイブ"
   },
 
+  "dates": {
+    "today": "今日",
+    "yesterday": "昨日"
+  },
+
   "recentSubmissions": {
     "label": "最新の提出物",
-    "today": "今日",
-    "yesterday": "昨日",
     "none": {
       "heading": "これは恥ずかしいです。",
       "label": "データベースには何もありません。"

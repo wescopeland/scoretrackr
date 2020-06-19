@@ -3,10 +3,13 @@
     "description": "High Score Statistics and Permanent Historical Archive"
   },
 
+  "dates": {
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+
   "recentSubmissions": {
     "label": "Most recent submissions",
-    "today": "Today",
-    "yesterday": "Yesterday",
     "none": {
       "heading": "This is embarassing.",
       "label": "There are no submissions in the database."

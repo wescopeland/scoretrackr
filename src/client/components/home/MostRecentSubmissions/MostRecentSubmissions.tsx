@@ -1,5 +1,4 @@
 import { Box, Typography } from '@material-ui/core';
-import { isToday, isYesterday, parseISO } from 'date-fns';
 import { useQuery } from 'graphql-hooks';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { EmptyState } from 'client/components/shared/EmptyState';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 import GetMostRecentSubmissions from 'common/queries/get-most-recent-submissions.graphql';
-import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
+import { getDateDistanceText } from 'common/utils/get-date-distance-text';
 import { RecentSubmission } from '../RecentSubmission';
 import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
@@ -21,18 +20,6 @@ export const MostRecentSubmissions = () => {
   });
 
   const { t } = useTranslation('common');
-
-  const getDateDistanceText = (date: string) => {
-    const parsedDate = parseISO(date);
-
-    if (isToday(parsedDate)) {
-      return t('recentSubmissions.today');
-    } else if (isYesterday(parsedDate)) {
-      return t('recentSubmissions.yesterday');
-    }
-
-    return formatDistanceToNow(parsedDate);
-  };
 
   return (
     <>
