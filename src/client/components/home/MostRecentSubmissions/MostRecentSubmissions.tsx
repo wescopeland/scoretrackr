@@ -9,6 +9,7 @@ import { SubmissionBlob } from 'common/models/submission-blob.model';
 import GetMostRecentSubmissions from 'common/queries/get-most-recent-submissions.graphql';
 import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
+import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
 export const MostRecentSubmissions = () => {
   const { loading, error, data } = useQuery<{
@@ -36,7 +37,7 @@ export const MostRecentSubmissions = () => {
   return (
     <>
       {loading ? (
-        <RecentSubmission isLoading={true} />
+        <RecentSubmissionLoadingSkeleton />
       ) : data.recentSubmissions.length ? (
         data.recentSubmissions.map((recentSubmission, index) => (
           <div key={recentSubmission.date}>
