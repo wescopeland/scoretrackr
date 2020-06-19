@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
+import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 import * as ReactRedux from 'react-redux';
 
@@ -17,10 +18,10 @@ describe('Component: MostRecentSubmissions', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-      if (selector === selectMostRecentSubmissions) {
-        return [];
-      }
+    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+      loading: false,
+      error: null,
+      data: { recentSubmissions: [] }
     });
 
     const { container } = render(<MostRecentSubmissions />);
@@ -32,10 +33,10 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Loading', () => {
     it('given the page is loading, renders a recent submission in the loading state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectIsMostRecentSubmissionsLoading) {
-          return true;
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: true,
+        error: null,
+        data: { recentSubmissions: null }
       });
 
       render(<MostRecentSubmissions />);
@@ -48,30 +49,24 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Hydrated', () => {
     it('does not display loading state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return [];
-        }
-
-        if (selector === selectIsMostRecentSubmissionsLoading) {
-          return false;
-        }
-
-        render(<MostRecentSubmissions />);
-
-        // Assert
-        expect(
-          screen.getByTestId('recent-submission-loading')
-        ).not.toBeVisible();
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: [] }
       });
+
+      render(<MostRecentSubmissions />);
+
+      // Assert
+      expect(screen.queryByTestId('recent-submission-loading')).toBeNull();
     });
 
     it('given there are no submission blobs, renders a message indicating an empty state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return [];
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: [] }
       });
 
       render(<MostRecentSubmissions />);
@@ -113,10 +108,10 @@ describe('Component: MostRecentSubmissions', () => {
         }
       ];
 
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return mockSubmissionBlobs;
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: mockSubmissionBlobs }
       });
 
       spyOn(global.Date, 'now').and.returnValue(

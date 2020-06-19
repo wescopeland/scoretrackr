@@ -1,0 +1,19 @@
+query GetMostRecentSubmissions($limitToDays: Int!) {
+  recentSubmissions(limitToDays: $limitToDays) {
+    date
+    submissions {
+      playerAlias
+      finalScore
+      position
+      game {
+        name
+        color
+        friendlyId
+      }
+      track {
+        name
+        friendlyId
+      }
+    }
+  }
+}

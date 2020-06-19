@@ -27,7 +27,7 @@ import gameDetailsByFriendlyId from './api/game/[friendlyId]';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
 import { gqlResolvers } from './gql-resolvers';
-import gqlSchema from './schema.graphql';
+import { gqlSchema } from './gql-schema';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
