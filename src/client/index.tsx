@@ -1,4 +1,6 @@
 import { ThemeProvider } from '@material-ui/styles';
+import { ClientContext, GraphQLClient } from 'graphql-hooks';
+import memCache from 'graphql-hooks-memcache';
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { useSSR } from 'react-i18next';
@@ -10,19 +12,28 @@ import './i18n';
 import configureStore from './state/store';
 import theme from './theme';
 
+const initialGqlState = (window as any).__INITIAL_GQL_STATE__;
+
+const gqlClient = new GraphQLClient({
+  url: '/api/graphql',
+  cache: memCache({ initialState: initialGqlState })
+});
+
 const store = configureStore((window as any).preloadedReduxState);
 
 const ClientApp = () => {
   useSSR((window as any).initialI18nStore, (window as any).initialLanguage);
 
   return (
-    <ThemeProvider theme={theme}>
-      <ReduxProvider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ReduxProvider>
-    </ThemeProvider>
+    <ClientContext.Provider value={gqlClient}>
+      <ThemeProvider theme={theme}>
+        <ReduxProvider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ReduxProvider>
+      </ThemeProvider>
+    </ClientContext.Provider>
   );
 };
 

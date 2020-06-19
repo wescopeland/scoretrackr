@@ -1,15 +1,11 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
+import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
-import * as ReactRedux from 'react-redux';
 
-import {
-  selectIsMostRecentSubmissionsLoading,
-  selectMostRecentSubmissions,
-  Submission,
-  SubmissionBlob
-} from 'client/state/most-recent-submissions';
 import { Game } from 'client/state/shared-models';
+import { Score } from 'common/models/score.model';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
 describe('Component: MostRecentSubmissions', () => {
@@ -17,10 +13,10 @@ describe('Component: MostRecentSubmissions', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-      if (selector === selectMostRecentSubmissions) {
-        return [];
-      }
+    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+      loading: false,
+      error: null,
+      data: { recentSubmissions: [] }
     });
 
     const { container } = render(<MostRecentSubmissions />);
@@ -32,10 +28,10 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Loading', () => {
     it('given the page is loading, renders a recent submission in the loading state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectIsMostRecentSubmissionsLoading) {
-          return true;
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: true,
+        error: null,
+        data: { recentSubmissions: null }
       });
 
       render(<MostRecentSubmissions />);
@@ -48,30 +44,24 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Hydrated', () => {
     it('does not display loading state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return [];
-        }
-
-        if (selector === selectIsMostRecentSubmissionsLoading) {
-          return false;
-        }
-
-        render(<MostRecentSubmissions />);
-
-        // Assert
-        expect(
-          screen.getByTestId('recent-submission-loading')
-        ).not.toBeVisible();
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: [] }
       });
+
+      render(<MostRecentSubmissions />);
+
+      // Assert
+      expect(screen.queryByTestId('recent-submission-loading')).toBeNull();
     });
 
     it('given there are no submission blobs, renders a message indicating an empty state', () => {
       // Arrange
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return [];
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: [] }
       });
 
       render(<MostRecentSubmissions />);
@@ -88,11 +78,13 @@ describe('Component: MostRecentSubmissions', () => {
         friendlyId: 'galaga'
       };
 
-      const mockSubmission: Submission = {
+      const mockSubmission: Partial<Score> = {
         game: mockGame,
-        track: 'Fast fire',
+        track: {
+          name: 'Fast fire'
+        },
         playerAlias: 'Wilhelm Scream',
-        score: 999999,
+        finalScore: 999999,
         position: 1
       };
 
@@ -111,10 +103,10 @@ describe('Component: MostRecentSubmissions', () => {
         }
       ];
 
-      spyOn(ReactRedux, 'useSelector').and.callFake((selector: any) => {
-        if (selector === selectMostRecentSubmissions) {
-          return mockSubmissionBlobs;
-        }
+      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+        loading: false,
+        error: null,
+        data: { recentSubmissions: mockSubmissionBlobs }
       });
 
       spyOn(global.Date, 'now').and.returnValue(

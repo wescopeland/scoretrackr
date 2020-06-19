@@ -1,4 +1,5 @@
 const CompressionPlugin = require('compression-webpack-plugin');
+const makeLoaderFinder = require('razzle-dev-utils/makeLoaderFinder');
 
 module.exports = {
   modify: require('razzle-heroku'),
@@ -15,7 +16,9 @@ module.exports = {
           typeCheck: true
         }
       }
-    }
+    },
+
+    graphqlLoaderPlugin
   ]
 };
 
@@ -46,6 +49,29 @@ function compressionPlugin(config, env) {
       })
     );
   }
+
+  return config;
+}
+
+function graphqlLoaderPlugin(config, env, webpack, options) {
+  // Razzle's file-loader config will try to serve graphql files as
+  // a static asset by default. This resolves the issue.
+  // https://github.com/jaredpalmer/razzle/issues/433#issuecomment-403236619
+  config.module.rules[
+    config.module.rules.findIndex(makeLoaderFinder('file-loader'))
+  ].exclude.push(/\.graphql$/);
+
+  config.module.rules.push({
+    test: /\.graphql?$/,
+    use: [
+      {
+        loader: 'webpack-graphql-loader',
+        options: {
+          output: 'string'
+        }
+      }
+    ]
+  });
 
   return config;
 }

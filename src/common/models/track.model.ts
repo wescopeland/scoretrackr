@@ -1,5 +1,5 @@
-import { DBTrack } from 'server/api/+models';
-
-export interface Track extends DBTrack {
+export interface Track {
   id: string;
+  name: string;
+  friendlyId: string;
 }

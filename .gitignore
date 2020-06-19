@@ -3,6 +3,7 @@ logs
 npm-debug.log*
 .DS_Store
 
+cypress/videos
 build
 coverage
 node_modules

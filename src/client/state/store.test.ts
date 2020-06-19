@@ -12,17 +12,15 @@ describe('Function: configureStore', () => {
 
     // Assert
     expect(store).toBeDefined();
-    expect(store.getState().mostRecentSubmissions).toBeDefined();
-    expect(store.getState().mostRecentSubmissions.isLoading).toEqual(true);
     expect(store.getState().activeGame).toBeDefined();
   });
 
   it('creates the initial store given some preloaded state from the server render (CSR)', () => {
     // Arrange
     const preloadedState: Partial<AppState> = {
-      mostRecentSubmissions: {
-        isLoading: false,
-        submissionBlobs: []
+      activeGame: {
+        isDesktopSidenavOpen: true,
+        isMobileSidenavOpen: false
       }
     };
 
@@ -31,7 +29,7 @@ describe('Function: configureStore', () => {
 
     // Assert
     expect(store).toBeDefined();
-    expect(store.getState().mostRecentSubmissions).toBeDefined();
-    expect(store.getState().mostRecentSubmissions.isLoading).toEqual(false);
+    expect(store.getState().activeGame).toBeDefined();
+    expect(store.getState().activeGame.isMobileSidenavOpen).toEqual(false);
   });
 });

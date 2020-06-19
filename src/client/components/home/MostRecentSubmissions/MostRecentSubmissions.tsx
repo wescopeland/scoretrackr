@@ -1,21 +1,25 @@
 import { Box, Typography } from '@material-ui/core';
 import { isToday, isYesterday, parseISO } from 'date-fns';
+import { useQuery } from 'graphql-hooks';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { EmptyState } from 'client/components/shared/EmptyState';
-import {
-  selectIsMostRecentSubmissionsLoading,
-  selectMostRecentSubmissions
-} from 'client/state/most-recent-submissions';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
+import GetMostRecentSubmissions from 'common/queries/get-most-recent-submissions.graphql';
 import { formatDistanceToNow } from 'common/utils/format-distance-to-now';
 import { RecentSubmission } from '../RecentSubmission';
 
 export const MostRecentSubmissions = () => {
+  const { loading, error, data } = useQuery<{
+    recentSubmissions: SubmissionBlob[];
+  }>(GetMostRecentSubmissions, {
+    variables: {
+      limitToDays: 4
+    }
+  });
+
   const { t } = useTranslation('common');
-  const isLoading = useSelector(selectIsMostRecentSubmissionsLoading);
-  const recentSubmissions = useSelector(selectMostRecentSubmissions);
 
   const getDateDistanceText = (date: string) => {
     const parsedDate = parseISO(date);
@@ -31,10 +35,10 @@ export const MostRecentSubmissions = () => {
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <RecentSubmission isLoading={true} />
-      ) : recentSubmissions.length ? (
-        recentSubmissions.map((recentSubmission, index) => (
+      ) : data.recentSubmissions.length ? (
+        data.recentSubmissions.map((recentSubmission, index) => (
           <div key={recentSubmission.date}>
             <Typography
               variant="subtitle1"
@@ -45,16 +49,16 @@ export const MostRecentSubmissions = () => {
 
             {recentSubmission.submissions.map((submission) => (
               <Box
-                key={`${submission.game} ${submission.playerAlias} ${submission.score}`}
+                key={`${submission.game} ${submission.playerAlias} ${submission.finalScore}`}
                 marginBottom={2}
               >
                 <RecentSubmission
                   gameColor={submission.game.color}
                   gameFriendlyId={submission.game.friendlyId}
                   gameName={submission.game.name}
-                  trackName={submission.track}
+                  trackName={submission.track.name}
                   playerAlias={submission.playerAlias}
-                  score={submission.score}
+                  score={submission.finalScore}
                   position={submission.position}
                 />
               </Box>

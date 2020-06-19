@@ -1,11 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { activeGame } from './active-game';
-import { mostRecentSubmissions } from './most-recent-submissions';
 
 const rootReducer = combineReducers({
-  activeGame: activeGame.reducer,
-  mostRecentSubmissions: mostRecentSubmissions.reducer
+  activeGame: activeGame.reducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
