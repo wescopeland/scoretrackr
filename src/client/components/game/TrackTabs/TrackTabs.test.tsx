@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { TrackTabs } from './TrackTabs';
 import { Track } from 'common/models/track.model';
+import { TrackTabs } from './TrackTabs';
 
 // file.only
 
