@@ -1,10 +1,8 @@
 import { format } from 'date-fns';
 import { Request, Response } from 'express';
 
-import {
-  Submission,
-  SubmissionBlob
-} from 'client/state/most-recent-submissions';
+import { Score } from 'common/models/score.model';
+import { SubmissionBlob } from 'common/models/submission-blob.model';
 import {
   getDocumentByReference,
   getScoreCurrentPosition,
@@ -15,7 +13,7 @@ import { DBGame, DBScore, DBTrack } from '../../+models';
 
 const buildSubmissionFromScore = async (
   score: DBScore
-): Promise<Submission> => {
+): Promise<Partial<Score>> => {
   const [track, game, position] = (await Promise.all([
     getDocumentByReference(score._trackRef),
     getDocumentByReference(score._gameRef),
@@ -30,8 +28,10 @@ const buildSubmissionFromScore = async (
       friendlyId: game.friendlyId,
       color: game.color
     },
-    track: track.name,
-    score: score.finalScore
+    track: {
+      name: track.name
+    },
+    finalScore: score.finalScore
   };
 };
 

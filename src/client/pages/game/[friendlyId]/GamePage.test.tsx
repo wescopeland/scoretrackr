@@ -1,13 +1,10 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
+import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import {
-  selectActiveGameDetails,
-  selectIsActiveGameLoading,
-  selectIsDesktopSidenavOpen
-} from 'client/state/active-game';
+import { selectIsDesktopSidenavOpen } from 'client/state/active-game';
 import { GamePage } from './GamePage';
 
 jest.mock('react-router-dom', () => ({
@@ -20,25 +17,15 @@ describe('Page Component: GamePage', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    const mockUseDispatch = jest.fn();
-    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
-
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
-      if (selector === selectActiveGameDetails) {
-        return {
-          game: null,
-          color: null,
-          tracks: []
-        };
-      }
-
       if (selector === selectIsDesktopSidenavOpen) {
         return true;
       }
+    });
 
-      if (selector === selectIsActiveGameLoading) {
-        return true;
-      }
+    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
+      loading: true,
+      data: { game: {} }
     });
 
     const { container } = render(<GamePage />);

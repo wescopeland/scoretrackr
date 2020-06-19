@@ -82,9 +82,11 @@ describe('Api Endpoint: recentSubmissions', () => {
       expect(response.body[0].submissions).toHaveLength(1);
       expect(response.body[0].submissions[0]).toEqual({
         game: mockGameOne,
-        track: 'Factory settings',
+        track: {
+          name: 'Factory settings'
+        },
         playerAlias: 'Steve Wiebe',
-        score: 1190400,
+        finalScore: 1190400,
         position: 1
       });
     });

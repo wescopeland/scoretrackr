@@ -23,7 +23,7 @@ export const TrackTabs = ({
   useEffect(() => {
     if (initialTrackId && tracks.find((t) => t.id === initialTrackId)) {
       setCurrentSelectedTrackId(initialTrackId);
-    } else {
+    } else if (tracks.length) {
       setCurrentSelectedTrackId(tracks[0].id);
     }
   }, []);

@@ -1,10 +1,15 @@
 // tslint:disable: no-var-requires
 
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import expressStaticGzip from 'express-static-gzip';
 import fs from 'fs';
+import { ClientContext, GraphQLClient } from 'graphql-hooks';
+import memCache from 'graphql-hooks-memcache';
+import { getInitialState } from 'graphql-hooks-ssr';
 import Backend from 'i18next-fs-backend';
+import fetch from 'isomorphic-unfetch';
 import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -21,6 +26,8 @@ import { i18nNamespaces } from 'common/models/i18n-namespaces';
 import gameDetailsByFriendlyId from './api/game/[friendlyId]';
 import ping from './api/ping';
 import recentSubmissions from './api/submissions/recent';
+import { gqlResolvers } from './gql-resolvers';
+import { gqlSchema } from './gql-schema';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -33,6 +40,12 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 const i18nextMiddleware = require('i18next-http-middleware');
 
 const server = express();
+
+const apollo = new ApolloServer({
+  typeDefs: gqlSchema,
+  resolvers: gqlResolvers,
+  introspection: true
+});
 
 i18n
   .use(Backend)
@@ -76,16 +89,31 @@ i18n
         .use('/api/game/:friendlyId', gameDetailsByFriendlyId)
 
         // ui content delivery
-        .get('/*', (req, res) => {
+        .get(/^(?!\/api\/)/, async (req, res) => {
+          // GraphQL Hooks
+          const serverBaseUrl =
+            process.env.NODE_ENV === 'development'
+              ? 'http://127.0.0.1:3000'
+              : 'https://scoretrac.kr';
+
+          const gqlClient = new GraphQLClient({
+            url: `${serverBaseUrl}/api/graphql`,
+            cache: memCache(),
+            fetch
+          });
+
+          // Material UI CSS-in-JS
           const sheets = new ServerStyleSheets();
           const context = {};
 
+          // i18next
           (globalThis as any).initialLanguage = (req as any).i18n.language;
 
+          // Redux
           const store = configureStore();
 
-          const markup = renderToString(
-            sheets.collect(
+          const ServerApp = (
+            <ClientContext.Provider value={gqlClient}>
               <ThemeProvider theme={theme}>
                 <I18nextProvider i18n={(req as any).i18n}>
                   <ReduxProvider store={store}>
@@ -95,13 +123,24 @@ i18n
                   </ReduxProvider>
                 </I18nextProvider>
               </ThemeProvider>
-            )
+            </ClientContext.Provider>
           );
 
+          // GraphQL Hooks
+          const initialGqlState = await getInitialState({
+            App: ServerApp,
+            client: gqlClient
+          });
+
+          const markup = renderToString(sheets.collect(ServerApp));
+
+          // Redux
           const finalState = store.getState();
 
+          // Material UI CSS-in-JS
           const css = sheets.toString();
 
+          // i18next
           const { url }: any = context;
           if (url) {
             res.redirect(url);
@@ -157,11 +196,19 @@ i18n
               </head>
               <body>
                   <div id="root">${markup}</div>
+
+                  <script type="text/javascript">
+                    window.__INITIAL_GQL_STATE__=${JSON.stringify(
+                      initialGqlState
+                    ).replace(/</g, '\\u003c')};
+                  </script>
               </body>
             </html>
           `);
           }
         });
+
+      apollo.applyMiddleware({ app: server, path: '/api/graphql' });
     }
   );
 
