@@ -90,7 +90,7 @@ i18n
           const serverBaseUrl =
             process.env.NODE_ENV === 'development'
               ? 'http://127.0.0.1:3000'
-              : 'https://scoretrac.kr';
+              : 'https://www.scoretrac.kr';
 
           const gqlClient = new GraphQLClient({
             url: `${serverBaseUrl}/api/graphql`,
