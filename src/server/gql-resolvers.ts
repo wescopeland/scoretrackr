@@ -1,3 +1,7 @@
+import { Game } from 'common/models/game.model';
+import { Track } from 'common/models/track.model';
+import { documentReferenceResolver } from 'common/utils/api/document-reference-resolver';
+import { DBScore } from './api/+models';
 import { tracksFieldResolver } from './resolvers/game';
 import {
   gameQuery,
@@ -5,11 +9,7 @@ import {
   scoreQuery
 } from './resolvers/query';
 import { dateScalar } from './resolvers/scalars';
-import {
-  gameFieldResolver,
-  positionFieldResolver,
-  trackFieldResolver
-} from './resolvers/score';
+import { positionFieldResolver } from './resolvers/score';
 
 export const gqlResolvers = {
   Date: dateScalar,
@@ -21,9 +21,12 @@ export const gqlResolvers = {
   },
 
   Score: {
-    game: gameFieldResolver,
-    position: positionFieldResolver,
-    track: trackFieldResolver
+    game: (score: DBScore) =>
+      documentReferenceResolver<Game>(score, '_gameRef'),
+    track: (score: DBScore) =>
+      documentReferenceResolver<Track>(score, '_trackRef'),
+
+    position: positionFieldResolver
   },
 
   Game: {
