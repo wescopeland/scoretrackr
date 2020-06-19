@@ -2,12 +2,7 @@ import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
-import * as ReactRedux from 'react-redux';
 
-import {
-  selectIsMostRecentSubmissionsLoading,
-  selectMostRecentSubmissions
-} from 'client/state/most-recent-submissions';
 import { Game } from 'client/state/shared-models';
 import { Score } from 'common/models/score.model';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
