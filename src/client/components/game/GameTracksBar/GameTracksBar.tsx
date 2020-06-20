@@ -39,6 +39,10 @@ export const GameTracksBar = ({
     dispatch(activeGameActions.toggleIsMobileSidenavOpen());
   };
 
+  const sortedTracks = tracks
+    ? tracks.sort((a, b) => (a.submissionCount < b.submissionCount ? 1 : -1))
+    : null;
+
   return (
     <AppBar className={appBar} position="relative">
       <Toolbar className={toolBar}>
@@ -55,7 +59,7 @@ export const GameTracksBar = ({
             variant="rect"
           />
         ) : (
-          <TrackTabs gameColor={gameColor} tracks={tracks} />
+          <TrackTabs gameColor={gameColor} tracks={sortedTracks} />
         )}
       </Toolbar>
     </AppBar>
