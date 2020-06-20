@@ -44,7 +44,8 @@ describe('GraphQL Query: scoreQuery', () => {
         finalScore: 16000,
         playerAlias: 'Mark Meadows',
         platform: 'Arcade PCB',
-        submittedAt: new MockTimestamp(123123123, 0)
+        submittedAt: new MockTimestamp(123123123, 0),
+        trackId: 'trackOne'
       }
     });
   });
@@ -113,7 +114,7 @@ describe('GraphQL Query: scoreQuery', () => {
     expect(score.platform).toEqual('Arcade PCB');
   });
 
-  it('can receive the submission date attached to the score', async () => {
+  it('can retrieve the submission date attached to the score', async () => {
     // Arrange
     const { query } = createTestClient(apollo as any);
 
@@ -134,7 +135,7 @@ describe('GraphQL Query: scoreQuery', () => {
     expect(score.submittedAt).toBeInstanceOf(Date);
   });
 
-  it('can receive the game attached to the score', async () => {
+  it('can retrieve the game attached to the score', async () => {
     // Arrange
     const { query } = createTestClient(apollo as any);
 
@@ -159,7 +160,28 @@ describe('GraphQL Query: scoreQuery', () => {
     expect(score.game.friendlyId).toEqual('dkong');
   });
 
-  it('can receive the track attached to the score', async () => {
+  it('can retrieve the trackId attached to the score', async () => {
+    // Arrange
+    const { query } = createTestClient(apollo as any);
+
+    const GET_TRACK_ID = gql`
+      query GetTrackId {
+        score(id: "scoreOne") {
+          trackId
+        }
+      }
+    `;
+
+    // Act
+    const response = await query({ query: GET_TRACK_ID });
+    const score: Score = response.data.score;
+
+    // Assert
+    expect(score.trackId).toBeTruthy();
+    expect(score.trackId).toEqual('trackOne');
+  });
+
+  it('can retrieve the track attached to the score', async () => {
     // Arrange
     const { query } = createTestClient(apollo as any);
 

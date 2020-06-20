@@ -9,4 +9,5 @@ export interface Score {
   position: number;
   game: Partial<Game>;
   track: Partial<Track>;
+  trackId: string;
 }

@@ -2,7 +2,7 @@ import { Toolbar } from '@material-ui/core';
 import { useQuery } from 'graphql-hooks';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Route, useParams } from 'react-router-dom';
 
 import { GameNavBar } from 'client/components/game/GameNavBar';
 import { GameSidenav } from 'client/components/game/GameSidenav';
@@ -46,6 +46,11 @@ export const GamePage = () => {
           tracks={data?.game.tracks}
           isLoading={loading}
         />
+
+        {/* <Route
+          path="/game/:friendlyId/test"
+          component={() => <p>test path</p>}
+        /> */}
       </main>
     </div>
   );

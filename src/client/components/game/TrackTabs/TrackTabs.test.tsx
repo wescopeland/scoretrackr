@@ -19,8 +19,18 @@ describe('Component: TrackTabs', () => {
   it('displays an input list of tracks as tabs', () => {
     // Arrange
     const mockTracks: Track[] = [
-      { id: 'mockId1', name: 'Track One', friendlyId: 'Friendly Track One' },
-      { id: 'mockId2', name: 'Track Two', friendlyId: 'Friendly Track Two' }
+      {
+        id: 'mockId1',
+        name: 'Track One',
+        friendlyId: 'Friendly Track One',
+        submissionCount: 5
+      },
+      {
+        id: 'mockId2',
+        name: 'Track Two',
+        friendlyId: 'Friendly Track Two',
+        submissionCount: 1
+      }
     ];
 
     render(<TrackTabs tracks={mockTracks} gameColor="red" />);
@@ -34,8 +44,18 @@ describe('Component: TrackTabs', () => {
   it('sets the first tab in the list to be selected if there is no given initialTrackId', () => {
     // Arrange
     const mockTracks: Track[] = [
-      { id: 'mockId1', name: 'Track One', friendlyId: 'Friendly Track One' },
-      { id: 'mockId2', name: 'Track Two', friendlyId: 'Friendly Track Two' }
+      {
+        id: 'mockId1',
+        name: 'Track One',
+        friendlyId: 'Friendly Track One',
+        submissionCount: 5
+      },
+      {
+        id: 'mockId2',
+        name: 'Track Two',
+        friendlyId: 'Friendly Track Two',
+        submissionCount: 1
+      }
     ];
 
     render(<TrackTabs tracks={mockTracks} gameColor="red" />);
@@ -49,8 +69,18 @@ describe('Component: TrackTabs', () => {
   it('sets a specific track to be initially selected if given that track id as a prop', () => {
     // Arrange
     const mockTracks: Track[] = [
-      { id: 'mockId1', name: 'Track One', friendlyId: 'Friendly Track One' },
-      { id: 'mockId2', name: 'Track Two', friendlyId: 'Friendly Track Two' }
+      {
+        id: 'mockId1',
+        name: 'Track One',
+        friendlyId: 'Friendly Track One',
+        submissionCount: 5
+      },
+      {
+        id: 'mockId2',
+        name: 'Track Two',
+        friendlyId: 'Friendly Track Two',
+        submissionCount: 1
+      }
     ];
 
     render(
@@ -66,8 +96,18 @@ describe('Component: TrackTabs', () => {
   it('selects the first tab if a track id is given but not found', () => {
     // Arrange
     const mockTracks: Track[] = [
-      { id: 'mockId1', name: 'Track One', friendlyId: 'Friendly Track One' },
-      { id: 'mockId2', name: 'Track Two', friendlyId: 'Friendly Track Two' }
+      {
+        id: 'mockId1',
+        name: 'Track One',
+        friendlyId: 'Friendly Track One',
+        submissionCount: 5
+      },
+      {
+        id: 'mockId2',
+        name: 'Track Two',
+        friendlyId: 'Friendly Track Two',
+        submissionCount: 1
+      }
     ];
 
     render(

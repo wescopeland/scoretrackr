@@ -10,6 +10,7 @@ import {
 } from './resolvers/query';
 import { dateScalar } from './resolvers/scalars';
 import { positionFieldResolver } from './resolvers/score';
+import { submissionCountFieldResolver } from './resolvers/track';
 
 export const gqlResolvers = {
   Date: dateScalar,
@@ -31,5 +32,9 @@ export const gqlResolvers = {
 
   Game: {
     tracks: tracksFieldResolver
+  },
+
+  Track: {
+    submissionCount: submissionCountFieldResolver
   }
 };

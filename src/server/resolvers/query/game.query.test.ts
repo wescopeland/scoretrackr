@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server';
 import { createTestClient } from 'apollo-server-testing';
 import * as admin from 'firebase-admin';
 import gql from 'graphql-tag';
-import { exposeMockFirebaseAdminApp } from 'ts-mock-firebase';
+import { exposeMockFirebaseAdminApp, MockTimestamp } from 'ts-mock-firebase';
 
 import { Game } from 'common/models/game.model';
 import { gqlResolvers } from 'server/gql-resolvers';
@@ -38,6 +38,27 @@ describe('GraphQL Query: gameQuery', () => {
       trackTwo: {
         name: 'Difficulty 3 - Tournament',
         friendlyId: 'd3tgts'
+      }
+    });
+
+    mockedDb.firestore().mocker.loadCollection('scores', {
+      scoreOne: {
+        _gameRef: mockedDb.firestore().doc('games/gameOne'),
+        _trackRef: mockedDb.firestore().doc('games/gameOne/tracks/trackOne'),
+        finalScore: 16000,
+        playerAlias: 'Mark Meadows',
+        platform: 'Arcade PCB',
+        submittedAt: new MockTimestamp(123123123, 0),
+        trackId: 'trackOne'
+      },
+      scoreTwo: {
+        _gameRef: mockedDb.firestore().doc('games/gameOne'),
+        _trackRef: mockedDb.firestore().doc('games/gameOne/tracks/trackOne'),
+        finalScore: 16000,
+        playerAlias: 'John Smith',
+        platform: 'Arcade PCB',
+        submittedAt: new MockTimestamp(123123123, 0),
+        trackId: 'trackOne'
       }
     });
   });
@@ -136,6 +157,7 @@ describe('GraphQL Query: gameQuery', () => {
           tracks {
             name
             friendlyId
+            submissionCount
           }
         }
       }
@@ -150,6 +172,7 @@ describe('GraphQL Query: gameQuery', () => {
     expect(game.tracks).toHaveLength(2);
     expect(game.tracks[0].name).toEqual('Difficulty 3 - Marathon');
     expect(game.tracks[0].friendlyId).toEqual('d3marathon');
+    expect(game.tracks[0].submissionCount).toEqual(2);
   });
 
   describe('Errors', () => {

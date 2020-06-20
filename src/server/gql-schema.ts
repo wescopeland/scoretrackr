@@ -15,6 +15,7 @@ export const gqlSchema = gql`
     id: ID!
     name: String!
     friendlyId: String!
+    submissionCount: Int!
   }
 
   type Score {
@@ -26,6 +27,7 @@ export const gqlSchema = gql`
     position: Int!
     game: Game!
     track: Track!
+    trackId: String!
   }
 
   type SubmissionBlob {
