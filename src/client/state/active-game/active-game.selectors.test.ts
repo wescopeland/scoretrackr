@@ -1,42 +1,23 @@
 import { AppState } from '../reducer';
-import {
-  selectIsDesktopSidenavOpen,
-  selectIsMobileSidenavOpen
-} from './active-game.selectors';
+import { selectActiveGameState } from './active-game.selectors';
+import { ActiveGameState } from './models/active-game-state.model';
 
 describe('Selectors: activeGame', () => {
-  describe('Selector: selectIsDesktopSidenavOpen', () => {
-    it('returns the is desktop sidenav open flag value from the store', () => {
+  describe('Selector: selectActiveGameState', () => {
+    it('returns the entire active game state', () => {
       // Arrange
-      const mockValue = true;
+      const mockValue: ActiveGameState = {
+        canShowTracksBar: true,
+        isDesktopSidenavOpen: true,
+        isMobileSidenavOpen: false
+      };
 
       const mockState: Partial<AppState> = {
-        activeGame: {
-          isDesktopSidenavOpen: mockValue
-        } as any
+        activeGame: mockValue
       };
 
       // Act
-      const selected = selectIsDesktopSidenavOpen(mockState as AppState);
-
-      // Assert
-      expect(selected).toEqual(mockValue);
-    });
-  });
-
-  describe('Selector: selectIsMobileSidenavOpen', () => {
-    it('returns the is mobile sidenav open flag value from the store', () => {
-      // Arrange
-      const mockValue = true;
-
-      const mockState: Partial<AppState> = {
-        activeGame: {
-          isMobileSidenavOpen: mockValue
-        } as any
-      };
-
-      // Act
-      const selected = selectIsMobileSidenavOpen(mockState as AppState);
+      const selected = selectActiveGameState(mockState as AppState);
 
       // Assert
       expect(selected).toEqual(mockValue);

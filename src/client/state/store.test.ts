@@ -19,6 +19,7 @@ describe('Function: configureStore', () => {
     // Arrange
     const preloadedState: Partial<AppState> = {
       activeGame: {
+        canShowTracksBar: true,
         isDesktopSidenavOpen: true,
         isMobileSidenavOpen: false
       }

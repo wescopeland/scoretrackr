@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { GameNavBar } from 'client/components/game/GameNavBar';
 import { GameSidenav } from 'client/components/game/GameSidenav';
 import { GameTracksBar } from 'client/components/game/GameTracksBar';
-import { selectIsDesktopSidenavOpen } from 'client/state/active-game';
+import { selectActiveGameState } from 'client/state/active-game';
 import { Game } from 'common/models/game.model';
 import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql';
 import { useStyles } from './GamePage.styles';
@@ -24,8 +24,10 @@ export const GamePage = () => {
     }
   );
 
-  const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
-  const { content, toolBar } = useStyles({ isDesktopSidenavOpen });
+  const activeGameState = useSelector(selectActiveGameState);
+  const { content, toolBar } = useStyles({
+    isDesktopSidenavOpen: activeGameState.isDesktopSidenavOpen
+  });
 
   return (
     <div className="d-flex">

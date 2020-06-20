@@ -4,7 +4,7 @@ import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import { selectIsDesktopSidenavOpen } from 'client/state/active-game';
+import { selectActiveGameState } from 'client/state/active-game';
 import { GamePage } from './GamePage';
 
 jest.mock('react-router-dom', () => ({
@@ -18,8 +18,12 @@ describe('Page Component: GamePage', () => {
   it('renders without crashing', () => {
     // Arrange
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
-      if (selector === selectIsDesktopSidenavOpen) {
-        return true;
+      if (selector === selectActiveGameState) {
+        return {
+          canShowTracksBar: true,
+          isDesktopSidenavOpen: true,
+          isMobileSidenavOpen: false
+        };
       }
     });
 

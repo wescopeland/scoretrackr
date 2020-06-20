@@ -4,16 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   activeGameActions,
-  selectIsDesktopSidenavOpen,
-  selectIsMobileSidenavOpen
+  selectActiveGameState
 } from 'client/state/active-game';
 import { GameSidenavContent } from '../GameSidenavContent';
 import { useStyles } from './GameSidenav.styles';
 
 export const GameSidenav = () => {
   const dispatch = useDispatch();
-  const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
-  const isMobileSidenavOpen = useSelector(selectIsMobileSidenavOpen);
+  const activeGameState = useSelector(selectActiveGameState);
   const { drawer, drawerPaper } = useStyles();
 
   const container =
@@ -31,7 +29,7 @@ export const GameSidenav = () => {
           className={drawer}
           variant="persistent"
           classes={{ paper: drawerPaper }}
-          open={isDesktopSidenavOpen}
+          open={activeGameState.isDesktopSidenavOpen}
           anchor="left"
         >
           <Toolbar />
@@ -47,7 +45,7 @@ export const GameSidenav = () => {
           variant="temporary"
           anchor="left"
           container={container}
-          open={isMobileSidenavOpen}
+          open={activeGameState.isMobileSidenavOpen}
           onClose={handleMobileDrawerToggle}
           ModalProps={{ keepMounted: true }}
         >

@@ -4,6 +4,7 @@ import { createInitialState } from 'common/utils/create-initial-state';
 import { ActiveGameState } from './models';
 
 export const initialState = createInitialState<ActiveGameState>({
+  canShowTracksBar: true,
   isDesktopSidenavOpen: true,
   isMobileSidenavOpen: false
 });

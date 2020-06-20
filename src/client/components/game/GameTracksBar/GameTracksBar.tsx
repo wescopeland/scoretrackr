@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   activeGameActions,
-  selectIsDesktopSidenavOpen,
-  selectIsMobileSidenavOpen
+  selectActiveGameState
 } from 'client/state/active-game';
 import { Track } from 'common/models/track.model';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
@@ -25,12 +24,11 @@ export const GameTracksBar = ({
   tracks
 }: GameTracksBarProps) => {
   const dispatch = useDispatch();
-  const isDesktopSidenavOpen = useSelector(selectIsDesktopSidenavOpen);
-  const isMobileSidenavOpen = useSelector(selectIsMobileSidenavOpen);
+  const activeGameState = useSelector(selectActiveGameState);
   const { appBar, toolBar } = useStyles({
     gameColor,
-    isDesktopSidenavOpen,
-    isLoading
+    isLoading,
+    isDesktopSidenavOpen: activeGameState.isDesktopSidenavOpen
   });
 
   const toggleDesktopSidenav = () => {
@@ -47,7 +45,7 @@ export const GameTracksBar = ({
         <GameDrawerToggleButton
           onDesktopClick={toggleDesktopSidenav}
           onMobileClick={toggleMobileSidenav}
-          isMobileSidenavOpen={isMobileSidenavOpen}
+          isMobileSidenavOpen={activeGameState.isMobileSidenavOpen}
         />
         {isLoading ? (
           <Skeleton
