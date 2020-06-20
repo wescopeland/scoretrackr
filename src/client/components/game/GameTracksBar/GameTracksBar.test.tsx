@@ -27,6 +27,9 @@ describe('Component: GameTracksBar', () => {
 
   it('renders without crashing', () => {
     // Arrange
+    const mockUseDispatch = jest.fn();
+    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
+
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectActiveGameState) {
         return {
@@ -45,6 +48,9 @@ describe('Component: GameTracksBar', () => {
 
   it('displays a loading skeleton when the loading prop is set to true', () => {
     // Arrange
+    const mockUseDispatch = jest.fn();
+    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
+
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectActiveGameState) {
         return {
@@ -63,6 +69,9 @@ describe('Component: GameTracksBar', () => {
 
   it('displays the track tabs when the loading prop is set to false', () => {
     // Arrange
+    const mockUseDispatch = jest.fn();
+    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
+
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectActiveGameState) {
         return {
@@ -83,6 +92,9 @@ describe('Component: GameTracksBar', () => {
 
   it('sorts the track tabs by submission count', () => {
     // Arrange
+    const mockUseDispatch = jest.fn();
+    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
+
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectActiveGameState) {
         return {
@@ -97,9 +109,12 @@ describe('Component: GameTracksBar', () => {
       <GameTracksBar isLoading={false} gameColor="red" tracks={mockTracks} />
     );
 
+    const tabItems = screen.getAllByRole('tab');
+    const firstTab = tabItems[0];
+    const secondTab = tabItems[1];
+
     // Assert
-    expect(screen.getByRole('tab', { selected: true })).toHaveTextContent(
-      'Very Popular Track'
-    );
+    expect(firstTab).toHaveTextContent('Very Popular Track');
+    expect(secondTab).toHaveTextContent('Unpopular Track');
   });
 });

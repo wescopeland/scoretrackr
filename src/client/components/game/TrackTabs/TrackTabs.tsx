@@ -1,6 +1,11 @@
 import { Tab, Tabs } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+  activeGameActions,
+  selectCurrentTrackId
+} from 'client/state/active-game';
 import { Track } from 'common/models/track.model';
 import { useStyles } from './TrackTabs.styles';
 
@@ -15,16 +20,15 @@ export const TrackTabs = ({
   gameColor,
   initialTrackId
 }: TrackTabsProps) => {
+  const dispatch = useDispatch();
+  const currentSelectedTrackId = useSelector(selectCurrentTrackId);
   const classes = useStyles({ gameColor });
-  const [currentSelectedTrackId, setCurrentSelectedTrackId] = useState<string>(
-    null
-  );
 
   useEffect(() => {
     if (initialTrackId && tracks.find((t) => t.id === initialTrackId)) {
-      setCurrentSelectedTrackId(initialTrackId);
+      dispatch(activeGameActions.setSelectedTrackId(initialTrackId));
     } else if (tracks.length) {
-      setCurrentSelectedTrackId(tracks[0].id);
+      dispatch(activeGameActions.setSelectedTrackId(tracks[0].id));
     }
   }, []);
 
@@ -32,7 +36,7 @@ export const TrackTabs = ({
     e: React.ChangeEvent<{}>,
     newSelectedTrackId: string
   ) => {
-    setCurrentSelectedTrackId(newSelectedTrackId);
+    dispatch(activeGameActions.setSelectedTrackId(newSelectedTrackId));
   };
 
   return (
