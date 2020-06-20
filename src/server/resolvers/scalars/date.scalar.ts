@@ -5,8 +5,7 @@ export const dateScalar = new GraphQLScalarType({
   name: 'Date',
   description: 'Firestore timestamp',
   parseValue(value) {
-    console.log('parseValue', value);
-    return value;
+    return new Date(value);
   },
   serialize(value: Timestamp & Date) {
     if (value.seconds) {
