@@ -14,5 +14,12 @@
     "comparisons": "Comparisons",
     "timelines": "Timelines",
     "daysSince": "Days since..."
+  },
+
+  "leaderboard": {
+    "none": {
+      "heading": "Game Over",
+      "label": "It looks like this track doesn't have any scores."
+    }
   }
 }

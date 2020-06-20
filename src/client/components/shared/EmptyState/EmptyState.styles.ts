@@ -8,6 +8,11 @@ export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
   },
 
   mdImage: {
+    maxWidth: 700,
+    width: '100%',
+    height: 'auto',
+    alignSelf: 'center',
+
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }

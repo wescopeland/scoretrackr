@@ -3,6 +3,8 @@
     "description": "High Score Statistics and Permanent Historical Archive"
   },
 
+  "emptyStateAlt": "A picture of spooky ghosts indicating there is no data",
+
   "dates": {
     "today": "Today",
     "yesterday": "Yesterday"

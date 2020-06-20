@@ -3,6 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import { selectActiveGameState } from 'client/state/active-game';
 import { GamePage } from './GamePage';
@@ -32,7 +33,11 @@ describe('Page Component: GamePage', () => {
       data: { game: {} }
     });
 
-    const { container } = render(<GamePage />);
+    const { container } = render(
+      <BrowserRouter>
+        <GamePage />
+      </BrowserRouter>
+    );
 
     // Assert
     expect(container).toBeTruthy();

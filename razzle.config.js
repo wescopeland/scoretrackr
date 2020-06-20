@@ -4,6 +4,7 @@ const makeLoaderFinder = require('razzle-dev-utils/makeLoaderFinder');
 module.exports = {
   modify: require('razzle-heroku'),
   plugins: [
+    'svg-react-component',
     compressionPlugin,
 
     {

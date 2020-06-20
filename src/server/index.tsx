@@ -181,7 +181,7 @@ i18n
                   <script>
                     window.initialI18nStore = JSON.parse('${JSON.stringify(
                       initialI18nStore
-                    )}');
+                    ).replace(/[\/\(\)\']/g, '\\$&')}');
                     
                     window.initialLanguage = '${
                       (globalThis as any).initialLanguage

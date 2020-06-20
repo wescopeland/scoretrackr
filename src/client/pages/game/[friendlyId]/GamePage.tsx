@@ -7,6 +7,7 @@ import { Route, useParams } from 'react-router-dom';
 import { GameNavBar } from 'client/components/game/GameNavBar';
 import { GameSidenav } from 'client/components/game/GameSidenav';
 import { GameTracksBar } from 'client/components/game/GameTracksBar';
+import { Leaderboard } from 'client/components/game/Leaderboard';
 import { selectActiveGameState } from 'client/state/active-game';
 import { Game } from 'common/models/game.model';
 import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql';
@@ -47,10 +48,7 @@ export const GamePage = () => {
           isLoading={loading}
         />
 
-        {/* <Route
-          path="/game/:friendlyId/test"
-          component={() => <p>test path</p>}
-        /> */}
+        <Route path="/game/:friendlyId" component={Leaderboard} />
       </main>
     </div>
   );

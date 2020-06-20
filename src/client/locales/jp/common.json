@@ -3,6 +3,8 @@
     "description": "ハイスコア統計と永久履歴アーカイブ"
   },
 
+  "emptyStateAlt": "これはデータがないことを示すゴーストの写真です。",
+
   "dates": {
     "today": "今日",
     "yesterday": "昨日"
