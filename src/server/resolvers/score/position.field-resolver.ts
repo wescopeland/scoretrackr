@@ -12,10 +12,10 @@ interface PositionRecord {
 
 export const positionFieldResolver = async (
   score: DBScore,
-  args?: { fromDate?: Date }
+  args?: { onDate?: Date }
 ) => {
   try {
-    const cutoffDate = args.fromDate ?? new Date();
+    const cutoffDate = args.onDate ?? new Date();
 
     const allTrackScores = await db
       .firestore()

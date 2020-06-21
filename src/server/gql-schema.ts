@@ -24,7 +24,7 @@ export const gqlSchema = gql`
     finalScore: Float!
     platform: String!
     submittedAt: Date!
-    position(fromDate: Date): Int
+    position(onDate: Date): Int
     game: Game!
     track: Track!
     trackId: String!
@@ -39,6 +39,6 @@ export const gqlSchema = gql`
     game(friendlyId: String!): Game
     score(id: String!): Score
     recentSubmissions(limitToDays: Int!): [SubmissionBlob]
-    trackLeaderboard(trackId: String!, fromDate: Date): [Score]
+    trackLeaderboard(trackId: String!, onDate: Date): [Score]
   }
 `;

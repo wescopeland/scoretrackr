@@ -6,10 +6,10 @@ import { db } from 'server/firebase-admin-app';
 
 export const trackLeaderboardQuery = async (
   _: null,
-  args: { trackId: string; fromDate?: Date }
+  args: { trackId: string; onDate?: Date }
 ) => {
   try {
-    const cutoffDate = args.fromDate ?? new Date();
+    const cutoffDate = args.onDate ?? new Date();
 
     const trackScores = await db
       .firestore()
