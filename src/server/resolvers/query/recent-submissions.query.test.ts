@@ -1,7 +1,6 @@
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer, gql } from 'apollo-server';
 import { createTestClient } from 'apollo-server-testing';
 import * as admin from 'firebase-admin';
-import gql from 'graphql-tag';
 import { exposeMockFirebaseAdminApp, MockTimestamp } from 'ts-mock-firebase';
 
 import { SubmissionBlob } from 'common/models/submission-blob.model';

@@ -17,7 +17,7 @@ export const filterScoresByPlayerTop = (
   });
 
   retrievedScores = retrievedScores.sort((a, b) =>
-    a.submittedAt.toDate() < b.submittedAt.toDate() ? 1 : -1
+    a.finalScore < b.finalScore ? 1 : -1
   );
 
   const filteredScores: Partial<DBScore>[] = [];

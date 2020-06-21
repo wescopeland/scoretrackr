@@ -1,6 +1,7 @@
-import { QuerySnapshot } from '@google-cloud/firestore';
 import { ApolloError } from 'apollo-server';
+import * as admin from 'firebase-admin';
 
+import { filterScoresByPlayerTop } from 'common/utils/api';
 import { DBScore } from 'server/api/+models';
 import { db } from 'server/firebase-admin-app';
 
@@ -9,39 +10,25 @@ interface PositionRecord {
   score: number;
 }
 
-// For the sake of position tracking, we only care
-// about a player's top scores. eg: If Player A has
-// scores of 800 and 700, we only care about the 800
-// and want to throw the 700 point score away.
-function onlyGetPlayerTopScores(
-  scoresSnapshot: QuerySnapshot
-): Partial<DBScore>[] {
-  const filteredScores: Partial<DBScore>[] = [];
-
-  const trackedPlayerAliases: string[] = [];
-
-  for (const scoreDocument of scoresSnapshot.docs) {
-    const { playerAlias } = scoreDocument.data() as DBScore;
-
-    if (!trackedPlayerAliases.includes(playerAlias)) {
-      trackedPlayerAliases.push(playerAlias);
-      filteredScores.push(scoreDocument.data());
-    }
-  }
-
-  return filteredScores;
-}
-
-export const positionFieldResolver = async (score: DBScore) => {
+export const positionFieldResolver = async (
+  score: DBScore,
+  args?: { fromDate?: Date }
+) => {
   try {
+    const cutoffDate = args.fromDate ?? new Date();
+
     const allTrackScores = await db
       .firestore()
       .collection('scores')
       .where('_trackRef', '==', score._trackRef)
-      .orderBy('finalScore', 'desc')
+      .where(
+        'submittedAt',
+        '<=',
+        admin.firestore.Timestamp.fromDate(cutoffDate)
+      )
       .get(); // => [500, 400, 400, 300, 200, 100] -> (1, 2, 2, 4, 5, 6)
 
-    const filteredScores = onlyGetPlayerTopScores(allTrackScores);
+    const filteredScores = filterScoresByPlayerTop(allTrackScores);
 
     const positions: PositionRecord[] = [];
     let tieCounter = 1;
@@ -71,7 +58,7 @@ export const positionFieldResolver = async (score: DBScore) => {
     // score in the list of records.
     const positionRecord = positions.find((p) => p.score === score.finalScore);
 
-    return positionRecord.position;
+    return positionRecord?.position;
   } catch (err) {
     throw new ApolloError(err);
   }

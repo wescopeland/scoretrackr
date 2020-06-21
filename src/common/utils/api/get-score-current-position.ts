@@ -1,34 +1,12 @@
-import { DocumentReference, QuerySnapshot } from '@google-cloud/firestore';
+import { DocumentReference } from '@google-cloud/firestore';
 
-import { DBScore, DBTrack } from 'server/api/+models';
+import { filterScoresByPlayerTop } from 'common/utils/api';
+import { DBTrack } from 'server/api/+models';
 import { db } from 'server/firebase-admin-app';
 
 interface PositionRecord {
   position: number;
   score: number;
-}
-
-// For the sake of position tracking, we only care
-// about a player's top scores. eg: If Player A has
-// scores of 800 and 700, we only care about the 800
-// and want to throw the 700 point score away.
-function onlyGetPlayerTopScores(
-  scoresSnapshot: QuerySnapshot
-): Partial<DBScore>[] {
-  const filteredScores: Partial<DBScore>[] = [];
-
-  const trackedPlayerAliases: string[] = [];
-
-  for (const scoreDocument of scoresSnapshot.docs) {
-    const { playerAlias } = scoreDocument.data() as DBScore;
-
-    if (!trackedPlayerAliases.includes(playerAlias)) {
-      trackedPlayerAliases.push(playerAlias);
-      filteredScores.push(scoreDocument.data());
-    }
-  }
-
-  return filteredScores;
 }
 
 export async function getScoreCurrentPosition(
@@ -42,7 +20,9 @@ export async function getScoreCurrentPosition(
     .orderBy('finalScore', 'desc')
     .get(); // => [500, 400, 400, 300, 200, 100] -> (1, 2, 2, 4, 5, 6)
 
-  const filteredScores = onlyGetPlayerTopScores(allTrackScoresSnapshot);
+  // We only want to consider personal bests, as
+  // these are the scores actually going onto the leaderboard.
+  const filteredScores = filterScoresByPlayerTop(allTrackScoresSnapshot);
 
   const positions: PositionRecord[] = [];
   let tieCounter = 1;

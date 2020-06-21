@@ -12,7 +12,7 @@ interface RecentSubmissionProps {
   trackName: string;
   playerAlias: string;
   score: number;
-  position: number;
+  position?: number;
 }
 
 export const RecentSubmission = ({
@@ -40,7 +40,7 @@ export const RecentSubmission = ({
   });
 
   const imageUrl = `/static/images/games/${gameFriendlyId}.gif`;
-  const ordinalPosition = formatNumberToOrdinal(position);
+  const ordinalPosition = position ? formatNumberToOrdinal(position) : '';
 
   return (
     <Card className={card}>

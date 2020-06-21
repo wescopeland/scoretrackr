@@ -6,8 +6,8 @@ export interface Score {
   playerAlias: string;
   platform: string;
   submittedAt: Date;
-  position: number;
   game: Partial<Game>;
   track: Partial<Track>;
   trackId: string;
+  position?: number;
 }
