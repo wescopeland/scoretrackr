@@ -6,7 +6,8 @@ import { tracksFieldResolver } from './resolvers/game';
 import {
   gameQuery,
   recentSubmissionsQuery,
-  scoreQuery
+  scoreQuery,
+  trackLeaderboardQuery
 } from './resolvers/query';
 import { dateScalar } from './resolvers/scalars';
 import { positionFieldResolver } from './resolvers/score';
@@ -18,7 +19,8 @@ export const gqlResolvers = {
   Query: {
     game: gameQuery,
     score: scoreQuery,
-    recentSubmissions: recentSubmissionsQuery
+    recentSubmissions: recentSubmissionsQuery,
+    trackLeaderboard: trackLeaderboardQuery
   },
 
   Score: {
