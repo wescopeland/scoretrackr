@@ -48,7 +48,9 @@ export const GamePage = () => {
           isLoading={loading}
         />
 
-        <Route path="/game/:friendlyId" component={Leaderboard} />
+        {activeGameState.selectedTrackId && (
+          <Route path="/game/:friendlyId" component={Leaderboard} />
+        )}
       </main>
     </div>
   );
