@@ -49,9 +49,8 @@ describe('Component: GameDrawerToggleButton', () => {
       />
     );
 
-    const toggleButton = screen.getByRole('button');
-
     // Act
+    const toggleButton = screen.getByRole('button');
     userEvent.click(toggleButton);
 
     // Assert

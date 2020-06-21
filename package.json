@@ -144,7 +144,8 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/index.ts",
       "!src/**/*.model.ts",
-      "!src/server/firebase-admin-app.ts"
+      "!src/server/firebase-admin-app.ts",
+      "!**/*.d.ts"
     ],
     "globals": {
       "ts-jest": {

@@ -7,6 +7,14 @@ import { selectActiveGameState } from 'client/state/active-game';
 import { Track } from 'common/models/track.model';
 import { GameTracksBar } from './GameTracksBar';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: jest.fn()
+  }),
+  useLocation: (): any => null
+}));
+
 const mockTracks: Track[] = [
   {
     id: 'trackOne',

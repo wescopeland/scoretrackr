@@ -1,6 +1,7 @@
 import { Tab, Tabs } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import {
   activeGameActions,
@@ -12,23 +13,38 @@ import { useStyles } from './TrackTabs.styles';
 interface TrackTabsProps {
   tracks: Track[];
   gameColor: string;
-  initialTrackId?: string;
 }
 
-export const TrackTabs = ({
-  tracks,
-  gameColor,
-  initialTrackId
-}: TrackTabsProps) => {
+export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const currentSelectedTrackId = useSelector(selectCurrentTrackId);
   const classes = useStyles({ gameColor });
 
+  const isTrackFriendlyIdPresent = (trackFriendlyId: string) => {
+    return tracks.find((t) => t.friendlyId === trackFriendlyId);
+  };
+
+  const navigateToTrackByFriendlyId = (trackFriendlyId: string) => {
+    dispatch(activeGameActions.setSelectedTrackId(trackFriendlyId));
+    history.push({
+      search: `?track=${trackFriendlyId}`
+    });
+  };
+
   useEffect(() => {
-    if (initialTrackId && tracks.find((t) => t.id === initialTrackId)) {
-      dispatch(activeGameActions.setSelectedTrackId(initialTrackId));
-    } else if (tracks.length) {
-      dispatch(activeGameActions.setSelectedTrackId(tracks[0].id));
+    if (location?.search?.length) {
+      const queryParams = new URLSearchParams(location.search);
+      const trackFriendlyId = queryParams.get('track');
+
+      if (trackFriendlyId && isTrackFriendlyIdPresent(trackFriendlyId)) {
+        navigateToTrackByFriendlyId(trackFriendlyId);
+      } else {
+        navigateToTrackByFriendlyId(tracks[0].friendlyId);
+      }
+    } else {
+      navigateToTrackByFriendlyId(tracks[0].friendlyId);
     }
   }, []);
 
@@ -36,7 +52,9 @@ export const TrackTabs = ({
     e: React.ChangeEvent<{}>,
     newSelectedTrackId: string
   ) => {
-    dispatch(activeGameActions.setSelectedTrackId(newSelectedTrackId));
+    if (currentSelectedTrackId !== newSelectedTrackId) {
+      navigateToTrackByFriendlyId(newSelectedTrackId);
+    }
   };
 
   return (
@@ -57,7 +75,7 @@ export const TrackTabs = ({
             root: classes.tabItemRoot
           }}
           label={track.name}
-          value={track.id}
+          value={track.friendlyId}
         />
       ))}
     </Tabs>

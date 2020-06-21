@@ -14,7 +14,7 @@ import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql
 import { useStyles } from './GamePage.styles';
 
 export const GamePage = () => {
-  const { friendlyId, trackId } = useParams();
+  const { friendlyId } = useParams();
 
   const { loading, error, data } = useQuery<{ game: Game }>(
     GetActiveGameDetails,
