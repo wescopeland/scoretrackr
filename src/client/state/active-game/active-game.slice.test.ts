@@ -17,15 +17,19 @@ describe('Slice: activeGame', () => {
     expect(initialState.isMobileSidenavOpen).toEqual(false);
   });
 
-  it('can set the currently selected track id', () => {
+  it('can set the currently selected track', () => {
     // Act
     const newState = activeGame.reducer(
       initialState,
-      activeGameActions.setSelectedTrackId('mockTrackId')
+      activeGameActions.setSelectedTrack({
+        id: 'mockTrackId',
+        friendlyId: 'mockTrackFriendlyId'
+      })
     );
 
     // Assert
     expect(newState.selectedTrackId).toEqual('mockTrackId');
+    expect(newState.selectedTrackFriendlyId).toEqual('mockTrackFriendlyId');
   });
 
   it('can toggle whether the desktop sidenav is open', () => {

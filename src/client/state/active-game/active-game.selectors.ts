@@ -4,7 +4,10 @@ import { AppState } from '../reducer';
 
 export const selectActiveGameState = (state: AppState) => state.activeGame;
 
-export const selectCurrentTrackId = createSelector(
+export const selectCurrentTrack = createSelector(
   selectActiveGameState,
-  (activeGameState) => activeGameState.selectedTrackId
+  (activeGameState) => ({
+    id: activeGameState.selectedTrackId,
+    friendlyId: activeGameState.selectedTrackFriendlyId
+  })
 );

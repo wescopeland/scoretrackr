@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import {
   activeGameActions,
-  selectCurrentTrackId
+  selectCurrentTrack
 } from 'client/state/active-game';
 import { Track } from 'common/models/track.model';
 import { useStyles } from './TrackTabs.styles';
@@ -19,17 +19,19 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const currentSelectedTrackId = useSelector(selectCurrentTrackId);
+  const currentSelectedTrack = useSelector(selectCurrentTrack);
   const classes = useStyles({ gameColor });
 
-  const isTrackFriendlyIdPresent = (trackFriendlyId: string) => {
+  const findTrackByFriendlyId = (trackFriendlyId: string) => {
     return tracks.find((t) => t.friendlyId === trackFriendlyId);
   };
 
-  const navigateToTrackByFriendlyId = (trackFriendlyId: string) => {
-    dispatch(activeGameActions.setSelectedTrackId(trackFriendlyId));
+  const navigateToTrackByFriendlyId = (friendlyId: string, id?: string) => {
+    const trackId = id ?? findTrackByFriendlyId(friendlyId).id;
+
+    dispatch(activeGameActions.setSelectedTrack({ friendlyId, id: trackId }));
     history.push({
-      search: `?track=${trackFriendlyId}`
+      search: `?track=${friendlyId}`
     });
   };
 
@@ -38,22 +40,24 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
       const queryParams = new URLSearchParams(location.search);
       const trackFriendlyId = queryParams.get('track');
 
-      if (trackFriendlyId && isTrackFriendlyIdPresent(trackFriendlyId)) {
-        navigateToTrackByFriendlyId(trackFriendlyId);
+      const foundTrack = findTrackByFriendlyId(trackFriendlyId);
+
+      if (trackFriendlyId && foundTrack) {
+        navigateToTrackByFriendlyId(foundTrack.friendlyId);
       } else {
-        navigateToTrackByFriendlyId(tracks[0].friendlyId);
+        navigateToTrackByFriendlyId(tracks[0].friendlyId, tracks[0].id);
       }
     } else {
-      navigateToTrackByFriendlyId(tracks[0].friendlyId);
+      navigateToTrackByFriendlyId(tracks[0].friendlyId, tracks[0].id);
     }
   }, []);
 
   const handleTabChange = (
     e: React.ChangeEvent<{}>,
-    newSelectedTrackId: string
+    newSelectedTrackFriendlyId: string
   ) => {
-    if (currentSelectedTrackId !== newSelectedTrackId) {
-      navigateToTrackByFriendlyId(newSelectedTrackId);
+    if (newSelectedTrackFriendlyId !== currentSelectedTrack.friendlyId) {
+      navigateToTrackByFriendlyId(newSelectedTrackFriendlyId);
     }
   };
 
@@ -63,7 +67,7 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
         root: classes.tabsRoot,
         indicator: classes.tabsIndicator
       }}
-      value={currentSelectedTrackId ?? false}
+      value={currentSelectedTrack?.friendlyId ?? false}
       onChange={handleTabChange}
       variant="scrollable"
       scrollButtons="auto"

@@ -13,8 +13,12 @@ export const activeGame = createSlice({
   name: 'activeGame',
   initialState,
   reducers: {
-    setSelectedTrackId: (state, action: PayloadAction<string>) => {
-      state.selectedTrackId = action.payload;
+    setSelectedTrack: (
+      state,
+      action: PayloadAction<{ id: string; friendlyId: string }>
+    ) => {
+      state.selectedTrackId = action.payload.id;
+      state.selectedTrackFriendlyId = action.payload.friendlyId;
     },
 
     toggleIsDesktopSidenavOpen: (state, action: PayloadAction<undefined>) => {

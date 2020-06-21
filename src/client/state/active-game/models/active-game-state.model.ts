@@ -3,4 +3,5 @@ export interface ActiveGameState {
   isDesktopSidenavOpen: boolean;
   isMobileSidenavOpen: boolean;
   selectedTrackId?: string;
+  selectedTrackFriendlyId?: string;
 }
