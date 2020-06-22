@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
-import React from 'react';
 import * as GraphqlHooksModule from 'graphql-hooks';
+import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
 import { selectCurrentTrack } from 'client/state/active-game';
@@ -77,5 +77,3 @@ describe('Component: Leaderboard', () => {
     expect(screen.getByText('leaderboard.none.heading')).toBeVisible();
   });
 });
-
-// file.only
