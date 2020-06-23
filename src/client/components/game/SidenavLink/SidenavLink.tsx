@@ -1,6 +1,6 @@
 import { ListItem, ListItemText } from '@material-ui/core';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 interface SidenavLinkProps {
   label: string;
@@ -9,7 +9,13 @@ interface SidenavLinkProps {
 
 export const SidenavLink = ({ label, to }: SidenavLinkProps) => {
   return (
-    <ListItem button={true} component={Link} to={to} dense={true}>
+    <ListItem
+      button={true}
+      component={NavLink}
+      to={to}
+      dense={true}
+      activeClassName="Mui-selected"
+    >
       <ListItemText>{label}</ListItemText>
     </ListItem>
   );

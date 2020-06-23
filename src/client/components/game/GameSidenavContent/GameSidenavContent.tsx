@@ -21,14 +21,17 @@ export const GameSidenavContent = () => {
         />
       </List>
 
-      <Divider />
+      {/* <Divider />
 
-      {/* <List component="nav">
+      <List component="nav">
         <ListSubheader component="div">{t('stats.navLabel')}</ListSubheader>
-        <SidenavLink label={t('stats.topGames')} />
-        <SidenavLink label={t('stats.comparisons')} />
-        <SidenavLink label={t('stats.timelines')} />
-        <SidenavLink label={t('stats.daysSince')} />
+        <SidenavLink
+          label={t('stats.topGames')}
+          to={`/game/{friendlyId}/topGames`}
+        />
+        <SidenavLink label={t('stats.comparisons')} to="/" />
+        <SidenavLink label={t('stats.timelines')} to="/" />
+        <SidenavLink label={t('stats.daysSince')} to="/" />
       </List> */}
     </div>
   );

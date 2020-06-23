@@ -4,10 +4,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, useParams } from 'react-router-dom';
 
-import { GameNavBar } from 'client/components/game/GameNavBar';
-import { GameSidenav } from 'client/components/game/GameSidenav';
-import { GameTracksBar } from 'client/components/game/GameTracksBar';
-import { Leaderboard } from 'client/components/game/Leaderboard';
+import {
+  GameNavBar,
+  GameSidenav,
+  GameTracksBar,
+  Leaderboard
+} from 'client/components/game';
 import { selectActiveGameState } from 'client/state/active-game';
 import { Game } from 'common/models/game.model';
 import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql';
