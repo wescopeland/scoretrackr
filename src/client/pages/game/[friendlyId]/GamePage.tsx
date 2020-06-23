@@ -8,7 +8,7 @@ import {
   GameNavBar,
   GameSidenav,
   GameTracksBar,
-  Leaderboard
+  LeaderboardOutlet
 } from 'client/components/game';
 import { selectActiveGameState } from 'client/state/active-game';
 import { Game } from 'common/models/game.model';
@@ -51,7 +51,7 @@ export const GamePage = () => {
         />
 
         {activeGameState.selectedTrackId && (
-          <Route path="/game/:friendlyId" component={Leaderboard} />
+          <Route path="/game/:friendlyId" component={LeaderboardOutlet} />
         )}
       </main>
     </div>

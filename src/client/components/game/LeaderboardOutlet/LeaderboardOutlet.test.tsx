@@ -5,9 +5,9 @@ import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
 import { selectCurrentTrack } from 'client/state/active-game';
-import { Leaderboard } from './Leaderboard';
+import { LeaderboardOutlet } from './LeaderboardOutlet';
 
-describe('Component: Leaderboard', () => {
+describe('Component: LeaderboardOutlet', () => {
   beforeEach(() => {
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectCurrentTrack) {
@@ -29,7 +29,7 @@ describe('Component: Leaderboard', () => {
       data: { trackLeaderboard: [] }
     });
 
-    const { container } = render(<Leaderboard />);
+    const { container } = render(<LeaderboardOutlet />);
 
     // Assert
     expect(container).toBeTruthy();
@@ -43,7 +43,7 @@ describe('Component: Leaderboard', () => {
       data: {}
     });
 
-    render(<Leaderboard />);
+    render(<LeaderboardOutlet />);
 
     // Assert
     expect(screen.getByText('loading')).toBeVisible();
@@ -57,7 +57,7 @@ describe('Component: Leaderboard', () => {
       data: { trackLeaderboard: ['element'] }
     });
 
-    render(<Leaderboard />);
+    render(<LeaderboardOutlet />);
 
     // Assert
     expect(screen.getByText('got records')).toBeVisible();
@@ -71,7 +71,7 @@ describe('Component: Leaderboard', () => {
       data: { trackLeaderboard: [] }
     });
 
-    render(<Leaderboard />);
+    render(<LeaderboardOutlet />);
 
     // Assert
     expect(screen.getByText('leaderboard.none.heading')).toBeVisible();

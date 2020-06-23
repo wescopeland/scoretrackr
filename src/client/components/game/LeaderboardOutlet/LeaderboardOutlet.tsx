@@ -8,7 +8,7 @@ import { selectCurrentTrack } from 'client/state/active-game';
 import { Score } from 'common/models/score.model';
 import GetTrackLeaderboard from 'common/queries/get-track-leaderboard.graphql';
 
-export const Leaderboard = () => {
+export const LeaderboardOutlet = () => {
   const currentTrack = useSelector(selectCurrentTrack);
 
   const { loading, error, data } = useQuery<{ trackLeaderboard: Score[] }>(

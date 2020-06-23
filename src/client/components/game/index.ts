@@ -5,6 +5,6 @@ export * from './GamePicker';
 export * from './GameSidenav';
 export * from './GameSidenavContent';
 export * from './GameTracksBar';
-export * from './Leaderboard';
+export * from './LeaderboardOutlet';
 export * from './SidenavLink';
 export * from './TrackTabs';

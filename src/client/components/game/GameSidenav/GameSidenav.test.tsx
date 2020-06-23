@@ -6,6 +6,10 @@ import * as ReactReduxModule from 'react-redux';
 import { selectActiveGameState } from 'client/state/active-game';
 import { GameSidenav } from './GameSidenav';
 
+// Due to the activeClassName prop always throwing an
+// error on the SidenavLink component.
+console.error = jest.fn();
+
 // There are some Link components in the sidenav that rely on route params.
 jest.mock('react-router-dom', () => ({
   useParams: () => ({
