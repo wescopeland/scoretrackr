@@ -13,7 +13,7 @@ import { Game } from './game.entity';
 @ObjectType()
 export class Track extends BaseEntity {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Field(() => String)

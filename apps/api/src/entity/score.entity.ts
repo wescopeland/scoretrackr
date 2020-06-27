@@ -14,7 +14,7 @@ import { Track } from './track.entity';
 @ObjectType()
 export class Score extends BaseEntity {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Field(() => Number)

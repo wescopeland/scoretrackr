@@ -24,6 +24,7 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
+    "add-lib": "ts-node --project=tools/tsconfig.tools.json tools/scripts/add-lib/add-lib.ts",
     "help": "nx help"
   },
   "private": true,
@@ -80,6 +81,7 @@
     "babel-jest": "25.1.0",
     "cypress": "^4.1.0",
     "dotenv": "6.2.0",
+    "enquirer": "^2.3.5",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-cypress": "^2.10.3",
