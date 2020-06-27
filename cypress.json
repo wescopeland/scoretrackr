@@ -1,5 +1,0 @@
-{
-  "testFiles": ["**/*.{feature,features}"],
-  "integrationFolder": "cypress/tests",
-  "projectId": "f7895m"
-}
