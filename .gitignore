@@ -13,3 +13,5 @@ node_modules
 .env.production.local
 .vercel
 .vscode
+dist
+tmp
