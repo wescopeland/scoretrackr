@@ -28,6 +28,21 @@
     "web-e2e": {
       "tags": [],
       "implicitDependencies": ["web"]
+    },
+    "utils": {
+      "tags": ["scope:shared", "type:util"]
+    },
+    "ui-shared": {
+      "tags": ["type:ui"]
+    },
+    "data-access-gql-queries": {
+      "tags": ["type:data-access"]
+    },
+    "data-access-common-models": {
+      "tags": ["type:data-access"]
+    },
+    "data-access-entities": {
+      "tags": ["type:data-access"]
     }
   }
 }

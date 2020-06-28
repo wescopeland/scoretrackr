@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
 
 import { local } from './connections/local';
-import { entities } from './entity/entities';
+import { Game, Score, Track } from '@scoretrackr/data-access-entities';
 import { GameResolver } from './resolvers/game.resolver';
 import { RecentSubmissionsResolver } from './resolvers/recent-submissions.resolver';
 import { ScoreResolver } from './resolvers/score.resolver';
@@ -26,7 +26,7 @@ const startServer = async () => {
 
   createConnection({
     ...local,
-    entities
+    entities: [Game, Score, Track]
   });
 
   await server.listen(4000);

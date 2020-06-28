@@ -1,4 +1,4 @@
-import { Score } from '../entity/score.entity';
+import { Score } from '@scoretrackr/data-access-entities';
 
 // For the sake of position tracking, we only care
 // about a player's top scores. eg: If Player A has

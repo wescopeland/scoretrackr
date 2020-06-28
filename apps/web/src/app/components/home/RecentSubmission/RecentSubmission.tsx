@@ -1,7 +1,7 @@
 import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { formatNumberToOrdinal } from '../../../common/utils/format-number-to-ordinal';
+import { formatNumberToOrdinal } from '@scoretrackr/utils';
 import { useStyles } from './RecentSubmission.styles';
 
 interface RecentSubmissionProps {

@@ -15,7 +15,19 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@scoretrackr/utils": ["libs/utils/src/index.ts"],
+      "@scoretrackr/ui-shared": ["libs/ui-shared/src/index.ts"],
+      "@scoretrackr/data-access-gql-queries": [
+        "libs/data-access-gql-queries/src/index.ts"
+      ],
+      "@scoretrackr/data-access-common-models": [
+        "libs/data-access-common-models/src/index.ts"
+      ],
+      "@scoretrackr/data-access-entities": [
+        "libs/data-access-entities/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

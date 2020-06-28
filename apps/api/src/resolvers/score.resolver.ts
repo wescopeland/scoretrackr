@@ -8,9 +8,7 @@ import {
 } from 'type-graphql';
 import { LessThanOrEqual } from 'typeorm';
 
-import { Game } from '../entity/game.entity';
-import { Score } from '../entity/score.entity';
-import { Track } from '../entity/track.entity';
+import { Game, Score, Track } from '@scoretrackr/data-access-entities';
 import { createDbTimestamp } from '../utils/create-db-timestamp';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 

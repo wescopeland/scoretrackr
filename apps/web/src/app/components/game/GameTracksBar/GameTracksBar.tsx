@@ -7,7 +7,7 @@ import {
   activeGameActions,
   selectActiveGameState
 } from '../../../state/active-game';
-import { Track } from '../../../common/models/track.model';
+import { Track } from '@scoretrackr/data-access-entities';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
 import { TrackTabs } from '../TrackTabs';
 import { useStyles } from './GameTracksBar.styles';

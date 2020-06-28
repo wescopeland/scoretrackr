@@ -7,9 +7,7 @@ import { GameResolver } from './game.resolver';
 import { ScoreResolver } from './score.resolver';
 import { TrackResolver } from './track.resolver';
 import { TrackLeaderboardResolver } from './track-leaderboard.resolver';
-import { Score } from '../entity/score.entity';
-import { Track } from '../entity/track.entity';
-import { Game } from '../entity/game.entity';
+import { Game, Score, Track } from '@scoretrackr/data-access-entities';
 
 const mockGame = new Game();
 mockGame.id = 'dkong';

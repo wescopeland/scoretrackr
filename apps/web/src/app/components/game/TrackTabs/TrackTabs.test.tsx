@@ -5,7 +5,7 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import configureStore from '../../../state/store';
-import { Track } from '../../../common/models/track.model';
+import { Track } from '@scoretrackr/data-access-entities';
 import { TrackTabs } from './TrackTabs';
 
 let mockUseLocationValue: any;
@@ -32,14 +32,13 @@ describe('Component: TrackTabs', () => {
     // Arrange
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'Friendly Track One',
-        submissionCount: 5
-      }
-    ];
+    const mockTrack = new Track();
+    mockTrack.id = 'mockId1';
+    mockTrack.name = 'Track One';
+    mockTrack.friendlyId = 'Friendly Track One';
+    mockTrack.submissionCount = 5;
+
+    const mockTracks: Track[] = [mockTrack];
 
     render(
       <ReduxProvider store={store}>
@@ -55,20 +54,19 @@ describe('Component: TrackTabs', () => {
     // Arrange
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'Friendly Track One',
-        submissionCount: 5
-      },
-      {
-        id: 'mockId2',
-        name: 'Track Two',
-        friendlyId: 'Friendly Track Two',
-        submissionCount: 1
-      }
-    ];
+    const mockTrackOne = new Track();
+    mockTrackOne.id = 'mockId1';
+    mockTrackOne.name = 'Track One';
+    mockTrackOne.friendlyId = 'Friendly Track One';
+    mockTrackOne.submissionCount = 5;
+
+    const mockTrackTwo = new Track();
+    mockTrackOne.id = 'mockId2';
+    mockTrackOne.name = 'Track Two';
+    mockTrackOne.friendlyId = 'Friendly Track Two';
+    mockTrackOne.submissionCount = 1;
+
+    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -86,20 +84,19 @@ describe('Component: TrackTabs', () => {
     // Arrange
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'Friendly Track One',
-        submissionCount: 5
-      },
-      {
-        id: 'mockId2',
-        name: 'Track Two',
-        friendlyId: 'Friendly Track Two',
-        submissionCount: 1
-      }
-    ];
+    const mockTrackOne = new Track();
+    mockTrackOne.id = 'mockId1';
+    mockTrackOne.name = 'Track One';
+    mockTrackOne.friendlyId = 'Friendly Track One';
+    mockTrackOne.submissionCount = 5;
+
+    const mockTrackTwo = new Track();
+    mockTrackOne.id = 'mockId2';
+    mockTrackOne.name = 'Track Two';
+    mockTrackOne.friendlyId = 'Friendly Track Two';
+    mockTrackOne.submissionCount = 1;
+
+    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -121,20 +118,19 @@ describe('Component: TrackTabs', () => {
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'trackOne',
-        submissionCount: 5
-      },
-      {
-        id: 'mockId2',
-        name: 'Track Two',
-        friendlyId: 'trackTwo',
-        submissionCount: 1
-      }
-    ];
+    const mockTrackOne = new Track();
+    mockTrackOne.id = 'mockId1';
+    mockTrackOne.name = 'Track One';
+    mockTrackOne.friendlyId = 'Friendly Track One';
+    mockTrackOne.submissionCount = 5;
+
+    const mockTrackTwo = new Track();
+    mockTrackOne.id = 'mockId2';
+    mockTrackOne.name = 'Track Two';
+    mockTrackOne.friendlyId = 'Friendly Track Two';
+    mockTrackOne.submissionCount = 1;
+
+    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -156,20 +152,19 @@ describe('Component: TrackTabs', () => {
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'trackOne',
-        submissionCount: 5
-      },
-      {
-        id: 'mockId2',
-        name: 'Track Two',
-        friendlyId: 'trackTwo',
-        submissionCount: 1
-      }
-    ];
+    const mockTrackOne = new Track();
+    mockTrackOne.id = 'mockId1';
+    mockTrackOne.name = 'Track One';
+    mockTrackOne.friendlyId = 'Friendly Track One';
+    mockTrackOne.submissionCount = 5;
+
+    const mockTrackTwo = new Track();
+    mockTrackOne.id = 'mockId2';
+    mockTrackOne.name = 'Track Two';
+    mockTrackOne.friendlyId = 'Friendly Track Two';
+    mockTrackOne.submissionCount = 1;
+
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -187,20 +182,19 @@ describe('Component: TrackTabs', () => {
     // Arrange
     const store = configureStore();
 
-    const mockTracks: Track[] = [
-      {
-        id: 'mockId1',
-        name: 'Track One',
-        friendlyId: 'trackOne',
-        submissionCount: 5
-      },
-      {
-        id: 'mockId2',
-        name: 'Track Two',
-        friendlyId: 'trackTwo',
-        submissionCount: 1
-      }
-    ];
+    const mockTrackOne = new Track();
+    mockTrackOne.id = 'mockId1';
+    mockTrackOne.name = 'Track One';
+    mockTrackOne.friendlyId = 'Friendly Track One';
+    mockTrackOne.submissionCount = 5;
+
+    const mockTrackTwo = new Track();
+    mockTrackOne.id = 'mockId2';
+    mockTrackOne.name = 'Track Two';
+    mockTrackOne.friendlyId = 'Friendly Track Two';
+    mockTrackOne.submissionCount = 1;
+
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>

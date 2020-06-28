@@ -5,9 +5,7 @@ import { buildSchema } from 'type-graphql';
 
 import { GameResolver } from './game.resolver';
 import { TrackResolver } from './track.resolver';
-import { Game } from '../entity/game.entity';
-import { Score } from '../entity/score.entity';
-import { Track } from '../entity/track.entity';
+import { Game, Score, Track } from '@scoretrackr/data-access-entities';
 
 describe('Resolver: GameResolver', () => {
   let apolloServer;

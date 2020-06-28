@@ -3,10 +3,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { EmptyState } from '../../shared/EmptyState';
+import { EmptyState } from '@scoretrackr/ui-shared';
 import { selectCurrentTrack } from '../../../state/active-game';
-import { Score } from '../../../common/models/score.model';
-import { GetTrackLeaderboard } from '../../../common/queries/get-track-leaderboard.gql';
+import { Score } from '@scoretrackr/data-access-entities';
+import { GetTrackLeaderboard } from '@scoretrackr/data-access-gql-queries';
 
 export const LeaderboardOutlet = () => {
   const currentTrack = useSelector(selectCurrentTrack);

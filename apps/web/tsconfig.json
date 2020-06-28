@@ -6,7 +6,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["node", "jest"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true
   },
   "files": [
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",

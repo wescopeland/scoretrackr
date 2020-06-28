@@ -1,8 +1,7 @@
 import { Arg, FieldResolver, Resolver, Root, Query, ID } from 'type-graphql';
 import { LessThanOrEqual } from 'typeorm';
 
-import { Score } from '../entity/score.entity';
-import { Track } from '../entity/track.entity';
+import { Score, Track } from '@scoretrackr/data-access-entities';
 import { createDbTimestamp } from '../utils/create-db-timestamp';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 

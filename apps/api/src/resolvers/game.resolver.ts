@@ -7,8 +7,7 @@ import {
   Query
 } from 'type-graphql';
 
-import { Game } from '../entity/game.entity';
-import { Track } from '../entity/track.entity';
+import { Game, Track } from '@scoretrackr/data-access-entities';
 
 @Resolver((of) => Game)
 export class GameResolver implements ResolverInterface<Game> {

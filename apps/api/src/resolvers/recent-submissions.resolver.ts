@@ -1,8 +1,8 @@
-import { Arg, Resolver, Query, ObjectType, Field } from 'type-graphql';
+import { Arg, Resolver, Query } from 'type-graphql';
 import { format, fromUnixTime } from 'date-fns';
 
-import { SubmissionBlob } from './submission-blob.model';
-import { Score } from '../entity/score.entity';
+import { SubmissionBlob } from '@scoretrackr/data-access-common-models';
+import { Score } from '@scoretrackr/data-access-entities';
 
 @Resolver()
 export class RecentSubmissionsResolver {

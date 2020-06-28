@@ -7,7 +7,7 @@ import {
   activeGameActions,
   selectCurrentTrack
 } from '../../../state/active-game';
-import { Track } from '../../../common/models/track.model';
+import { Track } from '@scoretrackr/data-access-entities';
 import { useStyles } from './TrackTabs.styles';
 
 interface TrackTabsProps {

@@ -3,9 +3,8 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 
-import { Game } from '../../../state/shared-models';
-import { Score } from '../../../common/models/score.model';
-import { SubmissionBlob } from '../../../common/models/submission-blob.model';
+import { Game, Score, Track } from '@scoretrackr/data-access-entities';
+import { SubmissionBlob } from '@scoretrackr/data-access-common-models';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
 describe('Component: MostRecentSubmissions', () => {
@@ -72,17 +71,17 @@ describe('Component: MostRecentSubmissions', () => {
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
       // Arrange
-      const mockGame: Game = {
-        name: 'Galaga',
-        color: 'purple',
-        friendlyId: 'galaga'
-      };
+      const mockGame = new Game();
+      mockGame.name = 'Galaga';
+      mockGame.color = 'purple';
+      mockGame.id = 'galaga';
+
+      const mockTrack = new Track();
+      mockTrack.name = 'Fast fire';
 
       const mockSubmission: Partial<Score> = {
         game: mockGame,
-        track: {
-          name: 'Fast fire'
-        },
+        track: mockTrack,
         playerAlias: 'Wilhelm Scream',
         finalScore: 999999,
         position: 1

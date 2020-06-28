@@ -73,7 +73,7 @@
             "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
             "styles": [],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "apps/web/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -156,6 +156,147 @@
             "linter": "eslint",
             "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/utils/tsconfig.lib.json",
+              "libs/utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/utils/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "tsConfig": "libs/utils/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-shared": {
+      "root": "libs/ui-shared",
+      "sourceRoot": "libs/ui-shared/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/ui-shared/tsconfig.lib.json",
+              "libs/ui-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-shared/jest.config.js",
+            "tsConfig": "libs/ui-shared/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-gql-queries": {
+      "root": "libs/data-access-gql-queries",
+      "sourceRoot": "libs/data-access-gql-queries/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access-gql-queries/tsconfig.lib.json",
+              "libs/data-access-gql-queries/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access-gql-queries/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access-gql-queries/jest.config.js",
+            "tsConfig": "libs/data-access-gql-queries/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-common-models": {
+      "root": "libs/data-access-common-models",
+      "sourceRoot": "libs/data-access-common-models/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access-common-models/tsconfig.lib.json",
+              "libs/data-access-common-models/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access-common-models/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access-common-models/jest.config.js",
+            "tsConfig": "libs/data-access-common-models/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-entities": {
+      "root": "libs/data-access-entities",
+      "sourceRoot": "libs/data-access-entities/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access-entities/tsconfig.lib.json",
+              "libs/data-access-entities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access-entities/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access-entities/jest.config.js",
+            "tsConfig": "libs/data-access-entities/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

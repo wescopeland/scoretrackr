@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { createInitialState } from '../../common/utils/create-initial-state';
+import { createInitialState } from '@scoretrackr/utils';
 import { ActiveGameState } from './models';
 
 export const initialState = createInitialState<ActiveGameState>({

@@ -11,8 +11,8 @@ import {
   LeaderboardOutlet
 } from '../../../components/game';
 import { selectActiveGameState } from '../../../state/active-game';
-import { Game } from '../../../common/models/game.model';
-import { GetActiveGameDetails } from '../../../common/queries/get-active-game-details.gql';
+import { Game } from '@scoretrackr/data-access-entities';
+import { GetActiveGameDetails } from '@scoretrackr/data-access-gql-queries';
 import { useStyles } from './GamePage.styles';
 
 export const GamePage = () => {

@@ -4,7 +4,7 @@ import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
 import { selectActiveGameState } from '../../../state/active-game';
-import { Track } from '../../../common/models/track.model';
+import { Track } from '@scoretrackr/data-access-entities';
 import { GameTracksBar } from './GameTracksBar';
 
 jest.mock('react-router-dom', () => ({

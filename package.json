@@ -24,7 +24,7 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "add-lib": "ts-node --project=tools/tsconfig.tools.json tools/scripts/add-lib/add-lib.ts",
+    "make-lib": "ts-node --project=tools/tsconfig.tools.json tools/scripts/make-lib/make-lib.ts",
     "help": "nx help"
   },
   "private": true,

@@ -2,9 +2,7 @@ import { Box, Typography } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppBar } from '../components/home/AppBar';
-import { Header } from '../components/home/Header';
-import { MostRecentSubmissions } from '../components/home/MostRecentSubmissions';
+import { AppBar, Header, MostRecentSubmissions } from '../components/home';
 
 export const HomePage = () => {
   const { t } = useTranslation('common');

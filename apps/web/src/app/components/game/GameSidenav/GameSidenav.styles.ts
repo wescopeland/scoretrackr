@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { gameDrawerWidth } from '../../../common/models/game-drawer-width';
+import { gameDrawerWidth } from '@scoretrackr/data-access-common-models';
 
 const drawerWidth = gameDrawerWidth;
 

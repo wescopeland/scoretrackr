@@ -3,10 +3,10 @@ import { useQuery } from 'graphql-hooks';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { EmptyState } from '../../shared/EmptyState';
-import { SubmissionBlob } from '../../../common/models/submission-blob.model';
-import { GetMostRecentSubmissions } from '../../../common/queries/get-most-recent-submissions.gql';
-import { getDateDistanceText } from '../../../common/utils/get-date-distance-text';
+import { EmptyState } from '@scoretrackr/ui-shared';
+import { SubmissionBlob } from '@scoretrackr/data-access-common-models';
+import { GetMostRecentSubmissions } from '@scoretrackr/data-access-gql-queries';
+import { getDateDistanceText } from '@scoretrackr/utils';
 import { RecentSubmission } from '../RecentSubmission';
 import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
