@@ -3,8 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 
-import { Game } from 'client/state/shared-models';
-import { Score } from 'common/models/score.model';
+import { Game, Score, Track } from 'common/entity';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
@@ -72,21 +71,22 @@ describe('Component: MostRecentSubmissions', () => {
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
       // Arrange
-      const mockGame: Game = {
-        name: 'Galaga',
-        color: 'purple',
-        friendlyId: 'galaga'
-      };
+      const mockGame = new Game();
+      mockGame.name = 'Galaga';
+      mockGame.color = 'purple';
+      mockGame.id = 'galaga';
 
-      const mockSubmission: Partial<Score> = {
-        game: mockGame,
-        track: {
-          name: 'Fast fire'
-        },
-        playerAlias: 'Wilhelm Scream',
-        finalScore: 999999,
-        position: 1
-      };
+      const mockTrack = new Track();
+      mockTrack.id = '1';
+      mockTrack.name = 'Factory settings';
+      mockTrack.friendlyId = 'factorySettings';
+
+      const mockSubmission = new Score();
+      mockSubmission.game = mockGame;
+      mockSubmission.track = mockTrack;
+      mockSubmission.playerAlias = 'Wilhelm Scream';
+      mockSubmission.finalScore = 999999;
+      mockSubmission.position = 1;
 
       const mockSubmissionBlobs: SubmissionBlob[] = [
         {

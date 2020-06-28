@@ -1,5 +1,5 @@
-query GetActiveGameDetails($friendlyId: String!) {
-  game(friendlyId: $friendlyId) {
+query GetActiveGameDetails($id: String!) {
+  game(id: $id) {
     color
     name
     tracks {

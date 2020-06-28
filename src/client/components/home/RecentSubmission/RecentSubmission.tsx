@@ -8,7 +8,7 @@ import { useStyles } from './RecentSubmission.styles';
 interface RecentSubmissionProps {
   gameColor: string;
   gameName: string;
-  gameFriendlyId: string;
+  gameId: string;
   trackName: string;
   playerAlias: string;
   score: number;
@@ -18,7 +18,7 @@ interface RecentSubmissionProps {
 export const RecentSubmission = ({
   gameColor,
   gameName,
-  gameFriendlyId,
+  gameId,
   trackName,
   playerAlias,
   score,
@@ -39,7 +39,7 @@ export const RecentSubmission = ({
     gameColor
   });
 
-  const imageUrl = `/static/images/games/${gameFriendlyId}.gif`;
+  const imageUrl = `/static/images/games/${gameId}.gif`;
   const ordinalPosition = position ? formatNumberToOrdinal(position) : '';
 
   return (

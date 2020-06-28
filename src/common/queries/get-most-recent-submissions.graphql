@@ -1,4 +1,4 @@
-query GetMostRecentSubmissions($limitToDays: Int!) {
+query GetMostRecentSubmissions($limitToDays: Float!) {
   recentSubmissions(limitToDays: $limitToDays) {
     date
     submissions {
@@ -6,9 +6,9 @@ query GetMostRecentSubmissions($limitToDays: Int!) {
       finalScore
       position
       game {
+        id
         name
         color
-        friendlyId
       }
       track {
         name
