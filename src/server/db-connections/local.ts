@@ -1,12 +1,9 @@
 import { ConnectionOptions } from 'typeorm';
 
-export const local: ConnectionOptions = {
-  type: 'postgres',
+export const local: Partial<ConnectionOptions> = {
   host: 'localhost',
   port: 5432,
   username: 'wescopeland',
   password: 'wescopeland',
-  database: 'scoretrackr',
-  synchronize: true,
-  logging: false
+  database: 'scoretrackr'
 };

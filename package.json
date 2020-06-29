@@ -8,11 +8,9 @@
   "scripts": {
     "dev": "concurrently \"yarn start:dev-server\" \"yarn start:mock-db\"",
     "start:dev-server": "razzle start",
-    "start:mock-db": "firebase emulators:start --import=mock-database",
     "build": "razzle build",
     "start": "NODE_ENV=production node build/server.js",
     "deploy": "now -e NODE_ENV=production",
-    "mock-db:save": "firebase emulators:export mock-database --force",
     "build-and-start": "CI=false yarn build && yarn start",
     "start-and-test": "PORT=3000 server-test build-and-start http://localhost:3000",
     "format": "prettier --write . '**/*.{json,css,scss,md,ts,tsx}'",
@@ -31,8 +29,6 @@
     "verify": "yarn validate"
   },
   "dependencies": {
-    "@google-cloud/firestore": "^3.8.4",
-    "@grpc/grpc-js": "^1.0.4",
     "@material-ui/core": "^4.10.0",
     "@material-ui/lab": "^4.0.0-alpha.55",
     "@reduxjs/toolkit": "^1.3.6",
@@ -41,12 +37,10 @@
     "date-fns": "^2.14.0",
     "express": "^4.17.1",
     "express-static-gzip": "^2.0.6",
-    "firebase-admin": "^8.12.1",
     "graphql": "^15.1.0",
     "graphql-hooks": "^4.5.0",
     "graphql-hooks-memcache": "^1.3.3",
     "graphql-hooks-ssr": "^1.1.5",
-    "graphql-tag": "^2.10.3",
     "i18next": "^19.4.5",
     "i18next-browser-languagedetector": "^4.2.0",
     "i18next-fs-backend": "^1.0.3",
@@ -97,12 +91,12 @@
     "cypress": "^4.7.0",
     "cypress-cucumber-preprocessor": "^2.3.1",
     "cz-conventional-changelog": "3.2.0",
-    "firebase-tools": "^8.4.1",
     "husky": "^4.2.5",
     "istanbul-lib-coverage": "^3.0.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-environment-node": "^26.0.1",
     "nyc": "^15.0.1",
+    "pg-connection-string": "^2.2.3",
     "prettier": "2.0.5",
     "pretty-quick": "^2.0.1",
     "razzle-dev-utils": "^3.1.3",
@@ -112,15 +106,11 @@
     "start-server-and-test": "^1.11.0",
     "supertest": "^4.0.2",
     "ts-jest": "^24.0.0",
-    "ts-mock-firebase": "^2.3.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "^3.9.3",
     "webpack-graphql-loader": "^1.0.2"
-  },
-  "resolutions": {
-    "grpc": "^1.24.3"
   },
   "jest": {
     "transform": {
