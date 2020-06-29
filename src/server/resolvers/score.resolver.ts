@@ -9,7 +9,6 @@ import {
 import { LessThanOrEqual } from 'typeorm';
 
 import { Game, Score, Track } from 'common/entity';
-import { createDbTimestamp } from '../utils/create-db-timestamp';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 
 interface PositionRecord {
@@ -39,7 +38,7 @@ export class ScoreResolver implements ResolverInterface<Score> {
     @Root() score: Score,
     @Arg('onDate', { nullable: true }) onDate?: string
   ) {
-    const cutoffDate = onDate ? createDbTimestamp(onDate) : createDbTimestamp();
+    const cutoffDate = onDate ? new Date(onDate) : new Date();
 
     const track = await Track.findOne(score.track);
     const allTrackScores = await Score.find({
