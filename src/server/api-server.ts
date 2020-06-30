@@ -3,8 +3,8 @@ import { buildSchema } from 'type-graphql';
 import { ConnectionOptions, createConnection, getConnection } from 'typeorm';
 
 import { Game, Score, Track } from 'common/entity';
-import { local } from './db-connections/local';
-import { production } from './db-connections/production';
+import { local } from './db/connections/local';
+import { getProductionConnection } from './db/connections/production';
 import {
   GameResolver,
   RecentSubmissionsResolver,
@@ -13,7 +13,10 @@ import {
   TrackResolver
 } from './resolvers';
 
-const envConnectionOptions = process.env.DATABASE_URL ? production : local;
+const envConnectionOptions = process.env.DATABASE_URL
+  ? getProductionConnection()
+  : local;
+
 const connectionOptions = {
   ...envConnectionOptions,
   type: 'postgres',

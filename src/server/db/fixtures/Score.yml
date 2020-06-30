@@ -1,0 +1,34 @@
+entity: Score
+
+items:
+  score{1..100}:
+    playerAlias: '{{name.firstName}} {{name.lastName}}'
+    finalScore: '{{random.number}}'
+    submittedAt: '{{date.past}}'
+    platform: 'Arcade PCB'
+    game: '@game1'
+    track: '@track{1..4}'
+
+  score{101..130}:
+    playerAlias: '{{name.firstName}} {{name.lastName}}'
+    finalScore: '{{random.number}}'
+    submittedAt: '{{date.past}}'
+    platform: 'Emulator'
+    game: '@game1'
+    track: '@track{1..4}'
+
+  score{131..150}:
+    playerAlias: '{{name.firstName}} {{name.lastName}}'
+    finalScore: '{{random.number}}'
+    submittedAt: '{{date.past}}'
+    platform: 'Arcade PCB'
+    game: '@game2'
+    track: '@track5'
+
+  score{151..160}:
+    playerAlias: '{{name.firstName}} {{name.lastName}}'
+    finalScore: '{{random.number}}'
+    submittedAt: '{{date.past}}'
+    platform: 'Emulator'
+    game: '@game2'
+    track: '@track5'
