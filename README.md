@@ -38,6 +38,16 @@ yarn
 
 ### Running a local dev server
 
+You will need to [create a new local Postgres database](https://www.postgresql.org/docs/10/tutorial-createdb.html) called `scoretrackr`.
+
+You should also open this repository's `.env` file and change it to reflect your database credentials. On macOS, the default username and password will be the same as your user account name.
+
+Once these steps are done, the local database can be seeded with:
+
+```
+yarn db:seed
+```
+
 The webapp can be started with:
 
 ```
