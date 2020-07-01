@@ -6,7 +6,7 @@ import {
   ResolverInterface,
   Root
 } from 'type-graphql';
-import { LessThanOrEqual } from 'typeorm';
+import { getConnection, LessThanOrEqual } from 'typeorm';
 
 import { Game, Score, Track } from 'common/entity';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
@@ -25,12 +25,24 @@ export class ScoreResolver implements ResolverInterface<Score> {
 
   @FieldResolver()
   async track(@Root() score: Score) {
-    return Track.findOne(score.track);
+    const track = await getConnection()
+      .createQueryBuilder()
+      .relation(Score, 'track')
+      .of(score)
+      .loadOne();
+
+    return track;
   }
 
   @FieldResolver()
   async game(@Root() score: Score) {
-    return Game.findOne(score.game);
+    const game = await getConnection()
+      .createQueryBuilder()
+      .relation(Score, 'game')
+      .of(score)
+      .loadOne();
+
+    return game;
   }
 
   @FieldResolver((returns) => Number, { nullable: true })
@@ -40,7 +52,12 @@ export class ScoreResolver implements ResolverInterface<Score> {
   ) {
     const cutoffDate = onDate ? new Date(onDate) : new Date();
 
-    const track = await Track.findOne(score.track);
+    const track = await getConnection()
+      .createQueryBuilder()
+      .relation(Score, 'track')
+      .of(score)
+      .loadOne();
+
     const allTrackScores = await Score.find({
       where: { track, submittedAt: LessThanOrEqual(cutoffDate) },
       order: { finalScore: 'DESC' }
