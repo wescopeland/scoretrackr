@@ -26,8 +26,7 @@ Before beginning, please make sure you have the following tools installed.
 
 - Node.js (>= 12.x, [download](https://nodejs.org/en/download/))
 - `yarn` (>= 1.0, [instructions](https://yarnpkg.com/lang/en/docs/install/))
-- `firebase-tools` (can be installed globally through npm, [instructions](https://www.npmjs.com/package/firebase-tools))
-- Java JDK (required for local database emulation, [AdoptOpenJDK is recommended](https://adoptopenjdk.net/))
+- Postgres ([macOS](https://postgresapp.com/), or [others](https://www.postgresql.org/download/))
 
 ### Installation
 
@@ -39,23 +38,13 @@ yarn
 
 ### Running a local dev server
 
-You will need two terminal processes, one for the app itself and another for the Firestore database emulator.
-
-The database emulator can be started with:
-
-```
-yarn start:mock-db
-```
-
-If you receive an error from Firebase, try running `firebase login`. This will authenticate against your Google account, even if you are not a Firebase user.
-
 The webapp can be started with:
 
 ```
 yarn start:dev-server
 ```
 
-Once you've started the mock db and the dev server, you can visit the app by navigating to http://localhost:3000.
+Once you've started the the dev server, you can visit the app by navigating to http://localhost:3000.
 
 ## Contributors
 
