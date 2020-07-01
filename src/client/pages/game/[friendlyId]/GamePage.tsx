@@ -22,7 +22,7 @@ export const GamePage = () => {
     GetActiveGameDetails,
     {
       variables: {
-        friendlyId
+        id: friendlyId
       }
     }
   );

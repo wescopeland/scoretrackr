@@ -9,7 +9,7 @@ describe('Component: RecentSubmission', () => {
     render(
       <RecentSubmission
         gameColor="#ba3448"
-        gameFriendlyId="dkong"
+        gameId="dkong"
         gameName="Donkey Kong"
         trackName="Factory settings"
         playerAlias="Justin Elliott"

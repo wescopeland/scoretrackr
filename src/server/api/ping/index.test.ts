@@ -22,18 +22,4 @@ describe('Api Endpoint: ping', () => {
       expect(getResponse.text).toEqual('Ping!');
     });
   });
-
-  describe('Other Methods', () => {
-    it('returns a 405', async () => {
-      // Act
-      const postResponse = await request(server).post('/ping');
-      const putResponse = await request(server).put('/ping');
-      const deleteResponse = await request(server).delete('/ping');
-
-      // Assert
-      expect(postResponse.status).toEqual(405);
-      expect(putResponse.status).toEqual(405);
-      expect(deleteResponse.status).toEqual(405);
-    });
-  });
 });

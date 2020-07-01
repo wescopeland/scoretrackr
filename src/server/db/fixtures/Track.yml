@@ -1,0 +1,30 @@
+entity: Track
+
+items:
+  track1:
+    name: 'Factory settings'
+    friendlyId: 'factorySettings'
+
+  track2:
+    name: 'No hammer'
+    friendlyId: 'noHammer'
+
+  track3:
+    name: 'Start'
+    friendlyId: 'start'
+
+  track4:
+    name: '1-1'
+    friendlyId: 'oneOne'
+
+  track5:
+    name: 'Factory settings'
+    friendlyId: 'factorySettings'
+
+  track6:
+    name: 'Difficulty 3 - Tournament'
+    friendlyId: 'd3tournament'
+
+  track7:
+    name: 'Difficulty 3 - Marathon'
+    friendlyId: 'd3marathon'

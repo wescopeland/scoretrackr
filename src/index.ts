@@ -1,4 +1,5 @@
 import http from 'http';
+import 'reflect-metadata';
 
 // this require is necessary for server HMR to recover from error
 // tslint:disable-next-line:no-var-requires

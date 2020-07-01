@@ -1,7 +1,6 @@
 // tslint:disable: no-var-requires
 
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
-import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import expressStaticGzip from 'express-static-gzip';
 import fs from 'fs';
@@ -23,9 +22,8 @@ import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import theme from 'client/theme';
 import { i18nNamespaces } from 'common/models/i18n-namespaces';
+import { createApiServer } from './api-server';
 import ping from './api/ping';
-import { gqlResolvers } from './gql-resolvers';
-import { gqlSchema } from './gql-schema';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -38,12 +36,6 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 const i18nextMiddleware = require('i18next-http-middleware');
 
 const server = express();
-
-const apollo = new ApolloServer({
-  typeDefs: gqlSchema,
-  resolvers: gqlResolvers,
-  introspection: true
-});
 
 i18n
   .use(Backend)
@@ -62,7 +54,7 @@ i18n
         useSuspense: false
       }
     },
-    () => {
+    async () => {
       server
         .disable('x-powered-by')
 
@@ -204,6 +196,7 @@ i18n
           }
         });
 
+      const apollo = await createApiServer();
       apollo.applyMiddleware({ app: server, path: '/api/graphql' });
     }
   );

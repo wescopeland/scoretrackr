@@ -1,6 +1,12 @@
-import { Score } from './score.model';
+import { Field, ObjectType } from 'type-graphql';
 
-export interface SubmissionBlob {
+import { Score } from 'common/entity';
+
+@ObjectType()
+export class SubmissionBlob {
+  @Field(() => String)
   date: string;
+
+  @Field(() => [Score])
   submissions: Partial<Score>[];
 }

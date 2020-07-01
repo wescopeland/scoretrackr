@@ -21,7 +21,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2016",
     "baseUrl": "src",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules",

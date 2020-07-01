@@ -46,7 +46,7 @@ export const MostRecentSubmissions = () => {
               >
                 <RecentSubmission
                   gameColor={submission.game.color}
-                  gameFriendlyId={submission.game.friendlyId}
+                  gameId={submission.game.id}
                   gameName={submission.game.name}
                   trackName={submission.track.name}
                   playerAlias={submission.playerAlias}
