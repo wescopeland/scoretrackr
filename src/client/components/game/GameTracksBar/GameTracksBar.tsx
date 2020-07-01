@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -40,7 +40,17 @@ export const GameTracksBar = ({
   };
 
   const sortedTracks = tracks
-    ? tracks.sort((a, b) => (a.submissionCount < b.submissionCount ? 1 : -1))
+    ? useMemo(
+        () =>
+          tracks.sort((a, b) => {
+            if (a.submissionCount < b.submissionCount) return 1;
+            if (a.submissionCount > b.submissionCount) return -1;
+
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+          }),
+        []
+      )
     : null;
 
   return (
