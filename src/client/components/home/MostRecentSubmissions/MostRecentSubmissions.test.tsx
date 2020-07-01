@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 
-import { Game, Score, Track } from 'common/entity';
+import { Game, Score, Track } from 'common/entities';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 

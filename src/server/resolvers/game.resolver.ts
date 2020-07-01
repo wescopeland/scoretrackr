@@ -7,7 +7,7 @@ import {
   Root
 } from 'type-graphql';
 
-import { Game, Track } from 'common/entity';
+import { Game, Track } from 'common/entities';
 
 @Resolver((of) => Game)
 export class GameResolver implements ResolverInterface<Game> {

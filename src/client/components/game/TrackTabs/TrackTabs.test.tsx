@@ -5,7 +5,7 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import configureStore from 'client/state/store';
-import { Track } from 'common/entity';
+import { Track } from 'common/entities';
 import { TrackTabs } from './TrackTabs';
 
 let mockUseLocationValue: any;

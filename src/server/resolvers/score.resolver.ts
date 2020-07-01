@@ -8,7 +8,7 @@ import {
 } from 'type-graphql';
 import { getConnection, LessThanOrEqual } from 'typeorm';
 
-import { Score } from 'common/entity';
+import { Score } from 'common/entities';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 
 interface PositionRecord {

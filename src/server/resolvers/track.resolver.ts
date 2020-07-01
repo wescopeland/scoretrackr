@@ -1,6 +1,6 @@
 import { Arg, FieldResolver, Query, Resolver, Root } from 'type-graphql';
 
-import { Score, Track } from 'common/entity';
+import { Score, Track } from 'common/entities';
 
 @Resolver((of) => Track)
 export class TrackResolver {

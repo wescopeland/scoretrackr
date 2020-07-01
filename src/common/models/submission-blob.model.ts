@@ -1,6 +1,6 @@
 import { Field, ObjectType } from 'type-graphql';
 
-import { Score } from 'common/entity';
+import { Score } from 'common/entities';
 
 @ObjectType()
 export class SubmissionBlob {

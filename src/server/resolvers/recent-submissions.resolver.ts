@@ -1,7 +1,7 @@
 import { format, fromUnixTime } from 'date-fns';
 import { Arg, Query, Resolver } from 'type-graphql';
 
-import { Score } from 'common/entity';
+import { Score } from 'common/entities';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 
 @Resolver()

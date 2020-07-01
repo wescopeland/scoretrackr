@@ -1,4 +1,4 @@
-import { Score } from 'common/entity';
+import { Score } from 'common/entities';
 
 // For the sake of position tracking, we only care
 // about a player's top scores. eg: If Player A has

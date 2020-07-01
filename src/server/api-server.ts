@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { ConnectionOptions, createConnection, getConnection } from 'typeorm';
 
-import { Game, Score, Track } from 'common/entity';
+import { Game, Score, Track } from 'common/entities';
 import { local } from './db/connections/local';
 import { getProductionConnection } from './db/connections/production';
 import {

@@ -1,7 +1,7 @@
 import { Arg, Query, Resolver } from 'type-graphql';
 import { LessThanOrEqual } from 'typeorm';
 
-import { Score, Track } from 'common/entity';
+import { Score, Track } from 'common/entities';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 
 @Resolver((of) => Score)
