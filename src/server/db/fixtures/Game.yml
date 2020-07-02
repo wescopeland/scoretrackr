@@ -1,4 +1,4 @@
-entity: Game
+entity: GameEntity
 
 items:
   game1:

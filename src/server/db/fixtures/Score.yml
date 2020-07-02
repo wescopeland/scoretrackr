@@ -1,4 +1,4 @@
-entity: Score
+entity: ScoreEntity
 
 items:
   score{1..100}:
