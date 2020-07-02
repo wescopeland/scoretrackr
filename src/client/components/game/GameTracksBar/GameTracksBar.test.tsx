@@ -4,7 +4,7 @@ import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
 import { selectActiveGameState } from 'client/state/active-game';
-import { Track } from 'common/entities';
+import { TrackEntity } from 'common/entities';
 import { GameTracksBar } from './GameTracksBar';
 
 jest.mock('react-router-dom', () => ({
@@ -15,31 +15,31 @@ jest.mock('react-router-dom', () => ({
   useLocation: (): any => null
 }));
 
-const trackOne = new Track();
+const trackOne = new TrackEntity();
 trackOne.id = 'trackOne';
 trackOne.name = 'Unpopular Track';
 trackOne.friendlyId = 'friendlyTrackOne';
 trackOne.submissionCount = 1;
 
-const trackTwo = new Track();
+const trackTwo = new TrackEntity();
 trackTwo.id = 'trackTwo';
 trackTwo.name = 'Very Popular Track';
 trackTwo.friendlyId = 'friendlyTrackTwo';
 trackTwo.submissionCount = 999;
 
-const trackThree = new Track();
+const trackThree = new TrackEntity();
 trackThree.id = 'trackThree';
 trackThree.name = 'ZZZ Unpopular Track';
 trackThree.friendlyId = 'friendlyTrackThree';
 trackThree.submissionCount = 1;
 
-const trackFour = new Track();
+const trackFour = new TrackEntity();
 trackFour.id = 'trackFour';
 trackFour.name = 'AAA Unpopular Track';
 trackFour.friendlyId = 'friendlyTrackFour';
 trackFour.submissionCount = 1;
 
-const mockTracks: Track[] = [trackOne, trackTwo, trackThree, trackFour];
+const mockTracks: TrackEntity[] = [trackOne, trackTwo, trackThree, trackFour];
 
 describe('Component: GameTracksBar', () => {
   afterEach(cleanup);

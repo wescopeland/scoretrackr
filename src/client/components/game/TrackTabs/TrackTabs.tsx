@@ -7,7 +7,7 @@ import {
   activeGameActions,
   selectCurrentTrack
 } from 'client/state/active-game';
-import { Track } from 'common/models/track.model';
+import { Track } from 'common/entities';
 import { useStyles } from './TrackTabs.styles';
 
 interface TrackTabsProps {

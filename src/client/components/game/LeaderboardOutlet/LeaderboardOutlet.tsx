@@ -5,20 +5,19 @@ import { useSelector } from 'react-redux';
 
 import { EmptyState } from 'client/components/shared/EmptyState';
 import { selectCurrentTrack } from 'client/state/active-game';
-import { Score } from 'common/models/score.model';
+import { Score } from 'common/entities';
 import GetTrackLeaderboard from 'common/queries/get-track-leaderboard.graphql';
 
 export const LeaderboardOutlet = () => {
   const currentTrack = useSelector(selectCurrentTrack);
 
-  const { loading, error, data } = useQuery<{ trackLeaderboard: Score[] }>(
-    GetTrackLeaderboard,
-    {
-      variables: {
-        trackId: currentTrack.id
-      }
+  const { loading, error, data } = useQuery<{
+    trackLeaderboard: Score[];
+  }>(GetTrackLeaderboard, {
+    variables: {
+      trackId: currentTrack.id
     }
-  );
+  });
 
   const { t } = useTranslation('game');
 

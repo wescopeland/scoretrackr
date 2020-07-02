@@ -1,4 +1,4 @@
-import { Track } from 'common/models/track.model';
+import { Track } from 'common/entities';
 
 export interface GameDetailsResponse {
   color: string;

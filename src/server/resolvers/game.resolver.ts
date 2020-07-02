@@ -7,17 +7,17 @@ import {
   Root
 } from 'type-graphql';
 
-import { Game, Track } from 'common/entities';
+import { GameEntity, TrackEntity } from 'common/entities';
 
-@Resolver((of) => Game)
-export class GameResolver implements ResolverInterface<Game> {
-  @Query((returns) => Game)
+@Resolver((of) => GameEntity)
+export class GameResolver implements ResolverInterface<GameEntity> {
+  @Query((returns) => GameEntity)
   async game(@Arg('id') id: string) {
-    return Game.findOne(id);
+    return GameEntity.findOne(id);
   }
 
   @FieldResolver()
-  async tracks(@Root() game: Game) {
-    return Track.find({ game: { id: game.id } });
+  async tracks(@Root() game: GameEntity) {
+    return TrackEntity.find({ game: { id: game.id } });
   }
 }

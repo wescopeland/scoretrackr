@@ -1,17 +1,17 @@
 import { Arg, FieldResolver, Query, Resolver, Root } from 'type-graphql';
 
-import { Score, Track } from 'common/entities';
+import { ScoreEntity, TrackEntity } from 'common/entities';
 
-@Resolver((of) => Track)
+@Resolver((of) => TrackEntity)
 export class TrackResolver {
-  @Query((returns) => [Track])
+  @Query((returns) => [TrackEntity])
   async tracksByGameId(@Arg('gameId') gameId: string) {
-    return Track.find({ game: { id: gameId } });
+    return TrackEntity.find({ game: { id: gameId } });
   }
 
   @FieldResolver((returns) => Number)
-  async submissionCount(@Root() track: Track) {
-    const [scores, count] = await Score.findAndCount({ track });
+  async submissionCount(@Root() track: TrackEntity) {
+    const [scores, count] = await ScoreEntity.findAndCount({ track });
 
     return count;
   }

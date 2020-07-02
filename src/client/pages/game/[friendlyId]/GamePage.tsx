@@ -11,7 +11,7 @@ import {
   LeaderboardOutlet
 } from 'client/components/game';
 import { selectActiveGameState } from 'client/state/active-game';
-import { Game } from 'common/models/game.model';
+import { Game } from 'common/entities';
 import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql';
 import { useStyles } from './GamePage.styles';
 

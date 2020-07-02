@@ -1,11 +1,12 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
-import { Track } from './track.entity';
+import { Game } from './game.model';
+import { TrackEntity } from './track.entity';
 
-@Entity()
+@Entity('game')
 @ObjectType()
-export class Game extends BaseEntity {
+export class GameEntity extends BaseEntity implements Game {
   @Field(() => ID)
   @PrimaryColumn('text')
   id: string;
@@ -18,7 +19,7 @@ export class Game extends BaseEntity {
   @Column('text')
   color: string;
 
-  @Field(() => [Track])
-  @OneToMany((type) => Track, (track) => track.game)
-  tracks: Track[];
+  @Field(() => [TrackEntity])
+  @OneToMany((type) => TrackEntity, (track) => track.game)
+  tracks: TrackEntity[];
 }

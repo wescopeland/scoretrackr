@@ -8,7 +8,7 @@ import {
 } from 'type-graphql';
 import { getConnection, LessThanOrEqual } from 'typeorm';
 
-import { Score } from 'common/entities';
+import { ScoreEntity } from 'common/entities';
 import { filterScoresByPlayerTop } from '../utils/filter-scores-by-player-top';
 
 interface PositionRecord {
@@ -16,18 +16,18 @@ interface PositionRecord {
   score: number;
 }
 
-@Resolver((of) => Score)
-export class ScoreResolver implements ResolverInterface<Score> {
-  @Query((returns) => Score)
+@Resolver((of) => ScoreEntity)
+export class ScoreResolver implements ResolverInterface<ScoreEntity> {
+  @Query((returns) => ScoreEntity)
   async score(@Arg('id') id: string) {
-    return Score.findOne(id);
+    return ScoreEntity.findOne(id);
   }
 
   @FieldResolver()
-  async track(@Root() score: Score) {
+  async track(@Root() score: ScoreEntity) {
     const track = await getConnection()
       .createQueryBuilder()
-      .relation(Score, 'track')
+      .relation(ScoreEntity, 'track')
       .of(score)
       .loadOne();
 
@@ -35,10 +35,10 @@ export class ScoreResolver implements ResolverInterface<Score> {
   }
 
   @FieldResolver()
-  async game(@Root() score: Score) {
+  async game(@Root() score: ScoreEntity) {
     const game = await getConnection()
       .createQueryBuilder()
-      .relation(Score, 'game')
+      .relation(ScoreEntity, 'game')
       .of(score)
       .loadOne();
 
@@ -47,18 +47,18 @@ export class ScoreResolver implements ResolverInterface<Score> {
 
   @FieldResolver((returns) => Number, { nullable: true })
   async position(
-    @Root() score: Score,
+    @Root() score: ScoreEntity,
     @Arg('onDate', { nullable: true }) onDate?: string
   ) {
     const cutoffDate = onDate ? new Date(onDate) : new Date();
 
     const track = await getConnection()
       .createQueryBuilder()
-      .relation(Score, 'track')
+      .relation(ScoreEntity, 'track')
       .of(score)
       .loadOne();
 
-    const allTrackScores = await Score.find({
+    const allTrackScores = await ScoreEntity.find({
       where: { track, submittedAt: LessThanOrEqual(cutoffDate) },
       order: { finalScore: 'DESC' }
     });

@@ -21,17 +21,21 @@ jest.mock('react-router-dom', () => ({
   })
 }));
 
-const mockTrackOne = new Track();
-mockTrackOne.id = 'mockId1';
-mockTrackOne.name = 'Track One';
-mockTrackOne.friendlyId = 'friendlyTrackOne';
-mockTrackOne.submissionCount = 5;
+const mockTrackOne: Track = {
+  id: 'mockId1',
+  name: 'Track One',
+  friendlyId: 'friendlyTrackOne',
+  submissionCount: 5,
+  game: null
+};
 
-const mockTrackTwo = new Track();
-mockTrackTwo.id = 'mockId2';
-mockTrackTwo.name = 'Track Two';
-mockTrackTwo.friendlyId = 'friendlyTrackTwo';
-mockTrackTwo.submissionCount = 1;
+const mockTrackTwo: Track = {
+  id: 'mockId2',
+  name: 'Track Two',
+  friendlyId: 'friendlyTrackTwo',
+  submissionCount: 1,
+  game: null
+};
 
 describe('Component: TrackTabs', () => {
   beforeEach(() => {

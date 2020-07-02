@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 
-import { Game, Score, Track } from 'common/entities';
+import { GameEntity, ScoreEntity, TrackEntity } from 'common/entities';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
@@ -71,17 +71,17 @@ describe('Component: MostRecentSubmissions', () => {
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
       // Arrange
-      const mockGame = new Game();
+      const mockGame = new GameEntity();
       mockGame.name = 'Galaga';
       mockGame.color = 'purple';
       mockGame.id = 'galaga';
 
-      const mockTrack = new Track();
+      const mockTrack = new TrackEntity();
       mockTrack.id = '1';
       mockTrack.name = 'Factory settings';
       mockTrack.friendlyId = 'factorySettings';
 
-      const mockSubmission = new Score();
+      const mockSubmission = new ScoreEntity();
       mockSubmission.game = mockGame;
       mockSubmission.track = mockTrack;
       mockSubmission.playerAlias = 'Wilhelm Scream';

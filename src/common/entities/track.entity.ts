@@ -7,11 +7,12 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm';
 
-import { Game } from './game.entity';
+import { GameEntity } from './game.entity';
+import { Track } from './track.model';
 
-@Entity()
+@Entity('track')
 @ObjectType()
-export class Track extends BaseEntity {
+export class TrackEntity extends BaseEntity implements Track {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -24,9 +25,9 @@ export class Track extends BaseEntity {
   @Column('text')
   friendlyId: string;
 
-  @Field(() => Game)
-  @ManyToOne((type) => Game, (game) => game.id)
-  game: Game;
+  @Field(() => GameEntity)
+  @ManyToOne((type) => GameEntity, (game) => game.id)
+  game: GameEntity;
 
   submissionCount: number;
 }

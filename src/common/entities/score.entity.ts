@@ -7,12 +7,13 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm';
 
-import { Game } from './game.entity';
-import { Track } from './track.entity';
+import { GameEntity } from './game.entity';
+import { Score } from './score.model';
+import { TrackEntity } from './track.entity';
 
-@Entity()
+@Entity('score')
 @ObjectType()
-export class Score extends BaseEntity {
+export class ScoreEntity extends BaseEntity implements Score {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -33,13 +34,13 @@ export class Score extends BaseEntity {
   @Column('timestamp')
   submittedAt: Date;
 
-  @Field(() => Game)
-  @ManyToOne((type) => Game, (game) => game.id)
-  game: Game;
+  @Field(() => GameEntity)
+  @ManyToOne((type) => GameEntity, (game) => game.id)
+  game: GameEntity;
 
-  @Field(() => Track)
-  @ManyToOne((type) => Track, (track) => track.id)
-  track: Track;
+  @Field(() => TrackEntity)
+  @ManyToOne((type) => TrackEntity, (track) => track.id)
+  track: TrackEntity;
 
   position: number;
 }

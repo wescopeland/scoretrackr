@@ -1,12 +1,12 @@
 import { Field, ObjectType } from 'type-graphql';
 
-import { Score } from 'common/entities';
+import { ScoreEntity } from 'common/entities';
 
 @ObjectType()
 export class SubmissionBlob {
   @Field(() => String)
   date: string;
 
-  @Field(() => [Score])
-  submissions: Partial<Score>[];
+  @Field(() => [ScoreEntity])
+  submissions: Partial<ScoreEntity>[];
 }

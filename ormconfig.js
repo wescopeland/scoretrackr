@@ -10,9 +10,9 @@ let connections = [
     password: process.env.LOCAL_DB_PASSWORD,
     database: 'scoretrackr',
     synchronize: true,
-    entities: ['src/common/entity/**/*.ts'],
+    entities: ['src/common/entities/**/*.entity.ts'],
     cli: {
-      entitiesDir: 'src/common/entity'
+      entitiesDir: 'src/common/entities'
     }
   }
 ];

@@ -1,14 +1,14 @@
 import { format, fromUnixTime } from 'date-fns';
 import { Arg, Query, Resolver } from 'type-graphql';
 
-import { Score } from 'common/entities';
+import { ScoreEntity } from 'common/entities';
 import { SubmissionBlob } from 'common/models/submission-blob.model';
 
 @Resolver()
 export class RecentSubmissionsResolver {
   @Query((returns) => [SubmissionBlob])
   async recentSubmissions(@Arg('limitToDays') limitToDays: number) {
-    const scores = await Score.find({
+    const scores = await ScoreEntity.find({
       take: 60,
       order: { submittedAt: 'DESC' }
     });
