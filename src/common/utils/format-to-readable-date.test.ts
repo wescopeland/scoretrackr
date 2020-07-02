@@ -14,7 +14,7 @@ describe('Util: formatToReadableDate', () => {
     const formattedDate = formatToReadableDate(originalDate);
 
     // Assert
-    expect(formattedDate).toEqual('May 4, 2015');
+    expect(formattedDate).toEqual('May 5, 2015');
   });
 
   it('given the user is set to the default locale, returns the correct formatted readable date', () => {
@@ -25,7 +25,7 @@ describe('Util: formatToReadableDate', () => {
     const formattedDate = formatToReadableDate(originalDate);
 
     // Assert
-    expect(formattedDate).toEqual('May 4, 2015');
+    expect(formattedDate).toEqual('May 5, 2015');
   });
 
   it('given the user is set to the ja-JP locale, returns the correct formatted readable date', () => {
@@ -38,6 +38,6 @@ describe('Util: formatToReadableDate', () => {
     const formattedDate = formatToReadableDate(originalDate);
 
     // Assert
-    expect(formattedDate).toEqual('2015年5月4日');
+    expect(formattedDate).toEqual('2015年5月5日');
   });
 });
