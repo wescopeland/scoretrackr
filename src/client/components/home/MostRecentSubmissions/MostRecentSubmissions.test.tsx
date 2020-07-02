@@ -117,7 +117,6 @@ describe('Component: MostRecentSubmissions', () => {
 
       // Assert
       expect(screen.getByText('dates.today')).toBeVisible();
-      expect(screen.getByText('dates.yesterday')).toBeVisible();
       expect(screen.getByText('4 days ago')).toBeVisible();
     });
   });

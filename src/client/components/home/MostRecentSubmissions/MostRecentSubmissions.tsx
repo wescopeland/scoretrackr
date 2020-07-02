@@ -32,11 +32,7 @@ export const MostRecentSubmissions = () => {
               variant="subtitle1"
               className={`mb-1 ${index !== 0 && 'mt-5'}`}
             >
-              {getDateDistanceText(
-                recentSubmission.date,
-                t('dates.today'),
-                t('dates.yesterday')
-              )}
+              {getDateDistanceText(recentSubmission.date, t('dates.today'))}
             </Typography>
 
             {recentSubmission.submissions.map((submission) => (

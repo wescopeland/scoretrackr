@@ -6,8 +6,7 @@
   "emptyStateAlt": "A picture of spooky ghosts indicating there is no data",
 
   "dates": {
-    "today": "Today",
-    "yesterday": "Yesterday"
+    "today": "Today"
   },
 
   "recentSubmissions": {

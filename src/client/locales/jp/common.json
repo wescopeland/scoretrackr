@@ -6,8 +6,7 @@
   "emptyStateAlt": "これはデータがないことを示すゴーストの写真です。",
 
   "dates": {
-    "today": "今日",
-    "yesterday": "昨日"
+    "today": "今日"
   },
 
   "recentSubmissions": {
