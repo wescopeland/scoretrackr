@@ -1,4 +1,10 @@
-import { makeStyles, styled, TableRow, Theme } from '@material-ui/core';
+import {
+  makeStyles,
+  styled,
+  TableRow,
+  Theme,
+  useTheme
+} from '@material-ui/core';
 
 import { firstPlace, secondPlace, thirdPlace } from 'common/models/colors';
 
@@ -19,31 +25,37 @@ const getPercentBetweenOneAndTen = (
   return percentageOfFirst;
 };
 
+// These are all lowercase because React propagates these to
+// inner standard HTML elements, which causes an error to be thrown.
 interface StyledTableRowProps {
   bgcolor: string;
   first: number;
   tenth: number;
   score: number;
   position: number;
+  islightmode: boolean;
+  surfacecolor: string;
 }
 
 export const StyledTableRow = styled(TableRow)({
   background: (props: StyledTableRowProps) => {
-    let bgColor = `${props.bgcolor}1a`;
+    let bgColor = props.islightmode
+      ? `${props.bgcolor}1a`
+      : `${props.bgcolor}aa`;
 
     if (props.position === 1) {
-      bgColor = `${firstPlace}1a`;
+      bgColor = props.islightmode ? `${firstPlace}1a` : `${firstPlace}77`;
     } else if (props.position === 2) {
       bgColor = `${secondPlace}44`;
     } else if (props.position === 3) {
-      bgColor = `${thirdPlace}1a`;
+      bgColor = props.islightmode ? `${thirdPlace}1a` : `${thirdPlace}77`;
     }
 
     return `linear-gradient(to right, ${bgColor} ${getPercentBetweenOneAndTen(
       props.score,
       props.first,
       props.tenth
-    )}%, #ffffff 0%)`;
+    )}%, ${props.surfacecolor} 0%)`;
   }
 });
 

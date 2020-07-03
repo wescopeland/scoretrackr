@@ -1,4 +1,4 @@
-import { TableCell, TableRow } from '@material-ui/core';
+import { TableCell, TableRow, useTheme } from '@material-ui/core';
 import React from 'react';
 
 import { Score } from 'common/entities';
@@ -22,12 +22,16 @@ export const LeaderboardTableRow = ({
   firstPlaceScore,
   tenthPlaceScore
 }: LeaderboardTableRowProps) => {
+  const theme = useTheme();
   const {
     firstPlaceCellBorder,
     secondPlaceCellBorder,
     thirdPlaceCellBorder,
     tableCell
   } = useStyles();
+
+  const isLightMode = theme.palette.type === 'light';
+  const surfaceColor = theme.palette.background.paper;
 
   const isColoredBackgroundRow = (rowIndex: number) => {
     return canShowRowsWithColoredBackgrounds && rowIndex <= 9;
@@ -54,16 +58,18 @@ export const LeaderboardTableRow = ({
     <RowComponent
       key={currentScore.id}
       position={currentScore.position}
-      bgcolor={
-        isColoredBackgroundRow(currentIndex) ? activeGameColor : undefined
-      }
+      islightmode={isLightMode}
+      surfacecolor={surfaceColor}
       first={isColoredBackgroundRow(currentIndex) ? firstPlaceScore : undefined}
+      tenth={isColoredBackgroundRow(currentIndex) ? tenthPlaceScore : undefined}
       score={
         isColoredBackgroundRow(currentIndex)
           ? currentScore.finalScore
           : undefined
       }
-      tenth={isColoredBackgroundRow(currentIndex) ? tenthPlaceScore : undefined}
+      bgcolor={
+        isColoredBackgroundRow(currentIndex) ? activeGameColor : undefined
+      }
     >
       <TableCell
         className={`${tableCell} ${getColoredLeftBorder(

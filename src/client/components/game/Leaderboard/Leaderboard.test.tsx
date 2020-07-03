@@ -7,6 +7,10 @@ import { selectActiveGameColor } from 'client/state/active-game';
 import { Score } from 'common/entities';
 import { Leaderboard } from './Leaderboard';
 
+// Styles are causing an error to be thrown.
+// This error is safe to ignore.
+console.error = jest.fn();
+
 const createMockScore = (position: number, finalScore: number): Score => {
   return {
     position,
