@@ -1,7 +1,7 @@
 import { AppState } from '../reducer';
 import {
-  selectActiveGameState,
-  selectCurrentTrack
+  selectActiveGameColor,
+  selectActiveGameState
 } from './active-game.selectors';
 import { ActiveGameState } from './models/active-game-state.model';
 
@@ -47,6 +47,28 @@ describe('Selectors: activeGame', () => {
 
       // Assert
       expect(selected).toEqual(mockValue);
+    });
+  });
+
+  describe('Selector: selectActiveGameColor', () => {
+    it('returns the hex color', () => {
+      // Arrange
+      const mockValue: ActiveGameState = {
+        canShowTracksBar: true,
+        isDesktopSidenavOpen: true,
+        isMobileSidenavOpen: false,
+        hexColor: '#aabbcc'
+      };
+
+      const mockState: Partial<AppState> = {
+        activeGame: mockValue
+      };
+
+      // Act
+      const selected = selectActiveGameColor(mockState as AppState);
+
+      // Assert
+      expect(selected).toEqual(mockValue.hexColor);
     });
   });
 });

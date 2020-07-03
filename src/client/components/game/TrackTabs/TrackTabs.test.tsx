@@ -46,6 +46,10 @@ describe('Component: TrackTabs', () => {
 
   it('renders without crashing', () => {
     // Arrange
+    mockUseLocationValue = {
+      search: ''
+    };
+
     const store = configureStore();
 
     const mockTracks: Track[] = [mockTrackOne];
@@ -62,6 +66,10 @@ describe('Component: TrackTabs', () => {
 
   it('displays an input list of tracks as tabs', () => {
     // Arrange
+    mockUseLocationValue = {
+      search: ''
+    };
+
     const store = configureStore();
 
     const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
@@ -80,6 +88,10 @@ describe('Component: TrackTabs', () => {
 
   it('sets the first tab in the list to be selected if there is no given initialTrackId', () => {
     // Arrange
+    mockUseLocationValue = {
+      search: ''
+    };
+
     const store = configureStore();
 
     const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
@@ -142,6 +154,10 @@ describe('Component: TrackTabs', () => {
 
   it('navigates to the track clicked on by the user', () => {
     // Arrange
+    mockUseLocationValue = {
+      search: ''
+    };
+
     const store = configureStore();
 
     const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];

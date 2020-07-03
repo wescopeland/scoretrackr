@@ -18,6 +18,9 @@ describe('Page Component: GamePage', () => {
 
   it('renders without crashing', () => {
     // Arrange
+    const mockUseDispatch = jest.fn();
+    spyOn(ReactReduxModule, 'useDispatch').and.returnValue(mockUseDispatch);
+
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
       if (selector === selectActiveGameState) {
         return {

@@ -13,6 +13,14 @@ export const activeGame = createSlice({
   name: 'activeGame',
   initialState,
   reducers: {
+    setGameDetails: (
+      state,
+      action: PayloadAction<{ color: string; name: string }>
+    ) => {
+      state.hexColor = action.payload.color;
+      state.name = action.payload.name;
+    },
+
     setSelectedTrack: (
       state,
       action: PayloadAction<{ id: string; friendlyId: string }>

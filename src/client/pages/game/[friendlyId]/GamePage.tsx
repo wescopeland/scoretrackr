@@ -1,7 +1,7 @@
 import { Toolbar } from '@material-ui/core';
 import { useQuery } from 'graphql-hooks';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, useParams } from 'react-router-dom';
 
 import {
@@ -10,14 +10,17 @@ import {
   GameTracksBar,
   LeaderboardOutlet
 } from 'client/components/game';
-import { selectActiveGameState } from 'client/state/active-game';
+import {
+  activeGameActions,
+  selectActiveGameState
+} from 'client/state/active-game';
 import { Game } from 'common/entities';
 import GetActiveGameDetails from 'common/queries/get-active-game-details.graphql';
 import { useStyles } from './GamePage.styles';
 
 export const GamePage = () => {
   const { friendlyId } = useParams();
-
+  const dispatch = useDispatch();
   const { loading, error, data } = useQuery<{ game: Game }>(
     GetActiveGameDetails,
     {
@@ -26,6 +29,17 @@ export const GamePage = () => {
       }
     }
   );
+
+  useEffect(() => {
+    if (data?.game) {
+      dispatch(
+        activeGameActions.setGameDetails({
+          color: data.game.color,
+          name: data.game.name
+        })
+      );
+    }
+  }, [data]);
 
   const activeGameState = useSelector(selectActiveGameState);
   const { content, toolBar } = useStyles({

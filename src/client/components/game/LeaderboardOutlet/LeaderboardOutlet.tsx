@@ -7,6 +7,7 @@ import { EmptyState } from 'client/components/shared/EmptyState';
 import { selectCurrentTrack } from 'client/state/active-game';
 import { Score } from 'common/entities';
 import GetTrackLeaderboard from 'common/queries/get-track-leaderboard.graphql';
+import { Leaderboard } from '../Leaderboard';
 
 export const LeaderboardOutlet = () => {
   const currentTrack = useSelector(selectCurrentTrack);
@@ -26,7 +27,11 @@ export const LeaderboardOutlet = () => {
       {loading ? (
         <p>loading</p>
       ) : data.trackLeaderboard.length ? (
-        <p>got records</p>
+        <div className="row mt-5">
+          <div className="col">
+            <Leaderboard scores={data.trackLeaderboard} />
+          </div>
+        </div>
       ) : (
         <div className="row mt-5">
           <div className="col">

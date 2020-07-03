@@ -12,7 +12,9 @@ jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn()
   }),
-  useLocation: (): any => null
+  useLocation: () => ({
+    search: ''
+  })
 }));
 
 const trackOne = new TrackEntity();

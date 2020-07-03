@@ -7,6 +7,10 @@ import * as ReactReduxModule from 'react-redux';
 import { selectCurrentTrack } from 'client/state/active-game';
 import { LeaderboardOutlet } from './LeaderboardOutlet';
 
+jest.mock('client/components/game/Leaderboard', () => ({
+  Leaderboard: () => <p>got records</p>
+}));
+
 describe('Component: LeaderboardOutlet', () => {
   beforeEach(() => {
     spyOn(ReactReduxModule, 'useSelector').and.callFake((selector: any) => {
@@ -49,7 +53,7 @@ describe('Component: LeaderboardOutlet', () => {
     expect(screen.getByText('loading')).toBeVisible();
   });
 
-  it('displays got records text if some records are returned', () => {
+  it('displays the track leaderboard if records are returned', () => {
     // Arrange
     spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
       loading: false,

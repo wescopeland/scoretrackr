@@ -30,8 +30,12 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
     const trackId = id ?? findTrackByFriendlyId(friendlyId).id;
 
     dispatch(activeGameActions.setSelectedTrack({ friendlyId, id: trackId }));
+
+    const newParams = new URLSearchParams(location.search);
+    newParams.set('track', friendlyId);
+
     history.push({
-      search: `?track=${friendlyId}`
+      search: newParams.toString()
     });
   };
 

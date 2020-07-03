@@ -17,6 +17,21 @@ describe('Slice: activeGame', () => {
     expect(initialState.isMobileSidenavOpen).toEqual(false);
   });
 
+  it('can set the active game details', () => {
+    // Act
+    const newState = activeGame.reducer(
+      initialState,
+      activeGameActions.setGameDetails({
+        color: '#aabbcc',
+        name: 'Dog Simulator 3000'
+      })
+    );
+
+    // Assert
+    expect(newState.hexColor).toEqual('#aabbcc');
+    expect(newState.name).toEqual('Dog Simulator 3000');
+  });
+
   it('can set the currently selected track', () => {
     // Act
     const newState = activeGame.reducer(

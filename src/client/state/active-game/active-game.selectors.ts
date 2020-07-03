@@ -11,3 +11,8 @@ export const selectCurrentTrack = createSelector(
     friendlyId: activeGameState.selectedTrackFriendlyId
   })
 );
+
+export const selectActiveGameColor = createSelector(
+  selectActiveGameState,
+  (activeGameState) => activeGameState.hexColor
+);
