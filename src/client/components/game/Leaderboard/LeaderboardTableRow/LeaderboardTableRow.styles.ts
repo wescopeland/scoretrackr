@@ -1,10 +1,4 @@
-import {
-  makeStyles,
-  styled,
-  TableRow,
-  Theme,
-  useTheme
-} from '@material-ui/core';
+import { makeStyles, styled, TableRow, Theme } from '@material-ui/core';
 
 import { firstPlace, secondPlace, thirdPlace } from 'common/models/colors';
 
@@ -60,11 +54,6 @@ export const StyledTableRow = styled(TableRow)({
 });
 
 export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
-  tableCell: {
-    padding: '8px 16px',
-    height: 40
-  },
-
   firstPlaceCellBorder: {
     paddingLeft: 12,
     borderLeft: `10px solid ${firstPlace}`

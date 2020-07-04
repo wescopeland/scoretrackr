@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Score } from 'common/entities';
 import { formatToReadableDate } from 'common/utils/format-to-readable-date';
+import { useStyles as useRootStyles } from '../Leaderboard.styles';
 import { StyledTableRow, useStyles } from './LeaderboardTableRow.styles';
 
 interface LeaderboardTableRowProps {
@@ -23,11 +24,11 @@ export const LeaderboardTableRow = ({
   tenthPlaceScore
 }: LeaderboardTableRowProps) => {
   const theme = useTheme();
+  const { tableCell } = useRootStyles();
   const {
     firstPlaceCellBorder,
     secondPlaceCellBorder,
-    thirdPlaceCellBorder,
-    tableCell
+    thirdPlaceCellBorder
   } = useStyles();
 
   const isLightMode = theme.palette.type === 'light';

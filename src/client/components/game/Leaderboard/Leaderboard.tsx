@@ -14,6 +14,7 @@ import { selectActiveGameColor } from 'client/state/active-game';
 import { Score } from 'common/entities';
 import { useStyles } from './Leaderboard.styles';
 import { LeaderboardTableRow } from './LeaderboardTableRow';
+import { SpacerRow } from './SpacerRow';
 
 interface LeaderboardProps {
   scores: Score[];
@@ -41,17 +42,20 @@ export const Leaderboard = ({ scores }: LeaderboardProps) => {
         <TableBody>
           {scores.map((score, index) => {
             return (
-              <LeaderboardTableRow
-                key={score.id}
-                activeGameColor={activeGameColor}
-                canShowRowsWithColoredBackgrounds={
-                  canShowRowsWithColoredBackgrounds
-                }
-                currentIndex={index}
-                currentScore={score}
-                firstPlaceScore={scores[0].finalScore}
-                tenthPlaceScore={scores[9]?.finalScore}
-              />
+              <>
+                {index === 10 && <SpacerRow />}
+                <LeaderboardTableRow
+                  key={score.id}
+                  activeGameColor={activeGameColor}
+                  canShowRowsWithColoredBackgrounds={
+                    canShowRowsWithColoredBackgrounds
+                  }
+                  currentIndex={index}
+                  currentScore={score}
+                  firstPlaceScore={scores[0].finalScore}
+                  tenthPlaceScore={scores[9]?.finalScore}
+                />
+              </>
             );
           })}
         </TableBody>
