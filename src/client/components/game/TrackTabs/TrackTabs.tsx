@@ -69,7 +69,8 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
     <Tabs
       classes={{
         root: classes.tabsRoot,
-        indicator: classes.tabsIndicator
+        indicator: classes.tabsIndicator,
+        scroller: classes.tabsScroller
       }}
       value={currentSelectedTrack?.friendlyId ?? false}
       onChange={handleTabChange}

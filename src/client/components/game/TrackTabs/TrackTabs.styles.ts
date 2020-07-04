@@ -16,6 +16,9 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
     borderRadius: theme.spacing(1),
     backgroundColor: 'rgba(255, 255, 255, .12)'
   },
+  tabsScroller: {
+    overflowY: 'hidden'
+  },
 
   tabItemRoot: {
     textTransform: 'initial',
@@ -30,7 +33,6 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
       minWidth: 0
     }
   },
-
   tabSelected: {
     fontWeight: 'bold'
   },

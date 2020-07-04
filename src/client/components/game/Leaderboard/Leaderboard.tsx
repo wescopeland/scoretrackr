@@ -43,7 +43,7 @@ export const Leaderboard = ({ scores }: LeaderboardProps) => {
           {scores.map((score, index) => {
             return (
               <>
-                {index === 10 && <SpacerRow />}
+                {index === 10 && <SpacerRow key="spacer" />}
                 <LeaderboardTableRow
                   key={score.id}
                   activeGameColor={activeGameColor}
