@@ -11,6 +11,7 @@ import { Track } from 'common/entities';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
 import { TrackTabs } from '../TrackTabs';
 import { useStyles } from './GameTracksBar.styles';
+import { sortTracks } from './sort-tracks';
 
 interface GameTracksBarProps {
   isLoading: boolean;
@@ -39,19 +40,7 @@ export const GameTracksBar = ({
     dispatch(activeGameActions.toggleIsMobileSidenavOpen());
   };
 
-  const sortedTracks = tracks
-    ? useMemo(
-        () =>
-          tracks.sort((a, b) => {
-            if (a.submissionCount < b.submissionCount) return 1;
-            if (a.submissionCount > b.submissionCount) return -1;
-
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
-          }),
-        []
-      )
-    : null;
+  const sortedTracks = tracks ? useMemo(() => sortTracks(tracks), []) : null;
 
   return (
     <AppBar className={appBar} position="relative">
