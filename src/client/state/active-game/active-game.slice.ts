@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { Game, Track } from 'common/entities';
 import { createInitialState } from 'common/utils/create-initial-state';
 import { ActiveGameState } from './models';
 
@@ -13,18 +14,12 @@ export const activeGame = createSlice({
   name: 'activeGame',
   initialState,
   reducers: {
-    setGameDetails: (
-      state,
-      action: PayloadAction<{ color: string; name: string }>
-    ) => {
+    setGameDetails: (state, action: PayloadAction<Partial<Game>>) => {
       state.hexColor = action.payload.color;
       state.name = action.payload.name;
     },
 
-    setSelectedTrack: (
-      state,
-      action: PayloadAction<{ id: string; friendlyId: string }>
-    ) => {
+    setSelectedTrack: (state, action: PayloadAction<Partial<Track>>) => {
       state.selectedTrackId = action.payload.id;
       state.selectedTrackFriendlyId = action.payload.friendlyId;
     },
