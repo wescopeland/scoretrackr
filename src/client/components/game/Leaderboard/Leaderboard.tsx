@@ -8,6 +8,7 @@ import {
   TableRow
 } from '@material-ui/core';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { selectActiveGameColor } from 'client/state/active-game';
@@ -21,6 +22,7 @@ interface LeaderboardProps {
 }
 
 export const Leaderboard = ({ scores }: LeaderboardProps) => {
+  const { t } = useTranslation('game');
   const activeGameColor = useSelector(selectActiveGameColor);
   const classes = useStyles();
 
@@ -28,14 +30,22 @@ export const Leaderboard = ({ scores }: LeaderboardProps) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="leaderboard for track X">
+      <Table aria-label={t('leaderboard.ariaLabel')}>
         <TableHead>
           <TableRow>
             <TableCell className={classes.tableCell}>#</TableCell>
-            <TableCell className={classes.tableCell}>Player</TableCell>
-            <TableCell className={classes.tableCell}>Score</TableCell>
-            <TableCell className={classes.tableCell}>Date</TableCell>
-            <TableCell className={classes.tableCell}>Platform</TableCell>
+            <TableCell className={classes.tableCell}>
+              {t('leaderboard.header.player')}
+            </TableCell>
+            <TableCell className={classes.tableCell}>
+              {t('leaderboard.header.score')}
+            </TableCell>
+            <TableCell className={classes.tableCell}>
+              {t('leaderboard.header.date')}
+            </TableCell>
+            <TableCell className={classes.tableCell}>
+              {t('leaderboard.header.platform')}
+            </TableCell>
           </TableRow>
         </TableHead>
 

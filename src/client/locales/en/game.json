@@ -17,6 +17,13 @@
   },
 
   "leaderboard": {
+    "ariaLabel": "Leaderboard for the currently selected track",
+    "header": {
+      "player": "Player",
+      "score": "Score",
+      "date": "Date",
+      "platform": "Platform"
+    },
     "none": {
       "heading": "Game Over",
       "label": "It looks like this track doesn't have any scores."
