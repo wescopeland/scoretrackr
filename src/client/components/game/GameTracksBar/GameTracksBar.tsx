@@ -50,6 +50,7 @@ export const GameTracksBar = ({
           onMobileClick={toggleMobileSidenav}
           isMobileSidenavOpen={activeGameState.isMobileSidenavOpen}
         />
+
         {isLoading ? (
           <Skeleton
             data-testid="track-tabs-loading"

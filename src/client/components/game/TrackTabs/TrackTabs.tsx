@@ -80,7 +80,8 @@ export const TrackTabs = ({ tracks, gameColor }: TrackTabsProps) => {
         <Tab
           key={track.id}
           classes={{
-            root: classes.tabItemRoot
+            root: classes.tabItemRoot,
+            selected: classes.tabSelected
           }}
           label={track.name}
           value={track.friendlyId}

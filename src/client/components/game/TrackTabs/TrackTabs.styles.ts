@@ -14,7 +14,7 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   tabsIndicator: {
     height: '100%',
     borderRadius: theme.spacing(1),
-    backgroundColor: 'rgba(255, 255, 255, .2)'
+    backgroundColor: 'rgba(255, 255, 255, .12)'
   },
 
   tabItemRoot: {
@@ -29,6 +29,10 @@ export const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
     [theme.breakpoints.up('md')]: {
       minWidth: 0
     }
+  },
+
+  tabSelected: {
+    fontWeight: 'bold'
   },
 
   menuButton: {
