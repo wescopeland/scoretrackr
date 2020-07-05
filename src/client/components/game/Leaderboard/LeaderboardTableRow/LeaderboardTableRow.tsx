@@ -9,7 +9,6 @@ import { StyledTableRow, useStyles } from './LeaderboardTableRow.styles';
 interface LeaderboardTableRowProps {
   activeGameColor: string;
   canShowRowsWithColoredBackgrounds: boolean;
-  currentIndex: number;
   currentScore: Score;
   firstPlaceScore: number;
   tenthPlaceScore?: number;
@@ -18,7 +17,6 @@ interface LeaderboardTableRowProps {
 export const LeaderboardTableRow = ({
   activeGameColor,
   canShowRowsWithColoredBackgrounds,
-  currentIndex,
   currentScore,
   firstPlaceScore,
   tenthPlaceScore
@@ -34,8 +32,8 @@ export const LeaderboardTableRow = ({
   const isLightMode = theme.palette.type === 'light';
   const surfaceColor = theme.palette.background.paper;
 
-  const isColoredBackgroundRow = (rowIndex: number) => {
-    return canShowRowsWithColoredBackgrounds && rowIndex <= 9;
+  const isColoredBackgroundRow = (position: number) => {
+    return canShowRowsWithColoredBackgrounds && position <= 10;
   };
 
   const getColoredLeftBorder = (position: number) => {
@@ -51,7 +49,7 @@ export const LeaderboardTableRow = ({
   };
 
   const RowComponent =
-    canShowRowsWithColoredBackgrounds && currentIndex <= 9
+    canShowRowsWithColoredBackgrounds && currentScore.position <= 10
       ? StyledTableRow
       : TableRow;
 
@@ -61,15 +59,25 @@ export const LeaderboardTableRow = ({
       position={currentScore.position}
       islightmode={isLightMode}
       surfacecolor={surfaceColor}
-      first={isColoredBackgroundRow(currentIndex) ? firstPlaceScore : undefined}
-      tenth={isColoredBackgroundRow(currentIndex) ? tenthPlaceScore : undefined}
+      first={
+        isColoredBackgroundRow(currentScore.position)
+          ? firstPlaceScore
+          : undefined
+      }
+      tenth={
+        isColoredBackgroundRow(currentScore.position)
+          ? tenthPlaceScore
+          : undefined
+      }
       score={
-        isColoredBackgroundRow(currentIndex)
+        isColoredBackgroundRow(currentScore.position)
           ? currentScore.finalScore
           : undefined
       }
       bgcolor={
-        isColoredBackgroundRow(currentIndex) ? activeGameColor : undefined
+        isColoredBackgroundRow(currentScore.position)
+          ? activeGameColor
+          : undefined
       }
     >
       <TableCell

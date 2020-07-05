@@ -1,5 +1,4 @@
-import { Box, Card, CardContent, Typography } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 
 import { formatNumberToOrdinal } from 'common/utils/format-number-to-ordinal';

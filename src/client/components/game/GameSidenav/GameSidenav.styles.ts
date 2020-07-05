@@ -12,6 +12,6 @@ export const useStyles = makeStyles<Theme, any>((theme: Theme) => ({
 
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.paper
   }
 }));

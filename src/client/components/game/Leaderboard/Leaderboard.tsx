@@ -60,7 +60,6 @@ export const Leaderboard = ({ scores }: LeaderboardProps) => {
                   canShowRowsWithColoredBackgrounds={
                     canShowRowsWithColoredBackgrounds
                   }
-                  currentIndex={index}
                   currentScore={score}
                   firstPlaceScore={scores[0].finalScore}
                   tenthPlaceScore={scores[9]?.finalScore}
