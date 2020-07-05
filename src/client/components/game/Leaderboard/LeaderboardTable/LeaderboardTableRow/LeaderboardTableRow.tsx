@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Score } from 'common/entities';
 import { formatToReadableDate } from 'common/utils/format-to-readable-date';
-import { useStyles as useRootStyles } from '../Leaderboard.styles';
+import { useStyles as useRootStyles } from '../LeaderboardTable.styles';
 import { StyledTableRow, useStyles } from './LeaderboardTableRow.styles';
 
 interface LeaderboardTableRowProps {
@@ -57,7 +57,7 @@ export const LeaderboardTableRow = ({
     <RowComponent
       key={currentScore.id}
       position={currentScore.position}
-      islightmode={isLightMode}
+      islightmode={String(isLightMode)}
       surfacecolor={surfaceColor}
       first={
         isColoredBackgroundRow(currentScore.position)

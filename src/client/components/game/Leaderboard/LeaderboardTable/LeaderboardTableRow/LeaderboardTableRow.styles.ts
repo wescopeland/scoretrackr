@@ -27,22 +27,22 @@ interface StyledTableRowProps {
   tenth: number;
   score: number;
   position: number;
-  islightmode: boolean;
+  islightmode: string;
   surfacecolor: string;
 }
 
 export const StyledTableRow = styled(TableRow)({
   background: (props: StyledTableRowProps) => {
-    let bgColor = props.islightmode
-      ? `${props.bgcolor}1a`
-      : `${props.bgcolor}aa`;
+    const isLightMode = props.islightmode === 'true';
+
+    let bgColor = isLightMode ? `${props.bgcolor}1a` : `${props.bgcolor}aa`;
 
     if (props.position === 1) {
-      bgColor = props.islightmode ? `${firstPlace}1a` : `${firstPlace}77`;
+      bgColor = isLightMode ? `${firstPlace}1a` : `${firstPlace}77`;
     } else if (props.position === 2) {
       bgColor = `${secondPlace}44`;
     } else if (props.position === 3) {
-      bgColor = props.islightmode ? `${thirdPlace}1a` : `${thirdPlace}77`;
+      bgColor = isLightMode ? `${thirdPlace}1a` : `${thirdPlace}77`;
     }
 
     return `linear-gradient(to right, ${bgColor} ${getPercentBetweenOneAndTen(
