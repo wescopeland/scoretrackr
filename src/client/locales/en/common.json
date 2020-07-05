@@ -3,6 +3,9 @@
     "description": "High Score Statistics and Permanent Historical Archive"
   },
 
+  "signUp": "Sign up",
+  "logIn": "Log in",
+
   "emptyStateAlt": "A picture of spooky ghosts indicating there is no data",
 
   "dates": {
