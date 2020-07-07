@@ -2,7 +2,12 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { ConnectionOptions, createConnection, getConnection } from 'typeorm';
 
-import { GameEntity, ScoreEntity, TrackEntity } from 'common/entities';
+import {
+  GameEntity,
+  ScoreEntity,
+  TrackEntity,
+  UserEntity
+} from 'common/entities';
 import { local } from './db/connections/local';
 import { getProductionConnection } from './db/connections/production';
 import {
@@ -22,7 +27,7 @@ const connectionOptions = {
   type: 'postgres',
   synchronize: true,
   logging: false,
-  entities: [GameEntity, ScoreEntity, TrackEntity]
+  entities: [GameEntity, ScoreEntity, TrackEntity, UserEntity]
 };
 
 export const createApiServer = async () => {
