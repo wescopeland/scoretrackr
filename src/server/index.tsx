@@ -1,6 +1,7 @@
 // tslint:disable: no-var-requires
 
 import { ServerStyleSheets } from '@material-ui/styles';
+import bodyParser from 'body-parser';
 import express from 'express';
 import fs from 'fs';
 import { GraphQLClient } from 'graphql-hooks';
@@ -16,6 +17,7 @@ import serialize from 'serialize-javascript';
 import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import { createApiServer } from './api-server';
+import register from './api/auth/register';
 import ping from './api/ping';
 import { compression } from './express/compression';
 import { getI18nSsrConfig } from './express/i18n-ssr-config';
@@ -40,6 +42,7 @@ i18n
     server
       .disable('x-powered-by')
       .use(compression())
+      .use(bodyParser.json())
 
       // i18n
       .use(i18nextMiddleware.handle(i18n))
@@ -50,6 +53,7 @@ i18n
 
       // api routes
       .use('/api/ping', ping)
+      .post('/api/auth/register', register)
 
       // ui content delivery
       // handle all non-api routes

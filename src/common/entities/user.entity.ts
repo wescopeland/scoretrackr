@@ -12,11 +12,11 @@ export class UserEntity extends BaseEntity implements User {
   id: string;
 
   @Field(() => String)
-  @Column('text')
+  @Column('text', { unique: true })
   email: string;
 
   @Field(() => String)
-  @Column('text')
+  @Column('text', { unique: true })
   username: string;
 
   @Column('text')
