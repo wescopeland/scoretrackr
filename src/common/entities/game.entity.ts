@@ -4,7 +4,7 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Game } from './game.model';
 import { TrackEntity } from './track.entity';
 
-@Entity('game')
+@Entity('games')
 @ObjectType()
 export class GameEntity extends BaseEntity implements Game {
   @Field(() => ID)

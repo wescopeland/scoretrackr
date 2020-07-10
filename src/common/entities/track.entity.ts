@@ -10,7 +10,7 @@ import {
 import { GameEntity } from './game.entity';
 import { Track } from './track.model';
 
-@Entity('track')
+@Entity('tracks')
 @ObjectType()
 export class TrackEntity extends BaseEntity implements Track {
   @Field(() => ID)

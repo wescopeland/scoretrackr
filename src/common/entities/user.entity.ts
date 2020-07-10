@@ -1,10 +1,18 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 
 import { UserRole } from './user-role.model';
 import { User } from './user.model';
+import { VerificationTokenEntity } from './verification-token.entity';
 
-@Entity('user')
+@Entity('users')
 @ObjectType()
 export class UserEntity extends BaseEntity implements User {
   @Field(() => ID)
@@ -29,4 +37,13 @@ export class UserEntity extends BaseEntity implements User {
   @Field(() => Date)
   @Column('timestamp')
   createdAt: Date;
+
+  @Field(() => Boolean)
+  @Column('boolean')
+  isVerified: boolean;
+
+  @Field(() => VerificationTokenEntity)
+  @OneToOne((type) => VerificationTokenEntity)
+  @JoinColumn()
+  verificationToken: VerificationTokenEntity;
 }

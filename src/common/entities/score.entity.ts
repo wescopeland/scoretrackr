@@ -11,7 +11,7 @@ import { GameEntity } from './game.entity';
 import { Score } from './score.model';
 import { TrackEntity } from './track.entity';
 
-@Entity('score')
+@Entity('scores')
 @ObjectType()
 export class ScoreEntity extends BaseEntity implements Score {
   @Field(() => ID)

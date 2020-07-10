@@ -6,7 +6,8 @@ import {
   GameEntity,
   ScoreEntity,
   TrackEntity,
-  UserEntity
+  UserEntity,
+  VerificationTokenEntity
 } from 'common/entities';
 import { local } from './db/connections/local';
 import { getProductionConnection } from './db/connections/production';
@@ -27,7 +28,13 @@ const connectionOptions = {
   type: 'postgres',
   synchronize: true,
   logging: false,
-  entities: [GameEntity, ScoreEntity, TrackEntity, UserEntity]
+  entities: [
+    GameEntity,
+    ScoreEntity,
+    TrackEntity,
+    UserEntity,
+    VerificationTokenEntity
+  ]
 };
 
 export const createApiServer = async () => {
