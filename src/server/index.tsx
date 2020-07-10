@@ -18,6 +18,7 @@ import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import { createApiServer } from './api-server';
 import register from './api/auth/register';
+import verifyEmail from './api/auth/verify-email';
 import ping from './api/ping';
 import { compression } from './express/compression';
 import { getI18nSsrConfig } from './express/i18n-ssr-config';
@@ -54,6 +55,7 @@ i18n
       // api routes
       .use('/api/ping', ping)
       .post('/api/auth/register', register)
+      .post('/api/auth/verify-email', verifyEmail)
 
       // ui content delivery
       // handle all non-api routes
