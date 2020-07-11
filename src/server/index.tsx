@@ -3,12 +3,15 @@
 import { ServerStyleSheets } from '@material-ui/styles';
 import bodyParser from 'body-parser';
 import express from 'express';
+import session from 'express-session';
 import fs from 'fs';
 import { GraphQLClient } from 'graphql-hooks';
 import memCache from 'graphql-hooks-memcache';
 import { getInitialState } from 'graphql-hooks-ssr';
 import Backend from 'i18next-fs-backend';
 import fetch from 'isomorphic-unfetch';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
 import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -17,12 +20,12 @@ import serialize from 'serialize-javascript';
 import i18n from 'client/i18n';
 import configureStore from 'client/state/store';
 import { createApiServer } from './api-server';
-import register from './api/auth/register';
 import verifyEmail from './api/auth/verify-email';
 import ping from './api/ping';
 import { compression } from './express/compression';
 import { getI18nSsrConfig } from './express/i18n-ssr-config';
 import { ServerApp } from './express/ServerApp';
+import './passport';
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -43,7 +46,22 @@ i18n
     server
       .disable('x-powered-by')
       .use(compression())
+
+      // auth
+      .use(
+        session({
+          secret: process.env.AUTH_SESSION_SECRET,
+          resave: false,
+          saveUninitialized: true,
+          cookie: {
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 4 * 60 * 60 * 1000
+          }
+        })
+      )
+      .use(bodyParser.urlencoded({ extended: true }))
       .use(bodyParser.json())
+      .use(passport.initialize())
 
       // i18n
       .use(i18nextMiddleware.handle(i18n))
@@ -54,8 +72,49 @@ i18n
 
       // api routes
       .use('/api/ping', ping)
-      .post('/api/auth/register', register)
       .post('/api/auth/verify-email', verifyEmail)
+      .post(
+        '/api/auth/register',
+        passport.authenticate('signup', { session: false }),
+        async (req, res, next) => {
+          res.json({
+            message: 'Registration successful',
+            user: req.user
+          });
+        }
+      )
+      .post('/api/auth/login', async (req, res, next) => {
+        passport.authenticate('login', async (err, user, info) => {
+          try {
+            if (err || !user) {
+              const error = new Error('Unexpected error');
+              return next(error);
+            }
+
+            req.login(user, { session: false }, async (error) => {
+              if (error) return next(error);
+
+              // We don't want to store the sensitive information such
+              // as the user password in the token, so we pick only the
+              // email and id.
+              const body = {
+                id: user.id,
+                email: user.email,
+                username: user.username
+              };
+
+              // Sign the JWT token and populate the payload with the user
+              // email and user id.
+              const token = jwt.sign({ user: body }, process.env.JWT_SECRET);
+
+              // Send the token to the user.
+              return res.json({ token });
+            });
+          } catch (err) {
+            return next(err);
+          }
+        })(req, res, next);
+      })
 
       // ui content delivery
       // handle all non-api routes
