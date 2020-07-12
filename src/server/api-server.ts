@@ -9,6 +9,7 @@ import {
   UserEntity,
   VerificationTokenEntity
 } from 'common/entities';
+import { customAuthChecker } from './auth-checker';
 import { local } from './db/connections/local';
 import { getProductionConnection } from './db/connections/production';
 import {
@@ -45,10 +46,16 @@ export const createApiServer = async () => {
       ScoreResolver,
       TrackLeaderboardResolver,
       TrackResolver
-    ]
+    ],
+    authChecker: customAuthChecker
   });
 
-  const apollo = new ApolloServer({ schema });
+  const apollo = new ApolloServer({
+    schema,
+    context: ({ req }) => {
+      return req;
+    }
+  });
 
   try {
     const connection = getConnection();

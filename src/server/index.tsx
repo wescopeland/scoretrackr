@@ -47,7 +47,6 @@ i18n
       .use(compression())
 
       // auth
-      .use(bodyParser.urlencoded({ extended: true }))
       .use(bodyParser.json())
       .use(passport.initialize())
 
@@ -88,7 +87,8 @@ i18n
               const body = {
                 id: user.id,
                 email: user.email,
-                username: user.username
+                username: user.username,
+                role: user.role
               };
 
               // Sign the JWT token and populate the payload with the user
