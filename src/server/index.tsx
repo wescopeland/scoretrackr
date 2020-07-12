@@ -3,7 +3,6 @@
 import { ServerStyleSheets } from '@material-ui/styles';
 import bodyParser from 'body-parser';
 import express from 'express';
-import session from 'express-session';
 import fs from 'fs';
 import { GraphQLClient } from 'graphql-hooks';
 import memCache from 'graphql-hooks-memcache';
@@ -48,17 +47,6 @@ i18n
       .use(compression())
 
       // auth
-      .use(
-        session({
-          secret: process.env.AUTH_SESSION_SECRET,
-          resave: false,
-          saveUninitialized: true,
-          cookie: {
-            secure: process.env.NODE_ENV === 'production',
-            maxAge: 4 * 60 * 60 * 1000
-          }
-        })
-      )
       .use(bodyParser.urlencoded({ extended: true }))
       .use(bodyParser.json())
       .use(passport.initialize())
@@ -105,10 +93,22 @@ i18n
 
               // Sign the JWT token and populate the payload with the user
               // email and user id.
-              const token = jwt.sign({ user: body }, process.env.JWT_SECRET);
+              const expiration =
+                process.env.NODE_ENV === 'production' ? 2.592e6 : 3.154e10;
+
+              const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
+                expiresIn: process.env.NODE_ENV === 'production' ? '1d' : '30d'
+              });
 
               // Send the token to the user.
-              return res.json({ token });
+              return res
+                .status(200)
+                .cookie('token', token, {
+                  expires: new Date(Date.now() + expiration),
+                  secure: process.env.NODE_ENV === 'production',
+                  httpOnly: true
+                })
+                .send();
             });
           } catch (err) {
             return next(err);
