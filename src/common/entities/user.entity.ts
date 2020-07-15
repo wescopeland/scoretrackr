@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm';
 
+import { ResetPasswordTokenEntity } from './reset-password-token.entity';
 import { UserRole } from './user-role.model';
 import { User } from './user.model';
 import { VerificationTokenEntity } from './verification-token.entity';
@@ -46,4 +47,9 @@ export class UserEntity extends BaseEntity implements User {
   @OneToOne((type) => VerificationTokenEntity)
   @JoinColumn()
   verificationToken: VerificationTokenEntity;
+
+  @Field(() => ResetPasswordTokenEntity)
+  @OneToOne((type) => ResetPasswordTokenEntity)
+  @JoinColumn()
+  resetPasswordToken?: ResetPasswordTokenEntity;
 }

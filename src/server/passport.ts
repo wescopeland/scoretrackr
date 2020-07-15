@@ -4,7 +4,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 import { UserEntity, UserRole, VerificationTokenEntity } from 'common/entities';
-import { sendVerificationEmail } from './api/auth/register/send-verification-email';
+import { sendVerificationEmail } from 'common/utils/send-verification-email';
 
 passport.use(
   'signup',
@@ -17,6 +17,10 @@ passport.use(
     async (req, email, password, done) => {
       try {
         const { username } = req.body;
+
+        if (password.length < 10) {
+          throw new Error('Password must be at least 10 characters in length');
+        }
 
         const newUser = new UserEntity();
         newUser.username = username;

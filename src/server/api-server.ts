@@ -9,9 +9,9 @@ import {
   UserEntity,
   VerificationTokenEntity
 } from 'common/entities';
-import { customAuthChecker } from './auth-checker';
 import { local } from './db/connections/local';
 import { getProductionConnection } from './db/connections/production';
+import { customAuthChecker } from './gql-auth-checker';
 import {
   GameResolver,
   RecentSubmissionsResolver,
