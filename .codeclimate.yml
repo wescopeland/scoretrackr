@@ -1,5 +1,3 @@
-## other configuration excluded from example...
 exclude_patterns:
   - '**/*.test.*'
-  - 'razzle.config.js'
   - 'src/__mocks__/**'

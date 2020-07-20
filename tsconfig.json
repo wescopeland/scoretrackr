@@ -1,40 +1,27 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "allowUnreachableCode": false,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
+    "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["es6", "es2015", "es2017", "dom"],
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2019"],
     "module": "esnext",
-    "moduleResolution": "Node",
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "sourceMap": true,
-    "strictNullChecks": false,
-    "strict": true,
-    "pretty": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es2016",
-    "baseUrl": "src",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
+    "strict": false,
+    "target": "es2019",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "types": ["jest"]
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "coverage",
-    "scripts",
-    "webpack",
-    "jest",
-    "razzle.config.js",
-    "cypress"
-  ],
-  "include": ["src"],
-  "types": ["typePatches", "node", "webpack-env"]
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }
