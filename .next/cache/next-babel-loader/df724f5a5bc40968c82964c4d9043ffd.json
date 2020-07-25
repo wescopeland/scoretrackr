@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var gameDrawerWidth = 260;","map":{"version":3,"sources":["/Users/wescopeland/Documents/github/scoretrackr-original/src/models/game-drawer-width.ts"],"names":["gameDrawerWidth"],"mappings":"AAAA,OAAO,IAAMA,eAAe,GAAG,GAAxB","sourcesContent":["export const gameDrawerWidth = 260;\n"]},"metadata":{},"sourceType":"module"}
