@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './LeaderboardTable';","map":{"version":3,"sources":["/Users/wescopeland/Documents/github/scoretrackr-original/src/components/game/Leaderboard/LeaderboardTable/index.ts"],"names":[],"mappings":"AAAA,cAAc,oBAAd","sourcesContent":["export * from './LeaderboardTable';\n"]},"metadata":{},"sourceType":"module"}

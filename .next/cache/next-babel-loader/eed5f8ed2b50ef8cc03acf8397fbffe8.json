@@ -1,1 +1,0 @@
-{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["export interface ActiveGameState {\n  canShowTracksBar: boolean;\n  isDesktopSidenavOpen: boolean;\n  isMobileSidenavOpen: boolean;\n  name?: string;\n  hexColor?: string;\n  selectedTrackId?: string;\n  selectedTrackFriendlyId?: string;\n}\n"]},"metadata":{},"sourceType":"script"}
