@@ -1,12 +1,6 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Score } from '@prisma/client';
 
-import { ScoreEntity } from '../entities';
-
-@ObjectType()
-export class SubmissionBlob {
-  @Field(() => String)
+export interface SubmissionBlob {
   date: string;
-
-  @Field(() => [ScoreEntity])
-  submissions: Partial<ScoreEntity>[];
+  submissions: Partial<Score>[];
 }

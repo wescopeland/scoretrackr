@@ -10,8 +10,7 @@
     "build": "next build",
     "start": "next start",
     "start:api-server": "ts-node --project tsconfig.api-server.json -r tsconfig-paths/register src/api-server/index.ts",
-    "db:seed": "ts-node --project tsconfig.api-server.json node_modules/.bin/fixtures -cn default -c ./ormconfig.js ./src/api-server/db/fixtures",
-    "db:drop": "NODE_PATH=./src ts-node --project tsconfig.api-server.json -r tsconfig-paths/register src/api-server/db/drop-database.ts",
+    "prisma": "prisma",
     "format": "prettier --write . '**/*.{json,md,ts,tsx}'",
     "format:write": "prettier --write . '**/*.{json,md,ts,tsx}'",
     "format:check": "prettier --check . '**/*.{json,md,ts,tsx}'",
@@ -21,6 +20,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@prisma/client": "^2.3.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@sendgrid/mail": "^7.2.1",
     "@welldone-software/why-did-you-render": "^4.2.6",
@@ -45,6 +45,7 @@
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
+    "@prisma/cli": "^2.3.0",
     "@testing-library/dom": "^7.21.0",
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",

@@ -1,0 +1,194 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Game",
+      "field": "scores",
+      "type": "Score",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Game",
+      "field": "tracks",
+      "type": "Track",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Game",
+      "field": "Score"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Game",
+      "field": "Track"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Track",
+      "field": "game",
+      "type": "Game",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Track",
+          "field": "game"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Track",
+          "field": "game"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[gameId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Track",
+          "field": "game"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Track",
+      "field": "scores",
+      "type": "Score",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Track",
+      "field": "Game"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Track",
+      "field": "Score"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Score",
+      "field": "game",
+      "type": "Game",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "game"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "game"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[gameId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "game"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Score",
+      "field": "track",
+      "type": "Track",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "track"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "track"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[trackId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Score",
+          "field": "track"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Score",
+      "field": "Game"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Score",
+      "field": "Track"
+    }
+  ]
+}

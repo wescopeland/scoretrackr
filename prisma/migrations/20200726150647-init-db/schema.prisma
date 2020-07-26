@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Game {
+  id    String @id
+  name  String
+  color String
+}
+
+model Track {
+  id         Int    @default(autoincrement()) @id
+  name       String
+  friendlyId String
+}
+
+model Score {
+  id          Int      @default(autoincrement()) @id
+  finalScore  Int
+  playerAlias String
+  platform    String
+  submittedAt DateTime
+}

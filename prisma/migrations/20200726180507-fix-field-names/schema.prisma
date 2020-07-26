@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+model Game {
+  id     String  @id
+  name   String
+  color  String
+  scores Score[]
+  tracks Track[]
+}
+
+model Score {
+  id          String   @id @default(uuid())
+  finalScore  Int
+  playerAlias String
+  platform    String
+  submittedAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  gameId      String
+  trackId     String
+  game        Game     @relation(fields: [gameId], references: [id])
+  track       Track    @relation(fields: [trackId], references: [id])
+}
+
+model Track {
+  id         String   @id @default(uuid())
+  name       String
+  friendlyId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  gameId     String
+  game       Game     @relation(fields: [gameId], references: [id])
+  scores     Score[]
+}

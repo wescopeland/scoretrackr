@@ -1,0 +1,6 @@
+# Prisma Migrate lockfile v1
+
+20200726150647-init-db
+20200726152119-add-initial-relations
+20200726175047-use-uuid
+20200726180507-fix-field-names
