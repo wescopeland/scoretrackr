@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { format, fromUnixTime } from 'date-fns';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 import { SubmissionBlob } from '~/models/submission-blob.model';
 

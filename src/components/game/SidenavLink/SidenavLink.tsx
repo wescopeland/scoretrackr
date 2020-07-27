@@ -1,6 +1,6 @@
 import { ListItem, ListItemText } from '@material-ui/core';
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 interface SidenavLinkProps {
   label: string;

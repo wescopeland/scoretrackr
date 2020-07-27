@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import App, { AppProps } from 'next/app';
 import Head from 'next/head';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import React, { useEffect } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import { appWithTranslation } from '~/i18n';
-import theme from '~/theme';
 import configureStore from '~/state/store';
+import theme from '~/theme';
 
 const store = configureStore();
 

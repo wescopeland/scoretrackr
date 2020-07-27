@@ -1,9 +1,9 @@
-import { Toolbar, makeStyles, Theme } from '@material-ui/core';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles, Theme, Toolbar } from '@material-ui/core';
+import { GameGetPayload } from '@prisma/client';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
-import { GameGetPayload } from '@prisma/client';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 
 import {
@@ -12,8 +12,8 @@ import {
   GameTracksBar,
   LeaderboardOutlet
 } from '~/components/game';
-import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 import { gameDrawerWidth } from '~/models/game-drawer-width';
+import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 
 interface StyleProps {
   isDesktopSidenavOpen: boolean;

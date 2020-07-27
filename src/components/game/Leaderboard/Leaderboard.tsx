@@ -2,8 +2,8 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectActiveGameColor } from '~/state/active-game';
 import { Score } from '~/entities';
+import { selectActiveGameColor } from '~/state/active-game';
 import { LeaderboardCard } from './LeaderboardCard';
 import { LeaderboardTable } from './LeaderboardTable';
 

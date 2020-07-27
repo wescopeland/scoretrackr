@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { hash, argon2id } from 'argon2';
+import { argon2id, hash } from 'argon2';
 import { randomBytes } from 'crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 

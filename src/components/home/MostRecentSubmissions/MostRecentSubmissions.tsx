@@ -1,8 +1,8 @@
 import { Box, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { useTranslation } from '~/i18n';
 import { EmptyState } from '~/components/shared/EmptyState';
+import { useTranslation } from '~/i18n';
 import { SubmissionBlob } from '~/models/submission-blob.model';
 import { getDateDistanceText } from '~/utils/get-date-distance-text';
 import { RecentSubmission } from '../RecentSubmission';

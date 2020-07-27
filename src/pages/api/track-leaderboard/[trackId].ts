@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { filterScoresByPlayerTop } from '~/utils/filter-scores-by-player-top';
 import { getScorePosition } from '~/utils/api/get-score-position';
+import { filterScoresByPlayerTop } from '~/utils/filter-scores-by-player-top';
 
 const prisma = new PrismaClient();
 

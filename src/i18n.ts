@@ -1,6 +1,6 @@
-import path from 'path';
 import NextI18Next from 'next-i18next';
 import getConfig from 'next/config';
+import path from 'path';
 
 const { localeSubpaths } = getConfig().publicRuntimeConfig;
 

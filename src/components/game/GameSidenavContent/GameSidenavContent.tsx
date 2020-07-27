@@ -1,7 +1,7 @@
 import { Divider, List, ListSubheader } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
 
 import { SidenavLink } from '../SidenavLink';
 import { useStyles } from './GameSidenavContent.styles';

@@ -1,10 +1,10 @@
 import { Box, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { useTranslation } from '~/i18n';
 import { AppBar } from '~/components/home/AppBar';
 import { Header } from '~/components/home/Header';
 import { MostRecentSubmissions } from '~/components/home/MostRecentSubmissions';
+import { useTranslation } from '~/i18n';
 import { SubmissionBlob } from '~/models/submission-blob.model';
 
 const fetcher = (url) =>

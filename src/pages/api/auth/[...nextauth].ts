@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import { argon2id, verify } from 'argon2';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { verify, argon2id } from 'argon2';
 
 const prisma = new PrismaClient();
 

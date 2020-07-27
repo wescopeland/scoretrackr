@@ -1,10 +1,10 @@
 import { Tab, Tabs } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 
-import { activeGameActions, selectCurrentTrack } from '~/state/active-game';
 import { Track } from '~/entities';
+import { activeGameActions, selectCurrentTrack } from '~/state/active-game';
 import { useStyles } from './TrackTabs.styles';
 
 interface TrackTabsProps {

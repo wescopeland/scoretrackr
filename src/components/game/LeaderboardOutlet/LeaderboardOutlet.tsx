@@ -1,8 +1,8 @@
+import { Score } from '@prisma/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
-import { Score } from '@prisma/client';
 
 import { EmptyState } from '~/components/shared/EmptyState';
 import { selectCurrentTrack } from '~/state/active-game';

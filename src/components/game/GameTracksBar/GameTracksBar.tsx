@@ -3,8 +3,8 @@ import { Skeleton } from '@material-ui/lab';
 import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 import { Track } from '~/entities';
+import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
 import { TrackTabs } from '../TrackTabs';
 import { useStyles } from './GameTracksBar.styles';
