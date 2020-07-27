@@ -1,6 +1,5 @@
 import { makeStyles, Theme, Toolbar } from '@material-ui/core';
 import { GameGetPayload } from '@prisma/client';
-import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,38 +42,17 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
 }));
 
 const fetcher = (url) =>
-  fetch(
-    `${
-      process.env.NODE_ENV === 'development'
-        ? 'localhost:3000'
-        : process.env.BASE_URL
-    }/${url}`
-  ).then(
+  fetch(url).then(
     (res) =>
       (res.json() as unknown) as GameGetPayload<{ include: { tracks: true } }>
   );
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { friendlyId } = context.params;
-
-  const data = await fetcher(`api/game/${friendlyId}`);
-  return {
-    props: { initialData: data }
-  };
-}
-
-interface GamePageProps {
-  initialData: GameGetPayload<{ include: { tracks: true } }>;
-}
-
-const GamePage = ({ initialData }: GamePageProps) => {
+const GamePage = () => {
   const router = useRouter();
   const { friendlyId } = router.query;
   const dispatch = useDispatch();
 
-  const { data, error } = useSWR(`/api/game/${friendlyId}`, fetcher, {
-    initialData
-  });
+  const { data, error } = useSWR(`/api/game/${friendlyId}`, fetcher);
 
   useEffect(() => {
     if (data) {
