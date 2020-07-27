@@ -1,14 +1,14 @@
 import { CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { Score } from '~/entities';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { formatNumberToOrdinal } from '~/utils/format-number-to-ordinal';
 import { formatToReadableDate } from '~/utils/format-to-readable-date';
 import { StyledCard } from './LeaderboardCard.styles';
 
 interface LeaderboardCardProps {
   activeGameColor: string;
-  currentScore: Score;
+  currentScore: ScoreWithPosition;
 }
 
 export const LeaderboardCard = ({

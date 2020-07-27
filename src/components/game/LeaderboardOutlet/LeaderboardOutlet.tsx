@@ -1,15 +1,15 @@
-import { Score } from '@prisma/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 
 import { EmptyState } from '~/components/shared/EmptyState';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { selectCurrentTrack } from '~/state/active-game';
 import { Leaderboard } from '../Leaderboard';
 
 const fetcher = (url) =>
-  fetch(url).then((res) => (res.json() as unknown) as Score[]);
+  fetch(url).then((res) => (res.json() as unknown) as ScoreWithPosition[]);
 
 export const LeaderboardOutlet = () => {
   const { t } = useTranslation('game');

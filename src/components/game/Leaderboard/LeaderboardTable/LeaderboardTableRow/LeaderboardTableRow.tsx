@@ -1,7 +1,7 @@
 import { TableCell, TableRow, useTheme } from '@material-ui/core';
 import React from 'react';
 
-import { Score } from '~/entities';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { formatToReadableDate } from '~/utils/format-to-readable-date';
 import { useStyles as useRootStyles } from '../LeaderboardTable.styles';
 import { StyledTableRow, useStyles } from './LeaderboardTableRow.styles';
@@ -9,7 +9,7 @@ import { StyledTableRow, useStyles } from './LeaderboardTableRow.styles';
 interface LeaderboardTableRowProps {
   activeGameColor: string;
   canShowRowsWithColoredBackgrounds: boolean;
-  currentScore: Score;
+  currentScore: ScoreWithPosition;
   firstPlaceScore: number;
   tenthPlaceScore?: number;
 }

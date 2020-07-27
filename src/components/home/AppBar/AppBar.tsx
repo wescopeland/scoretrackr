@@ -1,4 +1,4 @@
-import { AppBar as MuiAppBar, Button, Toolbar } from '@material-ui/core';
+import { AppBar as MuiAppBar, Toolbar } from '@material-ui/core';
 import React from 'react';
 
 import { useTranslation } from '~/i18n';

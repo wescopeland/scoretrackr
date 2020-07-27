@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { format, fromUnixTime } from 'date-fns';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import { SubmissionBlobScore } from '~/models/submission-blob-score.model';
 import { SubmissionBlob } from '~/models/submission-blob.model';
 
 const prisma = new PrismaClient();
@@ -49,7 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           // Fall into this case if we're already building a
           // submission blob for this date.
 
-          currentSubmissionBlob.submissions.push(score);
+          currentSubmissionBlob.submissions.push(score as SubmissionBlobScore);
         } else {
           // Fall into this case if we're not building a submission blob for
           // this date, but we still have room to do so.
@@ -64,7 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
           // Start building the new blob.
           currentSubmissionBlob.date = parsedDate.toISOString();
-          currentSubmissionBlob.submissions.push(score);
+          currentSubmissionBlob.submissions.push(score as SubmissionBlobScore);
         }
       });
 

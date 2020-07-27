@@ -3,7 +3,6 @@ import {
   activeGameActions,
   initialState
 } from './active-game.slice';
-import { ActiveGameState } from './models';
 
 describe('Slice: activeGame', () => {
   it('exists', () => {

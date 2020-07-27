@@ -1,4 +1,4 @@
-import { Divider, List, ListSubheader } from '@material-ui/core';
+import { List, ListSubheader } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';

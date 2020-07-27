@@ -1,9 +1,10 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import React, { useMemo } from 'react';
+import { Track } from '@prisma/client';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Track } from '~/entities';
+import { TrackWithSubmissionCount } from '~/models/track-with-submission-count.model';
 import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
 import { TrackTabs } from '../TrackTabs';
@@ -37,7 +38,9 @@ export const GameTracksBar = ({
     dispatch(activeGameActions.toggleIsMobileSidenavOpen());
   };
 
-  const sortedTracks = tracks ? sortTracks(tracks) : null;
+  const sortedTracks = tracks
+    ? sortTracks(tracks as TrackWithSubmissionCount[])
+    : null;
 
   return (
     <AppBar className={appBar} position="relative">

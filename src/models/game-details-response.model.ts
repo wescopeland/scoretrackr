@@ -1,4 +1,4 @@
-import { Track } from '~/entities';
+import { Track } from '@prisma/client';
 
 export interface GameDetailsResponse {
   color: string;

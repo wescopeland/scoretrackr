@@ -10,7 +10,7 @@ import {
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Score } from '~/entities';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { useStyles } from './LeaderboardTable.styles';
 import { LeaderboardTableRow } from './LeaderboardTableRow';
 import { SpacerRow } from './SpacerRow';
@@ -18,7 +18,7 @@ import { SpacerRow } from './SpacerRow';
 interface LeaderboardTableProps {
   activeGameColor: string;
   canShowColors: boolean;
-  scores: Score[];
+  scores: ScoreWithPosition[];
 }
 
 export const LeaderboardTable = ({

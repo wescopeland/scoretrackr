@@ -1,6 +1,6 @@
+import { Game, Track } from '@prisma/client';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Game, Track } from '~/entities';
 import { createInitialState } from '~/utils/create-initial-state';
 import { ActiveGameState } from './models';
 

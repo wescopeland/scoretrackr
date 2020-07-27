@@ -2,13 +2,13 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Score } from '~/entities';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { selectActiveGameColor } from '~/state/active-game';
 import { LeaderboardCard } from './LeaderboardCard';
 import { LeaderboardTable } from './LeaderboardTable';
 
 interface LeaderboardProps {
-  scores: Score[];
+  scores: ScoreWithPosition[];
 }
 
 export const Leaderboard = ({ scores }: LeaderboardProps) => {
