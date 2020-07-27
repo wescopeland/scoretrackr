@@ -43,7 +43,13 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
 }));
 
 const fetcher = (url) =>
-  fetch(url).then(
+  fetch(
+    `${
+      process.env.NODE_ENV === 'development'
+        ? 'localhost:3000'
+        : process.env.BASE_URL
+    }/${url}`
+  ).then(
     (res) =>
       (res.json() as unknown) as GameGetPayload<{ include: { tracks: true } }>
   );
@@ -51,7 +57,7 @@ const fetcher = (url) =>
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { friendlyId } = context.params;
 
-  const data = await fetcher(`http://localhost:3000/api/game/${friendlyId}`);
+  const data = await fetcher(`api/game/${friendlyId}`);
   return {
     props: { initialData: data }
   };

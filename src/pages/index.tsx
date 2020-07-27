@@ -8,10 +8,16 @@ import { useTranslation } from '~/i18n';
 import { SubmissionBlob } from '~/models/submission-blob.model';
 
 const fetcher = (url) =>
-  fetch(url).then((res) => (res.json() as unknown) as SubmissionBlob[]);
+  fetch(
+    `${
+      process.env.NODE_ENV === 'development'
+        ? 'localhost:3000'
+        : process.env.BASE_URL
+    }/${url}`
+  ).then((res) => (res.json() as unknown) as SubmissionBlob[]);
 
 export async function getStaticProps() {
-  const data = await fetcher('http://localhost:3000/api/recent-submissions');
+  const data = await fetcher('api/recent-submissions');
   return {
     props: { data },
 
