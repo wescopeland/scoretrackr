@@ -4,3 +4,5 @@
 20200726152119-add-initial-relations
 20200726175047-use-uuid
 20200726180507-fix-field-names
+20200726190839-add-user-auth-models
+20200726192522-update-user-fields

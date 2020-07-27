@@ -25,6 +25,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     default:
       res.setHeader('Allow', ['GET']);
-      return res.status(405).end(`Method not allowed.`);
+      return res.status(405).end('Method not allowed.');
   }
 };
