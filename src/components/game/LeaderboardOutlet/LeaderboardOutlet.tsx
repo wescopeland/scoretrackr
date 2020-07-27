@@ -1,35 +1,33 @@
-import { useQuery } from 'graphql-hooks';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import useSWR from 'swr';
+import { Score } from '@prisma/client';
 
 import { EmptyState } from '~/components/shared/EmptyState';
 import { selectCurrentTrack } from '~/state/active-game';
-import { getTrackLeaderboard } from '~/queries/get-track-leaderboard.query';
 import { Leaderboard } from '../Leaderboard';
-import { Score } from '~/entities';
+
+const fetcher = (url) =>
+  fetch(url).then((res) => (res.json() as unknown) as Score[]);
 
 export const LeaderboardOutlet = () => {
+  const { t } = useTranslation('game');
   const currentTrack = useSelector(selectCurrentTrack);
 
-  const { loading, error, data } = useQuery<{
-    trackLeaderboard: Score[];
-  }>(getTrackLeaderboard, {
-    variables: {
-      trackId: currentTrack.id
-    }
-  });
-
-  const { t } = useTranslation('game');
+  const { data, error } = useSWR(
+    `/api/track-leaderboard/${currentTrack.id}`,
+    fetcher
+  );
 
   return (
     <div className="container">
-      {loading ? (
+      {!data && !error ? (
         <p>loading</p>
-      ) : data.trackLeaderboard.length ? (
+      ) : data.length ? (
         <div className="row mt-5">
           <div className="col">
-            <Leaderboard scores={data.trackLeaderboard} />
+            <Leaderboard scores={data} />
           </div>
         </div>
       ) : (

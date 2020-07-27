@@ -41,7 +41,19 @@ const myApp = ({ Component, pageProps }: AppProps) => {
 
 myApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps };
+  const defaultProps = appContext.Component.defaultProps;
+
+  // See: https://github.com/isaachinman/next-i18next/issues/652#issuecomment-644618517
+  // This is to enable support for `getServerSideProps()`.
+  return {
+    ...appProps,
+    pageProps: {
+      namespacesRequired: [
+        ...(appProps.pageProps.namespacesRequired || []),
+        ...(defaultProps?.i18nNamespaces || [])
+      ]
+    }
+  };
 };
 
 export default appWithTranslation(myApp);

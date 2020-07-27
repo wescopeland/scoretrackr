@@ -5,8 +5,26 @@ import { useTranslation } from '~/i18n';
 import { AppBar } from '~/components/home/AppBar';
 import { Header } from '~/components/home/Header';
 import { MostRecentSubmissions } from '~/components/home/MostRecentSubmissions';
+import { SubmissionBlob } from '~/models/submission-blob.model';
 
-const HomePage = () => {
+const fetcher = (url) =>
+  fetch(url).then((res) => (res.json() as unknown) as SubmissionBlob[]);
+
+export async function getStaticProps() {
+  const data = await fetcher('http://localhost:3000/api/recent-submissions');
+  return {
+    props: { data },
+
+    // Regenerate the page once every 30 minutes.
+    revalidate: 30 * 60
+  };
+}
+
+interface HomePageProps {
+  data: SubmissionBlob[];
+}
+
+const HomePage = ({ data }) => {
   const { t } = useTranslation('common');
 
   return (
@@ -24,7 +42,7 @@ const HomePage = () => {
         <Box marginTop={5}>
           <div className="row">
             <div className="col">
-              <MostRecentSubmissions />
+              <MostRecentSubmissions submissions={data} />
             </div>
           </div>
         </Box>
@@ -33,8 +51,12 @@ const HomePage = () => {
   );
 };
 
-HomePage.getInitialProps = async () => ({
-  namespacesRequired: ['common']
-});
+HomePage.defaultProps = {
+  i18nNamespaces: ['common']
+};
+
+// HomePage.getInitialProps = async () => ({
+//   namespacesRequired: ['common']
+// });
 
 export default HomePage;

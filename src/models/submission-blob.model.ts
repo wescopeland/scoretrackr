@@ -1,6 +1,8 @@
-import { Score } from '@prisma/client';
+import { ScoreGetPayload } from '@prisma/client';
 
 export interface SubmissionBlob {
   date: string;
-  submissions: Partial<Score>[];
+  submissions: ScoreGetPayload<{
+    include: { game: true; track: true; position: true };
+  }>[];
 }

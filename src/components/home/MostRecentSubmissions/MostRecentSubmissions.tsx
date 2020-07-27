@@ -1,32 +1,28 @@
 import { Box, Typography } from '@material-ui/core';
-import { useQuery } from 'graphql-hooks';
 import React from 'react';
 
 import { useTranslation } from '~/i18n';
 import { EmptyState } from '~/components/shared/EmptyState';
 import { SubmissionBlob } from '~/models/submission-blob.model';
-import { getMostRecentSubmissionsQuery } from '~/queries/get-most-recent-submissions.query';
 import { getDateDistanceText } from '~/utils/get-date-distance-text';
 import { RecentSubmission } from '../RecentSubmission';
 import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
-export const MostRecentSubmissions = () => {
-  const { t } = useTranslation('common');
+interface MostRecentSubmissionsProps {
+  submissions: SubmissionBlob[];
+}
 
-  const { loading, error, data } = useQuery<{
-    recentSubmissions: SubmissionBlob[];
-  }>(getMostRecentSubmissionsQuery, {
-    variables: {
-      limitToDays: 4
-    }
-  });
+export const MostRecentSubmissions = ({
+  submissions
+}: MostRecentSubmissionsProps) => {
+  const { t } = useTranslation('common');
 
   return (
     <>
-      {loading ? (
+      {!submissions ? (
         <RecentSubmissionLoadingSkeleton />
-      ) : data.recentSubmissions.length ? (
-        data.recentSubmissions.map((recentSubmission, index) => (
+      ) : submissions.length ? (
+        submissions.map((recentSubmission, index) => (
           <div key={recentSubmission.date}>
             <Typography
               variant="subtitle1"

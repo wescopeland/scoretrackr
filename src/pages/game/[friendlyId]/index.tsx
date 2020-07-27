@@ -1,8 +1,10 @@
 import { Toolbar, makeStyles, Theme } from '@material-ui/core';
-import { useQuery } from 'graphql-hooks';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
+import { GameGetPayload } from '@prisma/client';
+import useSWR from 'swr';
 
 import {
   GameNavBar,
@@ -11,8 +13,6 @@ import {
   LeaderboardOutlet
 } from '~/components/game';
 import { activeGameActions, selectActiveGameState } from '~/state/active-game';
-import { getActiveGameDetails } from '~/queries/get-active-game-details.query';
-import { Game } from '~/entities';
 import { gameDrawerWidth } from '~/models/game-drawer-width';
 
 interface StyleProps {
@@ -42,26 +42,40 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   }
 }));
 
-const GamePage = () => {
-  const router = useRouter();
-  const { friendlyId } = router.query;
-
-  const dispatch = useDispatch();
-  const { loading, error, data } = useQuery<{ game: Game }>(
-    getActiveGameDetails,
-    {
-      variables: {
-        id: friendlyId
-      }
-    }
+const fetcher = (url) =>
+  fetch(url).then(
+    (res) =>
+      (res.json() as unknown) as GameGetPayload<{ include: { tracks: true } }>
   );
 
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { friendlyId } = context.params;
+
+  const data = await fetcher(`http://localhost:3000/api/game/${friendlyId}`);
+  return {
+    props: { initialData: data }
+  };
+}
+
+interface GamePageProps {
+  initialData: GameGetPayload<{ include: { tracks: true } }>;
+}
+
+const GamePage = ({ initialData }: GamePageProps) => {
+  const router = useRouter();
+  const { friendlyId } = router.query;
+  const dispatch = useDispatch();
+
+  const { data, error } = useSWR(`/api/game/${friendlyId}`, fetcher, {
+    initialData
+  });
+
   useEffect(() => {
-    if (data?.game) {
+    if (data) {
       dispatch(
         activeGameActions.setGameDetails({
-          color: data.game.color,
-          name: data.game.name
+          color: data.color,
+          name: data.name
         })
       );
     }
@@ -75,9 +89,9 @@ const GamePage = () => {
   return (
     <div className="d-flex">
       <GameNavBar
-        gameColor={data?.game.color}
-        gameName={data?.game.name}
-        isLoading={loading}
+        gameColor={data?.color}
+        gameName={data?.name}
+        isLoading={!data}
       />
 
       <GameSidenav />
@@ -85,9 +99,9 @@ const GamePage = () => {
       <main className={content}>
         <Toolbar className={toolBar} />
         <GameTracksBar
-          gameColor={data?.game.color}
-          tracks={data?.game.tracks}
-          isLoading={loading}
+          gameColor={data?.color}
+          tracks={data?.tracks}
+          isLoading={!data}
         />
 
         {activeGameState.selectedTrackId && <LeaderboardOutlet />}
@@ -96,8 +110,8 @@ const GamePage = () => {
   );
 };
 
-GamePage.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'game']
-});
+GamePage.defaultProps = {
+  i18nNamespaces: ['common', 'game']
+};
 
 export default GamePage;
