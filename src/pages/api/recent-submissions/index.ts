@@ -4,6 +4,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import { SubmissionBlobScore } from '~/models/submission-blob-score.model';
 import { SubmissionBlob } from '~/models/submission-blob.model';
+import { getScorePosition } from '~/utils/api/get-score-position';
+import { filterScoresByPlayerTop } from '~/utils/filter-scores-by-player-top';
 
 const prisma = new PrismaClient();
 
@@ -27,6 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           },
           track: {
             select: {
+              id: true,
               name: true,
               friendlyId: true
             }
@@ -42,9 +45,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         submissions: []
       };
 
-      scores.forEach((score) => {
+      for (const score of scores as SubmissionBlobScore[]) {
         const parsedDate = fromUnixTime(score.submittedAt.getTime() / 1000);
         const formattedSubmittedAtDate = format(parsedDate, 'yyyy-MM-dd');
+
+        const trackScores = await prisma.score.findMany({
+          where: { track: score.track }
+        });
+
+        const onlyTopTrackScores = filterScoresByPlayerTop(trackScores);
+        score.position = getScorePosition(score, onlyTopTrackScores);
 
         if (datesTracked.includes(formattedSubmittedAtDate)) {
           // Fall into this case if we're already building a
@@ -67,7 +77,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           currentSubmissionBlob.date = parsedDate.toISOString();
           currentSubmissionBlob.submissions.push(score as SubmissionBlobScore);
         }
-      });
+      }
 
       // We just finished building the last submission blob.
       // Make sure it ends up in the response payload.
