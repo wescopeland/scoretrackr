@@ -1,14 +1,14 @@
 import { Tab, Tabs } from '@material-ui/core';
-import { Track } from '@prisma/client';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { GameDetailsTrack } from '~/models/game-details-track.model';
 import { activeGameActions, selectCurrentTrack } from '~/state/active-game';
 import { useStyles } from './TrackTabs.styles';
 
 interface TrackTabsProps {
-  tracks: Track[];
+  tracks: GameDetailsTrack[];
   gameColor: string;
 }
 

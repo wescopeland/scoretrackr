@@ -4,55 +4,49 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 
-import configureStore from 'client/state/store';
-import { Track } from 'common/entities';
+import { GameDetailsTrack } from '~/models/game-details-track.model';
+import configureStore from '~/state/store';
 import { TrackTabs } from './TrackTabs';
 
-let mockUseLocationValue: any;
+Object.defineProperty(global, 'location', {
+  writable: true
+});
 
 // Disable the global mock found in __mocks__.
 jest.unmock('react-redux');
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useLocation: () => mockUseLocationValue,
-  useHistory: () => ({
-    push: jest.fn()
-  })
-}));
-
-const mockTrackOne: Track = {
+const mockTrackOne: GameDetailsTrack = {
   id: 'mockId1',
   name: 'Track One',
   friendlyId: 'friendlyTrackOne',
-  submissionCount: 5,
-  game: null
+  submissionCount: 5
 };
 
-const mockTrackTwo: Track = {
+const mockTrackTwo: GameDetailsTrack = {
   id: 'mockId2',
   name: 'Track Two',
   friendlyId: 'friendlyTrackTwo',
-  submissionCount: 1,
-  game: null
+  submissionCount: 1
 };
 
 describe('Component: TrackTabs', () => {
   beforeEach(() => {
-    mockUseLocationValue = undefined;
+    (global as any).location = {
+      search: undefined
+    };
   });
 
   afterEach(cleanup);
 
   it('renders without crashing', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: ''
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne];
+    const mockTracks = [mockTrackOne];
 
     render(
       <ReduxProvider store={store}>
@@ -66,13 +60,13 @@ describe('Component: TrackTabs', () => {
 
   it('displays an input list of tracks as tabs', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: ''
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -88,13 +82,13 @@ describe('Component: TrackTabs', () => {
 
   it('sets the first tab in the list to be selected if there is no given initialTrackId', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: ''
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -110,13 +104,13 @@ describe('Component: TrackTabs', () => {
 
   it('sets a specific track to be initially selected if given that track id as a prop', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: '?track=friendlyTrackTwo'
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -132,13 +126,13 @@ describe('Component: TrackTabs', () => {
 
   it('selects the first tab if a track id is given but not found', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: '?track=trackASDF'
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>
@@ -154,13 +148,13 @@ describe('Component: TrackTabs', () => {
 
   it('navigates to the track clicked on by the user', () => {
     // Arrange
-    mockUseLocationValue = {
+    (global as any).location = {
       search: ''
     };
 
     const store = configureStore();
 
-    const mockTracks: Track[] = [mockTrackOne, mockTrackTwo];
+    const mockTracks = [mockTrackOne, mockTrackTwo];
 
     render(
       <ReduxProvider store={store}>

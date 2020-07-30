@@ -1,7 +1,8 @@
-import { Track } from '@prisma/client';
+import { GameDetailsTrack } from './game-details-track.model';
 
 export interface GameDetailsResponse {
+  id: string;
   color: string;
   name: string;
-  tracks: Track[];
+  tracks: GameDetailsTrack[];
 }

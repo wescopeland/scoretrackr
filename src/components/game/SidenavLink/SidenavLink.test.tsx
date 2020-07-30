@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import { SidenavLink } from './SidenavLink';
 
@@ -10,11 +9,7 @@ describe('Component: SidenavLink', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    const { container } = render(
-      <BrowserRouter>
-        <SidenavLink label="Link" to="/" />
-      </BrowserRouter>
-    );
+    const { container } = render(<SidenavLink label="Link" to="/" />);
 
     // Assert
     expect(container).toBeTruthy();
@@ -22,11 +17,7 @@ describe('Component: SidenavLink', () => {
 
   it('displays the given text', () => {
     // Arrange
-    render(
-      <BrowserRouter>
-        <SidenavLink label="Link" to="/" />
-      </BrowserRouter>
-    );
+    render(<SidenavLink label="Link" to="/" />);
 
     // Assert
     expect(screen.getByText('Link')).toBeVisible();

@@ -9,7 +9,7 @@ import { RecentSubmission } from '../RecentSubmission';
 import { RecentSubmissionLoadingSkeleton } from '../RecentSubmissionLoadingSkeleton';
 
 interface MostRecentSubmissionsProps {
-  submissions: SubmissionBlob[];
+  submissions?: SubmissionBlob[];
 }
 
 export const MostRecentSubmissions = ({
@@ -19,7 +19,7 @@ export const MostRecentSubmissions = ({
 
   return (
     <>
-      {!submissions ? (
+      {submissions === undefined ? (
         <RecentSubmissionLoadingSkeleton />
       ) : submissions.length ? (
         submissions.map((recentSubmission, index) => (

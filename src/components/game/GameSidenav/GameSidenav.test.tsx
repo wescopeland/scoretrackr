@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import { selectActiveGameState } from 'client/state/active-game';
+import { selectActiveGameState } from '~/state/active-game';
 import { GameSidenav } from './GameSidenav';
 
 // Due to the activeClassName prop always throwing an
@@ -11,9 +11,11 @@ import { GameSidenav } from './GameSidenav';
 console.error = jest.fn();
 
 // There are some Link components in the sidenav that rely on route params.
-jest.mock('react-router-dom', () => ({
-  useParams: () => ({
-    friendlyId: 'mockFriendlyId'
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: {
+      friendlyId: 'mockFriendlyId'
+    }
   })
 }));
 

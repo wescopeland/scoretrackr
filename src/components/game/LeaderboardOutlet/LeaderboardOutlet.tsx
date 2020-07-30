@@ -22,7 +22,7 @@ export const LeaderboardOutlet = () => {
 
   return (
     <div className="container">
-      {!data && !error ? (
+      {data === undefined && !error ? (
         <p>loading</p>
       ) : data.length ? (
         <div className="row mt-5">

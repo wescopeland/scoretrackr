@@ -8,12 +8,14 @@ import { MostRecentSubmissions } from '~/components/home/MostRecentSubmissions';
 import { useTranslation } from '~/i18n';
 import { SubmissionBlob } from '~/models/submission-blob.model';
 
-const fetcher = (url) =>
-  fetch(url).then((res) => (res.json() as unknown) as SubmissionBlob[]);
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const HomePage = () => {
   const { t } = useTranslation('common');
-  const { data, error } = useSWR('/api/recent-submissions', fetcher);
+  const { data, error } = useSWR<SubmissionBlob[], any>(
+    '/api/recent-submissions',
+    fetcher
+  );
 
   return (
     <>

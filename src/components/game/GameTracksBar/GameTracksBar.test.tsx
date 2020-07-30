@@ -3,45 +3,39 @@ import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import { selectActiveGameState } from 'client/state/active-game';
-import { TrackEntity } from 'common/entities';
+import { GameDetailsTrack } from '~/models/game-details-track.model';
+import { selectActiveGameState } from '~/state/active-game';
 import { GameTracksBar } from './GameTracksBar';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: jest.fn()
-  }),
-  useLocation: () => ({
-    search: ''
-  })
-}));
+const trackOne: GameDetailsTrack = {
+  id: 'trackOne',
+  name: 'Unpopular Track',
+  friendlyId: 'friendlyTrackOne',
+  submissionCount: 1
+};
 
-const trackOne = new TrackEntity();
-trackOne.id = 'trackOne';
-trackOne.name = 'Unpopular Track';
-trackOne.friendlyId = 'friendlyTrackOne';
-trackOne.submissionCount = 1;
+const trackTwo: GameDetailsTrack = {
+  id: 'trackTwo',
+  name: 'Very Popular Track',
+  friendlyId: 'friendlyTrackTwo',
+  submissionCount: 999
+};
 
-const trackTwo = new TrackEntity();
-trackTwo.id = 'trackTwo';
-trackTwo.name = 'Very Popular Track';
-trackTwo.friendlyId = 'friendlyTrackTwo';
-trackTwo.submissionCount = 999;
+const trackThree: GameDetailsTrack = {
+  id: 'trackThree',
+  name: 'ZZZ Unpopular Track',
+  friendlyId: 'friendlyTrackThree',
+  submissionCount: 1
+};
 
-const trackThree = new TrackEntity();
-trackThree.id = 'trackThree';
-trackThree.name = 'ZZZ Unpopular Track';
-trackThree.friendlyId = 'friendlyTrackThree';
-trackThree.submissionCount = 1;
+const trackFour: GameDetailsTrack = {
+  id: 'trackFour',
+  name: 'AAA Unpopular Track',
+  friendlyId: 'friendlyTrackFour',
+  submissionCount: 1
+};
 
-const trackFour = new TrackEntity();
-trackFour.id = 'trackFour';
-trackFour.name = 'AAA Unpopular Track';
-trackFour.friendlyId = 'friendlyTrackFour';
-trackFour.submissionCount = 1;
-
-const mockTracks: TrackEntity[] = [trackOne, trackTwo, trackThree, trackFour];
+const mockTracks = [trackOne, trackTwo, trackThree, trackFour];
 
 describe('Component: GameTracksBar', () => {
   afterEach(cleanup);

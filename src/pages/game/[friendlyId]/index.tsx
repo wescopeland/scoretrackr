@@ -1,7 +1,6 @@
 import { makeStyles, Theme, Toolbar } from '@material-ui/core';
-import { GameGetPayload } from '@prisma/client';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 
@@ -11,6 +10,7 @@ import {
   GameTracksBar,
   LeaderboardOutlet
 } from '~/components/game';
+import { GameDetailsResponse } from '~/models/game-details-response.model';
 import { gameDrawerWidth } from '~/models/game-drawer-width';
 import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 
@@ -41,18 +41,17 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   }
 }));
 
-const fetcher = (url) =>
-  fetch(url).then(
-    (res) =>
-      (res.json() as unknown) as GameGetPayload<{ include: { tracks: true } }>
-  );
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const GamePage = () => {
   const router = useRouter();
   const { friendlyId } = router.query;
   const dispatch = useDispatch();
 
-  const { data, error } = useSWR(`/api/game/${friendlyId}`, fetcher);
+  const { data, error } = useSWR<GameDetailsResponse, any>(
+    `/api/game/${friendlyId}`,
+    fetcher
+  );
 
   useEffect(() => {
     if (data) {

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import { activeGameActions } from 'client/state/active-game';
+import { activeGameActions } from '~/state/active-game';
 import { GameDrawerToggleButton } from './GameDrawerToggleButton';
 
 let mockIsMobileBreakpoint: boolean;

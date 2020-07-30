@@ -1,13 +1,13 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
-import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
+import * as SwrModule from 'swr';
 
-import { selectCurrentTrack } from 'client/state/active-game';
+import { selectCurrentTrack } from '~/state/active-game';
 import { LeaderboardOutlet } from './LeaderboardOutlet';
 
-jest.mock('client/components/game/Leaderboard', () => ({
+jest.mock('~/components/game/Leaderboard', () => ({
   Leaderboard: () => <p>got records</p>
 }));
 
@@ -27,10 +27,9 @@ describe('Component: LeaderboardOutlet', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-      loading: false,
+    spyOn(SwrModule, 'default').and.returnValue({
       error: null,
-      data: { trackLeaderboard: [] }
+      data: []
     });
 
     const { container } = render(<LeaderboardOutlet />);
@@ -41,10 +40,9 @@ describe('Component: LeaderboardOutlet', () => {
 
   it('displays loading text if the leaderboard is loading', () => {
     // Arrange
-    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-      loading: true,
+    spyOn(SwrModule, 'default').and.returnValue({
       error: null,
-      data: {}
+      data: undefined
     });
 
     render(<LeaderboardOutlet />);
@@ -55,10 +53,9 @@ describe('Component: LeaderboardOutlet', () => {
 
   it('displays the track leaderboard if records are returned', () => {
     // Arrange
-    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-      loading: false,
+    spyOn(SwrModule, 'default').and.returnValue({
       error: null,
-      data: { trackLeaderboard: ['element'] }
+      data: ['element']
     });
 
     render(<LeaderboardOutlet />);
@@ -69,10 +66,9 @@ describe('Component: LeaderboardOutlet', () => {
 
   it('displays an empty state if no records are returned', () => {
     // Arrange
-    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-      loading: false,
+    spyOn(SwrModule, 'default').and.returnValue({
       error: null,
-      data: { trackLeaderboard: [] }
+      data: []
     });
 
     render(<LeaderboardOutlet />);

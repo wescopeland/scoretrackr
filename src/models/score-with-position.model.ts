@@ -1,5 +1,8 @@
-import { Score } from '@prisma/client';
-
-export interface ScoreWithPosition extends Score {
+export interface ScoreWithPosition {
+  id: string;
+  playerAlias: string;
+  finalScore: number;
+  submittedAt: Date;
+  platform: string;
   position: number;
 }

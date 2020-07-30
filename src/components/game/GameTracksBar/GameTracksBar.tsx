@@ -1,9 +1,9 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import { Track } from '@prisma/client';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { GameDetailsTrack } from '~/models/game-details-track.model';
 import { TrackWithSubmissionCount } from '~/models/track-with-submission-count.model';
 import { activeGameActions, selectActiveGameState } from '~/state/active-game';
 import { GameDrawerToggleButton } from '../GameDrawerToggleButton';
@@ -14,7 +14,7 @@ import { sortTracks } from './sort-tracks';
 interface GameTracksBarProps {
   isLoading: boolean;
   gameColor?: string;
-  tracks?: Track[];
+  tracks?: GameDetailsTrack[];
 }
 
 export const GameTracksBar = ({

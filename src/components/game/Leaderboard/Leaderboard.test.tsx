@@ -1,11 +1,12 @@
+import { Score } from '@prisma/client';
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import * as ReactReduxModule from 'react-redux';
 
-import { selectActiveGameColor } from 'client/state/active-game';
-import { Score } from '~/entities';
 import { firstPlace, secondPlace, thirdPlace } from '~/models/colors';
+import { ScoreWithPosition } from '~/models/score-with-position.model';
+import { selectActiveGameColor } from '~/state/active-game';
 import { Leaderboard } from './Leaderboard';
 
 // Styles are causing an error to be thrown.
@@ -19,16 +20,17 @@ jest.mock('@material-ui/core', () => ({
   useMediaQuery: () => mockUseMediaQueryValue
 }));
 
-const createMockScore = (position: number, finalScore: number): Score => {
+const createMockScore = (
+  position: number,
+  finalScore: number
+): ScoreWithPosition => {
   return {
     position,
     finalScore,
     id: `${position}-${finalScore}`,
     playerAlias: 'John Smith',
     platform: 'Arcade PCB',
-    submittedAt: new Date('2015-05-05'),
-    game: null,
-    track: null
+    submittedAt: new Date('2015-05-05')
   };
 };
 

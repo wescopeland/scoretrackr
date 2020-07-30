@@ -1,10 +1,10 @@
+import { Game, Track } from '@prisma/client';
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
-import * as GraphqlHooksModule from 'graphql-hooks';
 import React from 'react';
 
-import { GameEntity, ScoreEntity, TrackEntity } from 'common/entities';
-import { SubmissionBlob } from 'common/models/submission-blob.model';
+import { SubmissionBlobScore } from '~/models/submission-blob-score.model';
+import { SubmissionBlob } from '~/models/submission-blob.model';
 import { MostRecentSubmissions } from './MostRecentSubmissions';
 
 describe('Component: MostRecentSubmissions', () => {
@@ -12,13 +12,7 @@ describe('Component: MostRecentSubmissions', () => {
 
   it('renders without crashing', () => {
     // Arrange
-    spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-      loading: false,
-      error: null,
-      data: { recentSubmissions: [] }
-    });
-
-    const { container } = render(<MostRecentSubmissions />);
+    const { container } = render(<MostRecentSubmissions submissions={[]} />);
 
     // Assert
     expect(container).toBeVisible();
@@ -27,13 +21,7 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Loading', () => {
     it('given the page is loading, renders a recent submission in the loading state', () => {
       // Arrange
-      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-        loading: true,
-        error: null,
-        data: { recentSubmissions: null }
-      });
-
-      render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions submissions={undefined} />);
 
       // Assert
       expect(screen.getByTestId('recent-submission-loading')).toBeVisible();
@@ -43,13 +31,7 @@ describe('Component: MostRecentSubmissions', () => {
   describe('Hydrated', () => {
     it('does not display loading state', () => {
       // Arrange
-      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-        loading: false,
-        error: null,
-        data: { recentSubmissions: [] }
-      });
-
-      render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions submissions={[]} />);
 
       // Assert
       expect(screen.queryByTestId('recent-submission-loading')).toBeNull();
@@ -57,13 +39,7 @@ describe('Component: MostRecentSubmissions', () => {
 
     it('given there are no submission blobs, renders a message indicating an empty state', () => {
       // Arrange
-      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-        loading: false,
-        error: null,
-        data: { recentSubmissions: [] }
-      });
-
-      render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions submissions={[]} />);
 
       // Assert
       expect(screen.getByText('recentSubmissions.none.label')).toBeVisible();
@@ -71,22 +47,25 @@ describe('Component: MostRecentSubmissions', () => {
 
     it('given there are three submission blobs, renders three separate chunks of submissions', () => {
       // Arrange
-      const mockGame = new GameEntity();
-      mockGame.name = 'Galaga';
-      mockGame.color = 'purple';
-      mockGame.id = 'galaga';
+      const mockGame: Partial<Game> = {
+        name: 'Galaga',
+        color: 'purple',
+        id: 'galaga'
+      };
 
-      const mockTrack = new TrackEntity();
-      mockTrack.id = '1';
-      mockTrack.name = 'Factory settings';
-      mockTrack.friendlyId = 'factorySettings';
+      const mockTrack: Partial<Track> = {
+        id: '1',
+        name: 'Factory settings',
+        friendlyId: 'factorySettings'
+      };
 
-      const mockSubmission = new ScoreEntity();
-      mockSubmission.game = mockGame;
-      mockSubmission.track = mockTrack;
-      mockSubmission.playerAlias = 'Wilhelm Scream';
-      mockSubmission.finalScore = 999999;
-      mockSubmission.position = 1;
+      const mockSubmission: SubmissionBlobScore = {
+        game: mockGame,
+        track: mockTrack,
+        playerAlias: 'Wilhelm Scream',
+        finalScore: 999999,
+        position: 1
+      };
 
       const mockSubmissionBlobs: SubmissionBlob[] = [
         {
@@ -103,17 +82,11 @@ describe('Component: MostRecentSubmissions', () => {
         }
       ];
 
-      spyOn(GraphqlHooksModule, 'useQuery').and.returnValue({
-        loading: false,
-        error: null,
-        data: { recentSubmissions: mockSubmissionBlobs }
-      });
-
       spyOn(global.Date, 'now').and.returnValue(
         new Date('2020-06-02T22:01:58.135Z')
       );
 
-      render(<MostRecentSubmissions />);
+      render(<MostRecentSubmissions submissions={mockSubmissionBlobs} />);
 
       // Assert
       expect(screen.getByText('dates.today')).toBeVisible();
