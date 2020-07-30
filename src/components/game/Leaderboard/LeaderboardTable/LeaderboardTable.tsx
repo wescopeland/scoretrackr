@@ -8,8 +8,8 @@ import {
   TableRow
 } from '@material-ui/core';
 import React, { Fragment } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import { useTranslation } from '~/i18n';
 import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { useStyles } from './LeaderboardTable.styles';
 import { LeaderboardTableRow } from './LeaderboardTableRow';

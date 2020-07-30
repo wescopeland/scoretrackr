@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 
 import { EmptyState } from '~/components/shared/EmptyState';
+import { useTranslation } from '~/i18n';
 import { ScoreWithPosition } from '~/models/score-with-position.model';
 import { selectCurrentTrack } from '~/state/active-game';
 import { Leaderboard } from '../Leaderboard';

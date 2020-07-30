@@ -1,9 +1,9 @@
 import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import { Menu } from 'mdi-material-ui';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import { useTranslation } from '~/i18n';
 import { activeGameActions } from '~/state/active-game';
 import { useStyles } from './GameDrawerToggleButton.styles';
 

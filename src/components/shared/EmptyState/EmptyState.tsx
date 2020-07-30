@@ -1,7 +1,7 @@
 import { Typography, useTheme } from '@material-ui/core';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
+import { useTranslation } from '~/i18n';
 import { useStyles } from './EmptyState.styles';
 
 interface EmptyStateProps {

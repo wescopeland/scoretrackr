@@ -1,8 +1,8 @@
 import { List, ListSubheader } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
+import { useTranslation } from '~/i18n';
 import { SidenavLink } from '../SidenavLink';
 import { useStyles } from './GameSidenavContent.styles';
 
