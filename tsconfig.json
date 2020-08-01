@@ -20,7 +20,7 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "types": ["jest"]
+    "types": ["jest", "cypress"]
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]

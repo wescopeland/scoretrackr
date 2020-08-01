@@ -1,0 +1,6 @@
+{
+  "integrationFolder": "cypress/tests",
+  "testFiles": "**/*.{feature,features}",
+  "supportFolder": false,
+  "fixturesFolder": false
+}
