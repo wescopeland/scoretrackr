@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const channel = req.headers['Nightbot-Channel'];
-  const user = req.headers['Nightbot-User'];
+  const channel = req.headers['nightbot-channel'];
+  const user = req.headers['nightbot-user'];
 
   res
     .status(200)
