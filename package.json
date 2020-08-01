@@ -90,6 +90,11 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none"
+  },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
     "stepDefinitions": "cypress/tests"
