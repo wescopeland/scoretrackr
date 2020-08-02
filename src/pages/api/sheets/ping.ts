@@ -13,6 +13,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   res
     .status(200)
     .send(
-      `Scoretrackr Sheets API is returning a 200. Your username is ${user.displayName} and the current channel is ${channel.displayName}.`
+      `Hello! Your username is ${user.displayName} and the current channel is ${channel.displayName}.`
     );
 }
