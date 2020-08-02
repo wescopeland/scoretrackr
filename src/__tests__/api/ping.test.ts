@@ -4,6 +4,7 @@ import ping from '~/pages/api/ping';
 
 describe('Api Endpoint: ping', () => {
   it('exists', () => {
+    // Assert
     expect(ping).toBeDefined();
   });
 
